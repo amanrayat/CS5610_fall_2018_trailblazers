@@ -6,15 +6,15 @@ to drink beer and people who want to sell beer must be given a common platform.
 
 
 Target Audience - 
-Drinkers - These type of users 
-1. Would be able to find breweries in their preferable localities
-2. Can share their experience at breweries
-3. Can access guild event/brewery events
+1. Drinkers - These type of users 
+  a. Would be able to find breweries in their preferable localities
+  b. Can share their experience at breweries
+  c. Can access guild event/brewery events
 
-Breweries - These type of users
-1. Can add new brewery locations
-2. Can form guilds with other Breweries
-3. Can organize promotional events
+2. Breweries - These type of users
+  a. Can add new brewery locations  
+  b. Can form guilds with other Breweries
+  c. Can organize promotional events
 
 
 Solution Proposal - 
