@@ -1,2 +1,5 @@
 # CS5610_fall_2018_trailblazers
-Project for CS5610
+Tean members 
+* Aman Rayat 
+* Koosh Doctor 
+* Sushant Pritmani
