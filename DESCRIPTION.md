@@ -24,6 +24,6 @@ according to their preferences. The intent here is to bring together two user en
 
 
 Data Sources - 
-Untappd
-BreweryDB
-Open Brewery DB
+1. Untappd
+2. BreweryDB
+3. Open Brewery DB
