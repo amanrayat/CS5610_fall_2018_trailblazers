@@ -20,7 +20,7 @@ Breweries - These type of users
 Solution Proposal - 
 We are going to make a beer ecosystem where beer enthusiast can easily connect
 according to their preferences. The intent here is to bring together two user entities
-- the people who want to buy beer and the people who want to sell beer.
+:- the people who want to buy beer and the people who want to sell beer.
 
 
 Data Sources - 
