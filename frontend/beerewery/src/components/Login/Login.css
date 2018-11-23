@@ -1,8 +1,7 @@
 #background_pic {
-    height: 120%;
-    background: url("../../pics/beer.jpg") no-repeat;
-    background-size: 70em;
-}
+     height: 100%;
+     background: url("../../pics/beer.jpg") no-repeat;
+    background-size: 100% 100%; }
 
 #login-form{
     margin-top: 20%;
