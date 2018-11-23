@@ -20,7 +20,7 @@ export default class Register extends React.Component {
 
     submitRegister = ()=>{
         console.log("the email is " , this.state.email , "the password is " , this.state.password)
-    }
+    };
 
     onEmailChange = e=> this.setState({email : e.target.value});
     onPasswordChange = e=> this.setState({password : e.target.value});
@@ -55,7 +55,6 @@ export default class Register extends React.Component {
                                     label="First Name"
                                     className={'input-field'}
                                     fullWidth ={true}
-                                    autoFocus={true}
                                     value={this.state.firstName}
                                     onChange={this.onFirstNameChange}
                                     margin="normal"
@@ -67,7 +66,6 @@ export default class Register extends React.Component {
                                     label="Last Name"
                                     className={'input-field'}
                                     fullWidth ={true}
-                                    autoFocus={true}
                                     value={this.state.lastName}
                                     onChange={this.onLastNameChange}
                                     margin="normal"
@@ -79,7 +77,6 @@ export default class Register extends React.Component {
                                     label="Email Id"
                                     className={'input-field'}
                                     fullWidth ={true}
-                                    autoFocus={true}
                                     value={this.state.email}
                                     onChange={this.onEmailChange}
                                     margin="normal"
