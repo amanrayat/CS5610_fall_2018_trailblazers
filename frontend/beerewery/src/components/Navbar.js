@@ -4,22 +4,33 @@ import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
 
 export default class Navbar extends React.Component{
 
     render(){
         return (
-            <div >
+            <div>
                 <AppBar position="static">
                     <Toolbar>
-                        <IconButton  color="inherit" aria-label="Menu">
-                            {/*<MenuIcon />*/}
-                        </IconButton>
-                        <Typography variant="h6" color="inherit">
-                            Beerewery
-                        </Typography>
-                        <Button style={{ flex: 1 }} color="inherit">Login</Button>
-                        <Button style={{ flex: 1 }} color="inherit">Register</Button>
+                        <Grid
+                            container
+                            direction="row"
+                            justify="space-between"
+                            alignItems="center"
+                        >
+                            <Grid item>
+                            </Grid>
+                            <Grid item>
+                                <Typography variant="h6" color="inherit">
+                                    Beerewery
+                                </Typography>
+                            </Grid>
+                            <Grid item>
+                                <Button color="inherit">Login</Button>
+                                <Button color="inherit">Register</Button>
+                            </Grid>
+                        </Grid>
                     </Toolbar>
                 </AppBar>
             </div>
