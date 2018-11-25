@@ -36,7 +36,7 @@ export default class Home extends React.Component{
         }
         console.log(newPath.slice(0,-1))
         return newPath.slice(0,-1);
-    }
+    };
 
 
     render(){
