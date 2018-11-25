@@ -13,10 +13,6 @@ export default class Home extends React.Component{
         }
     }
 
-    searchBeer = (e) =>{
-        console.log(e.target.value)
-    };
-
     trackSearchTextChanges = (e) => {
         this.setState({
             searchText: e.target.value,
