@@ -1,7 +1,5 @@
 import React from 'react'
 import Navbar from '../NavBar/Navbar'
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
 
 import './Home.css'
 
@@ -188,29 +186,21 @@ export default class Home extends React.Component{
 
     render(){
         return(
-            <div id={'backdrop'}>
-               <Navbar/>
-                <div className={'search-field'}>
-                    <TextField
-                        id="outlined-full-width"
-                        label="Search"
-                        // style={{ margin: 8 }}
-                        placeholder="Beer Name"
-                        helperText="Search for your favorite beer"
-                        // fullWidth
-                        style = {{width: '80%'}}
-                        onChange={this.searchBeer}
-                        margin="normal"
-                        variant="outlined"
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                    />
-                    <Button id={'search-button'} variant="contained" color="primary" >
-                        Send
-                    </Button>
-                </div>
+            <div className="h-100">
+                <Navbar/>
+                <div className="backdrop">
+                    <div className="h-25">
 
+                    </div>
+                    <div className="row mx-0">
+                        <div className="col-1">
+
+                        </div>
+                        <div className="col-4">
+                            <input className="form-control" type="text" placeholder="Search for Beers or Breweries" aria-label="Search"/>
+                        </div>
+                    </div>
+                </div>
             </div>
         )
     }
