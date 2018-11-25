@@ -7,6 +7,7 @@ export default class Home extends React.Component{
     constructor(props){
         super(props);
         this.state = {
+            searchText: "",
             result : {
                 "currentPage": 1,
                 "numberOfPages": 1,
@@ -184,6 +185,12 @@ export default class Home extends React.Component{
         console.log(e.target.value)
     };
 
+    trackSearchTextChanges = (e) => {
+        this.setState({
+            searchText: e.target.value,
+        })
+    };
+
     render(){
         return(
             <div className="h-100">
@@ -196,8 +203,21 @@ export default class Home extends React.Component{
                         <div className="col-1">
 
                         </div>
-                        <div className="col-4">
-                            <input className="form-control" type="text" placeholder="Search for Beers or Breweries" aria-label="Search"/>
+                        <div className="col-6">
+                            <div className="row">
+                                <div className="col-8">
+                                    <input
+                                        value={this.state.searchText}
+                                        onChange={this.trackSearchTextChanges}
+                                        className="form-control"
+                                        type="text"
+                                        placeholder="Search for Beers or Breweries"
+                                        aria-label="Search"/>
+                                </div>
+                                <div className="col-4">
+                                    <button type="button" className="btn btn-secondary">Search</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
