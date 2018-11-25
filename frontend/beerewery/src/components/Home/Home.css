@@ -1,3 +1,4 @@
+/*
 .search-field{
     margin-top: 20%;
     margin-right: 10%;
@@ -10,10 +11,11 @@
     left: 22px;
     top: 22px;
 }
+*/
 
-#backdrop{
+.backdrop{
     height: 100%;
-    background: url("../../pics/background.jpg") no-repeat;
+    background: url("http://localhost:3000/images/background.jpg") no-repeat;
     background-size: 100% 100%;
     background-blend-mode: luminosity;
 

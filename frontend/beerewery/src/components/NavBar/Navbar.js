@@ -1,39 +1,24 @@
 import React from 'react'
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import Grid from '@material-ui/core/Grid';
 
 export default class Navbar extends React.Component{
 
     render(){
         return (
-            <div>
-                <AppBar position="static">
-                    <Toolbar>
-                        <Grid
-                            container
-                            direction="row"
-                            justify="space-between"
-                            alignItems="center"
-                        >
-                            <Grid item>
-                            </Grid>
-                            <Grid item>
-                                <Typography variant="h6" color="inherit">
-                                    Beerewery
-                                </Typography>
-                            </Grid>
-                            <Grid item>
-                                <Button color="inherit">Login</Button>
-                                <Button color="inherit">Register</Button>
-                            </Grid>
-                        </Grid>
-                    </Toolbar>
-                </AppBar>
-            </div>
+            <nav className="navbar navbar-expand navbar-dark sticky-top bg-dark">
+                <ul className="navbar-nav w-100">
+                    <li className="nav-item nav-link col-md-4">
+                    </li>
+                    <li className="nav-item nav-link col-4 text-center">
+                        <a className="navbar-brand" href="#">
+                            Beerewery
+                        </a>
+                    </li>
+                    <li className="nav-item nav-link col-md-4 col-8 text-right">
+                        <button type="button" className="btn btn-secondary mr-2">Login</button>
+                        <button type="button" className="btn btn-secondary">Register</button>
+                    </li>
+                </ul>
+            </nav>
         );
     }
 }
