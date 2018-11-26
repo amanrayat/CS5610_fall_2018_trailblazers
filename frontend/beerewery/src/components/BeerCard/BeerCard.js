@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link} from 'react-router-dom'
 
 function BeerCard({record}){
     return(
@@ -17,7 +18,7 @@ function BeerCard({record}){
                 record.labels &&
                 <div className="col-6 pt-1">
                     <div className="row">
-                        {record.name}
+                        <Link to={`/beer/${record.id}`}>{record.name}</Link>
                     </div>
                     <div className="row">
                         {record.style.name}
@@ -28,7 +29,7 @@ function BeerCard({record}){
                 !record.labels &&
                 <div className="col-6">
                     <div className="row">
-                        {record.name}
+                        <Link to={`/beer/${record.id}`}>{record.name}</Link>
                     </div>
                     <div className="row">
                         {record.style.name}
