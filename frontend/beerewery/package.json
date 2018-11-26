@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "axios": "latest",
     "bootstrap": "^4.1.3",
     "font-awesome": "^4.7.0",
     "query-string": "^6.2.0",
