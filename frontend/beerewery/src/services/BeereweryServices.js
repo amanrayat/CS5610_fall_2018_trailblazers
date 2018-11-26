@@ -10,7 +10,7 @@ let dummyFormat = "json&withBreweries=Y&withLocations=N&withAlternateNames=N&wit
 export default class BeereweryServices{
 
     static search(query){
-        let url = dummApi + 'search?q=' + query + '&key=' + dummyKey + "&format=" + dummyFormat;
+        let url = API_endpoint + 'search?q=' + query + '&key=' + key + "&format=" + format;
         console.log(url);
         return axios.get(url, {crossdomain: true}).then((res) => res.data)
     }

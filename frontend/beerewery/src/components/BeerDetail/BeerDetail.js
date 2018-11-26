@@ -96,9 +96,9 @@ export default class BeerDetail extends React.Component {
 
                                     {
                                         this.state.beer.breweries && this.state.beer.breweries.length > 0 && this.state.beer.breweries.map((brewery, index) =>
-                                            (<div className="product"><img
+                                            (<div className="product">{brewery.images ? <img
                                                 className="img-responsive pull-left product-image"
-                                                src={brewery.images.squareMedium}/>
+                                                src={brewery.images.squareMedium}/> : <i className=" pull-left product-image fa fa-2x fa-beer pt-2" aria-hidden="true"></i>}
                                                 <div className="product-info">
                                                     <div className="product-name truncate">
                                                         <Link to={`/course/${brewery.id}`}>{brewery.name}</Link></div>
