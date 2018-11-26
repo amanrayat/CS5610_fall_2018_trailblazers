@@ -15,6 +15,3 @@ export default class BeereweryServices{
         return axios.get(url, {crossdomain: true}).then((res) => res.data)
     }
 }
-
-//https://sandbox-api.brewerydb.com/v2/search?q=Wheat&key=21ed24bf7af4b64476155e7902e27d5e&format=json&withBreweries=Y&withLocations=N&withAlternateNames=N&withIngredients=N&p=1
-//https://sandbox-api.brewerydb.com/v2/search?q=wheat&key=21ed24bf7af4b64476155e7902e27d5e&format=json&withBreweries=Y&withLocations=N&withAlternateNames=N&withIngredients=N&p=1

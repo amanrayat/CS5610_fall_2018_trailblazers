@@ -2,17 +2,44 @@ import React from 'react'
 
 function BeerCard({record}){
     return(
-        <div className="bg-white row border">
-            <div className="col-12 my-4">
+        <div className="bg-white row border py-4">
+            <div className="col-2">
                 {
                     record.labels &&
                     <img src={record.labels.icon}/>
                 }
                 {
                     !record.labels &&
-                    <i className="fa fa-2x fa-beer" aria-hidden="true"></i>
+                    <i className="fa fa-2x fa-beer pt-2" aria-hidden="true"></i>
                 }
-                {record.name}
+            </div>
+            {
+                record.labels &&
+                <div className="col-6 pt-1">
+                    <div className="row">
+                        {record.name}
+                    </div>
+                    <div className="row">
+                        {record.style.name}
+                    </div>
+                </div>
+            }
+            {
+                !record.labels &&
+                <div className="col-6">
+                    <div className="row">
+                        {record.name}
+                    </div>
+                    <div className="row">
+                        {record.style.name}
+                    </div>
+                </div>
+            }
+            <div className="col-2">
+
+            </div>
+            <div className="col-2">
+                {record.abv}% ABV
             </div>
         </div>
     )
