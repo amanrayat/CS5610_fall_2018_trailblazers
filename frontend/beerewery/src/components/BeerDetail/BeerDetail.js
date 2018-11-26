@@ -2,6 +2,7 @@ import React from "react";
 import axios from 'axios';
 import './BeerDetail.css'
 import {Link} from 'react-router-dom'
+import BeereweryServices from "../../services/BeereweryServices";
 
 
 export default class BeerDetail extends React.Component {
@@ -206,29 +207,25 @@ export default class BeerDetail extends React.Component {
         }
     }
 
-    // componentWillMount = () => {
-    //
-    //     // if (!this.props.isAuthenticated) {
-    //     //     return;
-    //     // }
-    //
-    //     // retrieve beerId from the URL path parameter 'beerId'
-    //     // the props.match.params is part of the Route library which
-    //     // parses the URL path and names the parameters and creates
-    //     // the params map
-    //     const beerId = this.props.match.params.beerId;
-    //
-    //     axios.get().then(res => {
-    //         const beer = res.data;
-    //         if (beer.status === "success") {
-    //             this.setState({
-    //                 isLoading: false,
-    //                 beer: beer.data
-    //             });
-    //         }
-    //     });
-    //
-    // };
+    componentWillMount = () => {
+
+        // if (!this.props.isAuthenticated) {
+        //     return;
+        // }
+
+        // retrieve beerId from the URL path parameter 'beerId'
+        // the props.match.params is part of the Route library which
+        // parses the URL path and names the parameters and creates
+        // the params map
+        const beerId = this.props.match.params.beerId;
+
+        BeereweryServices.getBeer(beerId).then((res) => {
+            this.setState({
+                beer: res.data
+            })
+        });
+
+    };
 
     render() {
         return (
