@@ -1,0 +1,7 @@
+.backdropSearch{
+    background: url("http://localhost:3000/images/search.jpg") no-repeat
+}
+
+.searchResults{
+    overflow-y: scroll;
+}

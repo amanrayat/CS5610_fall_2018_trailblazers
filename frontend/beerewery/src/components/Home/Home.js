@@ -13,10 +13,6 @@ export default class Home extends React.Component{
         }
     }
 
-    searchBeer = (e) =>{
-        console.log(e.target.value)
-    };
-
     trackSearchTextChanges = (e) => {
         this.setState({
             searchText: e.target.value,
@@ -40,7 +36,7 @@ export default class Home extends React.Component{
         }
         console.log(newPath.slice(0,-1))
         return newPath.slice(0,-1);
-    }
+    };
 
 
     render(){
@@ -50,7 +46,7 @@ export default class Home extends React.Component{
         return(
             <div className="h-100">
                 <Navbar/>
-                <div className="backdrop">
+                <div className="backdropHome">
                     <div className="h-25">
 
                     </div>
