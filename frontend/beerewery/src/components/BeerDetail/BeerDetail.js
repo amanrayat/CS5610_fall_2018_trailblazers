@@ -4,7 +4,6 @@ import './BeerDetail.css'
 import {Link} from 'react-router-dom'
 
 
-
 export default class BeerDetail extends React.Component {
 
     constructor(props) {
@@ -219,22 +218,15 @@ export default class BeerDetail extends React.Component {
     //     // the params map
     //     const beerId = this.props.match.params.beerId;
     //
-    //     // CourseService.findCourseById(courseId).then(res => {
-    //     //     const course = res.data;
-    //     //     const selectedModule = course.modules && course.modules.length ? course.modules[0] : {};
-    //     //     const selectedLesson = selectedModule.lessons && selectedModule.lessons.length ? selectedModule.lessons[0] : {};
-    //     //     const selectedTopic = selectedLesson.topics && selectedLesson.topics.length ? selectedLesson.topics[0] : {};
-    //     //     this.setState({
-    //     //         isLoading: false,
-    //     //         course: course,
-    //     //         selectedModule: selectedModule,
-    //     //         selectedLesson: selectedLesson,
-    //     //         selectedTopic: selectedTopic,
-    //     //         courseTitle: course.title,
-    //     //         editMode: false,
-    //     //         previewMode: false
-    //     //     });
-    //     // });
+    //     axios.get().then(res => {
+    //         const beer = res.data;
+    //         if (beer.status === "success") {
+    //             this.setState({
+    //                 isLoading: false,
+    //                 beer: beer.data
+    //             });
+    //         }
+    //     });
     //
     // };
 
@@ -280,7 +272,8 @@ export default class BeerDetail extends React.Component {
                                     </tr>
                                     <tr>
                                         <td>Serving Temp:</td>
-                                        <td width="60%" className="truncate">{this.state.beer.servingTemperatureDisplay ?
+                                        <td width="60%"
+                                            className="truncate">{this.state.beer.servingTemperatureDisplay ?
                                             this.state.beer.servingTemperatureDisplay : <i>Unknown</i>}</td>
                                     </tr>
                                     <tr>
@@ -298,18 +291,19 @@ export default class BeerDetail extends React.Component {
 
                                     {
                                         this.state.beer.breweries && this.state.beer.breweries.length > 0 && this.state.beer.breweries.map((brewery, index) =>
-                                            (<div className="product"><img className="img-responsive pull-left product-image"
-                                                                           src={brewery.images.squareMedium}/>
-                                                    <div className="product-info">
-                                                        <div className="product-name truncate">
-                                                            <Link to={`/course/${brewery.id}`}>{brewery.name}</Link></div>
-                                                        <div className="product-producer truncate">{brewery.locations[0].locality},{brewery.locations[0].region} {brewery.locations[0].countryIsoCode}</div>
-                                                        <div className="product-style truncate">{brewery.website}</div>
-                                                    </div>
-                                                </div>)
+                                            (<div className="product"><img
+                                                className="img-responsive pull-left product-image"
+                                                src={brewery.images.squareMedium}/>
+                                                <div className="product-info">
+                                                    <div className="product-name truncate">
+                                                        <Link to={`/course/${brewery.id}`}>{brewery.name}</Link></div>
+                                                    <div
+                                                        className="product-producer truncate">{brewery.locations[0].locality},{brewery.locations[0].region} {brewery.locations[0].countryIsoCode}</div>
+                                                    <div className="product-style truncate">{brewery.website}</div>
+                                                </div>
+                                            </div>)
                                         )
                                     }
-
 
 
                                 </div>
@@ -320,15 +314,18 @@ export default class BeerDetail extends React.Component {
 
                                 <div className="row font-weight-bold">
                                     <div className="col-sm-3 text-center">
-                                        <p className="bg-grey circle-5 truncate bg-gray">{this.state.beer.abv ? this.state.beer.abv + " %" : "N/A"}</p><br/>
+                                        <p className="bg-grey circle-5 truncate bg-gray">{this.state.beer.abv ? this.state.beer.abv + " %" : "N/A"}</p>
+                                        <br/>
                                         ABV
                                     </div>
                                     <div className="col-sm-3 text-center">
-                                        <p className="bg-grey circle-5 truncate bg-gray">{this.state.beer.ibu ? this.state.beer.ibu + " %" : "N/A"}</p><br/>
+                                        <p className="bg-grey circle-5 truncate bg-gray">{this.state.beer.ibu ? this.state.beer.ibu + " %" : "N/A"}</p>
+                                        <br/>
                                         IBU
                                     </div>
                                     <div className="col-sm-3 text-center">
-                                        <p className="bg-grey circle-5 truncate bg-gray">{this.state.beer.og ? this.state.beer.og + " %" : "N/A"}</p><br/>
+                                        <p className="bg-grey circle-5 truncate bg-gray">{this.state.beer.og ? this.state.beer.og + " %" : "N/A"}</p>
+                                        <br/>
                                         OG
                                     </div>
                                     <div className="col-sm-3 text-center">
