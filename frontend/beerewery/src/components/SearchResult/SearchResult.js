@@ -1,11 +1,13 @@
 import React from 'react';
 import queryString from 'query-string'
 import {Redirect, Router} from 'react-router-dom'
-import { withRouter } from 'react-router-dom';
 
 import Navbar from "../NavBar/Navbar";
+import BeereweryServices from "../../services/BeereweryServices";
+import './SearchResult.css'
+import SearchResultCards from "../SearchResultCards/SearchResultCards";
 
-class SearchResult extends React.Component {
+export default class SearchResult extends React.Component {
 
     constructor(props){
         super(props);
@@ -19,6 +21,11 @@ class SearchResult extends React.Component {
     }
 
     componentDidMount(){
+        BeereweryServices.search(this.state.initialSearchQuery).then((res) => {
+            this.setState({
+                data: res
+            })
+        });
     }
 
     componentWillReceiveProps(newProps){
@@ -113,7 +120,7 @@ class SearchResult extends React.Component {
                         </div>
                         <div className="row">
                             <div
-                                className={"col-6 py-2 text-center " + (this.state.beerActive? "bg-white": "bg-light border")}
+                                className={"col-6 py-2 text-center " + (this.state.beerActive? "bg-white border-left": "bg-light border")}
                                 onClick={this.toggleBeer}
                             >
                                 Beer
@@ -125,6 +132,24 @@ class SearchResult extends React.Component {
                                 Brewery
                             </div>
                         </div>
+                        {
+                            this.state.data &&
+                            (
+                                <div>
+                                    <div className="row bg-white border-left border-right">
+                                        <div className="col-12 my-4">
+                                            <h4>
+                                                <strong>{this.state.data.totalResults} beer</strong> results for <strong>"{this.state.initialSearchQuery}"</strong>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                    <SearchResultCards
+                                        results = {this.state.data.data}
+                                    />
+                                </div>
+
+                            )
+                        }
                     </div>
                     <div className="col-md-3 px-0">
 
@@ -134,5 +159,3 @@ class SearchResult extends React.Component {
         )
     }
 }
-
-export default withRouter(SearchResult)

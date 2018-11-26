@@ -46,7 +46,7 @@ export default class Home extends React.Component{
         return(
             <div className="h-100">
                 <Navbar/>
-                <div className="backdrop">
+                <div className="backdropHome">
                     <div className="h-25">
 
                     </div>
