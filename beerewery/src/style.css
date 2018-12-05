@@ -2,3 +2,16 @@ body {
     margin: 0;
     padding: 0;
 }
+
+.pic-size{
+    width: 90%;
+    height: 90%;
+}
+.pic-size-extended{
+    width: 7rem;
+    height: 7rem;
+}
+
+.left-panel{
+    background: #D3D3D3;
+}
