@@ -4,6 +4,8 @@ import Home from "../components/Home/Home";
 import SearchResult from "../components/SearchResult/SearchResult";
 import BeerDetail from "../components/BeerDetail/BeerDetail";
 import Profile from "../components/Profile/profile";
+import Login from '../components/Login/Login'
+import Register from '../components/Register/Register'
 
 export default class AppContainer extends React.Component{
 
@@ -19,6 +21,8 @@ export default class AppContainer extends React.Component{
                         <BeerDetail {...props}/>
                     )}/>
                     <Route path='/profile/:userId' component={Profile}/>
+                    <Route path='/login' component={Login}/>
+                    <Route path='/register' component={Register}/>
                 </Switch>
             </Router>
             )
