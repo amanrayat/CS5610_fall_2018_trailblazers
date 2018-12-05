@@ -1,0 +1,21 @@
+#background_pic {
+    height: 120%;
+    background: url("../../pics/beer.jpg") no-repeat;
+    background-size: 70em;
+}
+
+#login-form{
+    margin-top: 20%;
+    margin-right: 50px;
+    text-align: center;
+}
+
+.input-field{
+    size: 40px;
+}
+
+h3{
+    color: rgb(63, 81, 181);
+    font-family: 'Pacifico', cursive;
+    font-size: x-large;
+}
