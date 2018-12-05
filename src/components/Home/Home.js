@@ -1,6 +1,7 @@
 import React from 'react'
 import {Redirect} from 'react-router-dom'
 import Navbar from '../NavBar/Navbar'
+import UserFeed from '../UserFeed/UserFeed'
 
 import './Home.css'
 
@@ -10,6 +11,8 @@ export default class Home extends React.Component{
         this.state = {
             searchText: "",
             moveToSearchResult: false,
+            userActivity: true,
+            eventPlannerActivity: false
         }
     }
 
@@ -44,37 +47,56 @@ export default class Home extends React.Component{
             return <Redirect to={this.generateSearchRoute()} />
         }
         return(
-            <div className="h-100">
+            <div className="backdropHome">
                 <Navbar/>
-                <div className="backdropHome">
-                    <div className="h-25">
+                <div className="row mx-0">
+                    <div className="col-1">
 
                     </div>
-                    <div className="row mx-0">
-                        <div className="col-1">
-
-                        </div>
-                        <div className="col-6">
-                            <div className="row">
-                                <div className="col-8">
-                                    <input
-                                        value={this.state.searchText}
-                                        onChange={this.trackSearchTextChanges}
-                                        className="form-control"
-                                        type="text"
-                                        placeholder="Search for Beers or Breweries"
-                                        aria-label="Search"/>
-                                </div>
-                                <div className="col-4">
-                                    <button
-                                        onClick={this.sendSearchRequest}
-                                        type="button"
-                                        className="btn btn-secondary">
-                                        Search
-                                    </button>
-                                </div>
+                    <div className="col-6">
+                        <div className="row py-5">
+                            <div className="col-10">
+                                <input
+                                    value={this.state.searchText}
+                                    onChange={this.trackSearchTextChanges}
+                                    className="form-control"
+                                    type="text"
+                                    placeholder="Search for Beers or Breweries"
+                                    aria-label="Search"/>
+                            </div>
+                            <div className="col-2 text-right">
+                                <button
+                                    onClick={this.sendSearchRequest}
+                                    type="button"
+                                    className="btn btn-secondary">
+                                    Search
+                                </button>
                             </div>
                         </div>
+                    </div>
+                    <div className="col-3">
+                    </div>
+                </div>
+                <div className="row mx-0">
+                    <div className="col-1">
+                    </div>
+                    <div className="col-6">
+                        <div className="row mx-0 rounded">
+                            <div
+                                className={"col-6 text-center py-2 " + (this.state.userActivity? "bg-white": "bg-light border")}
+                            >
+                                User Activity
+                            </div>
+                            <div
+                                className={"col-6 text-center py-2 " + (this.state.eventPlannerActivity? "bg-white": "bg-light border")}
+                            >
+                                EventPlanner Activity
+                            </div>
+                        </div>
+                        {
+                            this.state.userActivity &&
+                            <UserFeed/>
+                        }
                     </div>
                 </div>
             </div>
