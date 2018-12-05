@@ -200,6 +200,59 @@ export default class Profile extends React.Component{
                         </div>
                     </div>
 
+                    <div className={'row mx-2 mt-5'}>
+                        <div className={'col-6'}>
+                            <h5 className={'mb-3 mx-3'}>Fav Beer</h5>
+                            <ExpansionPanel expanded={this.state.expanded === 'panel3'} onChange={this.handleChange('panel3')}>
+                                <ExpansionPanelSummary expandIcon={">"}>
+                                    {
+                                        this.state.followers.slice(0, 3).map(follower=>{
+                                            return(<div className={'mx-5 pic-size'}>
+                                                <img className="rounded-circle card-img-top" src={follower.image} alt="Card image cap"/>
+                                                <p className={'text-center'}>{follower.firstName}</p>
+                                            </div>)
+                                        })
+                                    }
+                                </ExpansionPanelSummary>
+                                <ExpansionPanelDetails>
+                                    {
+                                        this.state.followers.slice(3, this.state.followers.length).map(follower=>{
+                                            return(<div className={'mx-5 pic-size-extended'}>
+                                                <img className="rounded-circle card-img-top" src={follower.image} alt="Card image cap"/>
+                                                <p className={'text-center'}>{follower.firstName}</p>
+                                            </div>)
+                                        })
+                                    }
+                                </ExpansionPanelDetails>
+                            </ExpansionPanel>
+                        </div>
+                        <div className={'col-6'}>
+                            <h5 className={'mb-3 mx-3'}>Fav Brewery</h5>
+                            <ExpansionPanel expanded={this.state.expanded === 'panel4'} onChange={this.handleChange('panel4')}>
+                                <ExpansionPanelSummary expandIcon={">"}>
+                                    {
+                                        this.state.following.slice(0, 3).map(follower=>{
+                                            return(<div className={'mx-5 pic-size'}>
+                                                <img className="rounded-circle card-img-top" src={follower.image} alt="Card image cap"/>
+                                                <p className={'text-center'}>{follower.firstName}</p>
+                                            </div>)
+                                        })
+                                    }
+                                </ExpansionPanelSummary>
+                                <ExpansionPanelDetails>
+                                    {
+                                        this.state.following.slice(3, this.state.followers.length).map(follower=>{
+                                            return(<div className={'mx-5 pic-size-extended'}>
+                                                <img className="rounded-circle card-img-top" src={follower.image} alt="Card image cap"/>
+                                                <p className={'text-center'}>{follower.firstName}</p>
+                                            </div>)
+                                        })
+                                    }
+                                </ExpansionPanelDetails>
+                            </ExpansionPanel>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         )
