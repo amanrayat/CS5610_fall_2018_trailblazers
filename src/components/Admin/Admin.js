@@ -257,7 +257,7 @@ export default class Admin extends React.Component{
                                     </div>
                                 </div>
                                 <div className="col-2">
-
+                                    a
                                 </div>
                             </div>
                     }
