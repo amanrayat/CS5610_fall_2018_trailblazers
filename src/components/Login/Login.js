@@ -18,7 +18,6 @@ export default class Login extends React.Component {
     }
 
     submitLogin = (event) => {
-        console.log("the email is ", this.state.email, "the password is ", this.state.password);
         event.preventDefault();
 
         this.setState({isLoading: true});
@@ -34,7 +33,7 @@ export default class Login extends React.Component {
                     this.props.userHasAuthenticated(true);
                     this.props.history.push("/");
                 } else {
-                    alert("email or password not in database")
+                    alert("email or  not in database")
                     this.setState({isLoading: false})
                 }
             }).catch(e => {
@@ -51,11 +50,11 @@ export default class Login extends React.Component {
 
             <div style={{'height': '100%'}}>
                 <Grid container spacing={24} style={{'height': '100%'}}>
-                    <Grid item xs={6}>
+                    <Grid item md={6} only={['md', 'xl']}>
                         <div id={'background_pic'}/>
                     </Grid>
-                    <Grid item xs={6}>
-                        <div id={'login-form'}>
+                    <Grid item xs={12} md={6}>
+                        <div className="m-3" id={'login-form'}>
                             <h3> Login In</h3>
                             <form noValidate autoComplete="off" onSubmit={this.submitLogin}>
                                 <TextField

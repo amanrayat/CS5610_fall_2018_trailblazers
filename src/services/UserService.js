@@ -1,5 +1,5 @@
 import axios from "axios";
-const API_URL = "https://java-server-assignment6.herokuapp.com";
+const API_URL = "http://localhost:4000";
 
 export default class UserService {
 
