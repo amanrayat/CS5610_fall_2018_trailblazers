@@ -5,16 +5,48 @@ import UserFeed from '../UserFeed/UserFeed'
 
 import './Home.css'
 
+let commentData1 = [
+    {userId: 'user1', comment: "fuckall beerfuckall beerfuckall beerfuckall beerfuckall beerfuckall beerfuckall beerfuckall beerfuckall beerfuckall beer"},
+    {userId: 'user2', comment: "fuckall beer"},
+    {userId: 'user3', comment: "fuckall beer"},
+    {userId: 'user4', comment: "fuckall beer"},
+    {userId: 'user5', comment: "fuckall beer"},
+];
+
+let commentData2 = [
+    {userId: 'user1', comment: "fuckall beerfuckall beerfuckall beerfuckall beerfuckall beerfuckall beerfuckall beerfuckall beerfuckall beerfuckall beer"},
+    {userId: 'user2', comment: "balle beer"},
+    {userId: 'user3', comment: "balle beer"},
+    {userId: 'user4', comment: "balle beer"},
+    {userId: 'user5', comment: "balle beer"},
+];
+
+
 export default class Home extends React.Component{
     constructor(props){
         super(props);
+        setInterval(this.reloadComments, 5000);
         this.state = {
             searchText: "",
             moveToSearchResult: false,
             userActivity: true,
-            eventPlannerActivity: false
+            eventPlannerActivity: false,
+            commentData: commentData1
         }
     }
+
+    reloadComments = () => {
+        if(this.state.commentData === commentData1){
+            this.setState({
+                commentData: commentData2
+            });
+        }
+        else{
+            this.setState({
+                commentData: commentData1
+            });
+        }
+    };
 
     trackSearchTextChanges = (e) => {
         this.setState({
@@ -37,7 +69,6 @@ export default class Home extends React.Component{
         for(i = 0; i < queryStringSplit.length; i++){
             newPath += queryStringSplit[i] + '+'
         }
-        console.log(newPath.slice(0,-1))
         return newPath.slice(0,-1);
     };
 
@@ -95,7 +126,9 @@ export default class Home extends React.Component{
                         </div>
                         {
                             this.state.userActivity &&
-                            <UserFeed/>
+                            <UserFeed
+                                commentData = {this.state.commentData}
+                            />
                         }
                     </div>
                 </div>
