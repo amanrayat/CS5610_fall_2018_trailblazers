@@ -3,7 +3,11 @@ import './Register.css'
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-
+import MenuItem from '@material-ui/core/MenuItem';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import InputLabel from '@material-ui/core/InputLabel';
 
 export default class Register extends React.Component {
     constructor(props) {
@@ -28,6 +32,7 @@ export default class Register extends React.Component {
     onFirstNameChange = e=> this.setState({firstName : e.target.value});
     onLastNameChange = e=> this.setState({lastName : e.target.value});
     onPasswordConfirmChange = e=> this.setState({verifyPassword : e.target.value});
+    handleChange = event => this.setState({ type: event.target.value });
 
     render() {
         return(
@@ -50,6 +55,7 @@ export default class Register extends React.Component {
                                     variant="outlined"
                                 />
                                 <br/>
+
                                 <TextField
                                     id="outlined-name"
                                     label="First Name"
@@ -74,6 +80,17 @@ export default class Register extends React.Component {
                                     variant="outlined"
                                 />
                                 <br/>
+                                <FormControl className={{
+                                    minWidth: 120,
+                                }}>
+                                    <InputLabel htmlFor="age-simple">Role</InputLabel>
+                                    <Select
+                                        value={this.state.type}
+                                        onChange={this.handleChange}>
+                                        <MenuItem value={'CUSTOMER'}>Customer</MenuItem>
+                                        <MenuItem value={'EVENTPLANNER'}>Event Planner</MenuItem>
+                                    </Select>
+                                </FormControl>
                                 <TextField
                                     id="outlined-name"
                                     label="Email Id"
