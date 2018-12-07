@@ -34,7 +34,6 @@ export default class Home extends React.Component{
         for(i = 0; i < queryStringSplit.length; i++){
             newPath += queryStringSplit[i] + '+'
         }
-        console.log(newPath.slice(0,-1))
         return newPath.slice(0,-1);
     };
 

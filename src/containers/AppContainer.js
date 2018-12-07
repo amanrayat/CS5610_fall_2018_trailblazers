@@ -13,9 +13,10 @@ import BreweryDetail from "../components/BreweryDetail/BreweryDetail";
 
 export default ({ childProps }) =>
     <Switch>
-        {/*<AppliedRoute path="/" exact component={Home} props={childProps} />*/}
+        <UnauthenticatedRoute path="/" exact component={Home} props={childProps} />
         <UnauthenticatedRoute path="/login" exact component={Login} props={childProps} />
         <UnauthenticatedRoute path="/register" exact component={Register} props={childProps} />
+        <UnauthenticatedRoute path="/home" exact component = {Home} props={childProps}/>
         <AuthenticatedRoute path="/profile" exact component={Profile} props={childProps} />
         <UnauthenticatedRoute path="/profile/:profileId" exact component={Profile} props={childProps} />
         <AppliedRoute path = "/admin" exact component = {Admin} props = {childProps}/>
