@@ -5,6 +5,10 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import LoaderButton from '../LoaderButton/LoaderButton';
 import UserService from '../../services/UserService'
+import InputLabel from "@material-ui/core/InputLabel/InputLabel";
+import Select from "@material-ui/core/Select/Select";
+import MenuItem from "@material-ui/core/MenuItem/MenuItem";
+import FormControl from "@material-ui/core/FormControl/FormControl";
 
 
 export default class Login extends React.Component {
@@ -14,6 +18,7 @@ export default class Login extends React.Component {
             isLoading: false,
             email: '',
             password: '',
+            role : ''
         }
     }
 
@@ -44,6 +49,8 @@ export default class Login extends React.Component {
 
     onEmailChange = e => this.setState({email: e.target.value});
     onPasswordChange = e => this.setState({password: e.target.value});
+    onRoleChange = e =>this.setState({type : e.target.value});
+
 
     render() {
         return (
@@ -79,6 +86,16 @@ export default class Login extends React.Component {
                                     margin="normal"
                                     variant="outlined"
                                 />
+                                <br/>
+                                <FormControl style={{width:'100%'}} className={'mb-4'}>
+                                    <InputLabel htmlFor="type-simple">Type</InputLabel>
+                                    <Select
+                                        value={this.state.type}
+                                        onChange={this.onRoleChange}>
+                                        <MenuItem value={'CUSTOMER'}>Customer</MenuItem>
+                                        <MenuItem value={'EVENTPLANNER'}>Event Planner</MenuItem>
+                                    </Select>
+                                </FormControl>
                                 <br/>
                                 <LoaderButton
                                     block

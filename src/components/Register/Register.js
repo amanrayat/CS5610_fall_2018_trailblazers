@@ -3,9 +3,14 @@ import './Register.css'
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import FilledInput from '@material-ui/core/FilledInput';
+import Select from '@material-ui/core/Select';
+import InputLabel from '@material-ui/core/InputLabel';
 import LoaderButton from '../LoaderButton/LoaderButton';
 import UserService from '../../services/UserService'
-
 
 export default class Register extends React.Component {
     constructor(props) {
@@ -39,7 +44,6 @@ export default class Register extends React.Component {
             type: "CUSTOMER"
         };
 
-
         UserService.registerUser(user).then(res => {
             if (res.data) {
                 this.props.userHasAuthenticated(true);
@@ -61,6 +65,7 @@ export default class Register extends React.Component {
     onLastNameChange = e => this.setState({lastName: e.target.value});
     onPasswordConfirmChange = e => this.setState({verifyPassword: e.target.value});
     onPhoneNoChange = e => this.setState({phoneNo: e.target.value});
+    onRoleChange = e =>this.setState({type : e.target.value});
 
     validateForm = () => {
         return (
@@ -95,6 +100,7 @@ export default class Register extends React.Component {
                                     variant="outlined"
                                 />
                                 <br/>
+
                                 <TextField
                                     id="outlined-name"
                                     label="First Name"
@@ -119,6 +125,15 @@ export default class Register extends React.Component {
                                     variant="outlined"
                                 />
                                 <br/>
+                                <FormControl style={{width:'100%'}}>
+                                    <InputLabel htmlFor="type-simple">Type</InputLabel>
+                                    <Select
+                                        value={this.state.type}
+                                        onChange={this.onRoleChange}>
+                                        <MenuItem value={'CUSTOMER'}>Customer</MenuItem>
+                                        <MenuItem value={'EVENTPLANNER'}>Event Planner</MenuItem>
+                                    </Select>
+                                </FormControl>
                                 <TextField
                                     id="outlined-name"
                                     label="Email Id"
@@ -165,6 +180,7 @@ export default class Register extends React.Component {
                                     variant="outlined"
                                 />
                                 <br/>
+
                                 <LoaderButton
                                     block
                                     bsSize="large"
@@ -175,6 +191,7 @@ export default class Register extends React.Component {
                                     loadingText="Signing up…"
                                     className="btn btn-primary btn-block"
                                 />
+
                             </form>
                         </div>
                     </Grid>
