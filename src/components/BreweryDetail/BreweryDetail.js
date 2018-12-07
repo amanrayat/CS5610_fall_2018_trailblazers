@@ -123,7 +123,7 @@ class BreweryDetail extends React.Component{
                         <div className="col-2">
                             <img src={this.state.data.images.squareMedium}/>
                         </div>
-                        <div className="col-5 mt-3">
+                        <div className="col-4 mt-3">
                             <i>{this.state.data.description}</i>
                         </div>
                         <div className="col-5">
@@ -160,31 +160,35 @@ class BreweryDetail extends React.Component{
                             </table>
                         </div>
                     </div>
-                    <div className="row w-50">
-                    <Map
-                        google={this.props.google}
-                        zoom={14}
-                        style={{width: '50%', height: '50%'}}
-                        initialCenter={{
-                            lat: this.state.data.locations[0].latitude,
-                            lng: this.state.data.locations[0].longitude
-                        }}
-                    >
-                        <Marker
-                            onClick={this.onMarkerClick}
-                            name={this.state.data.name}
-                        />
-                        <InfoWindow
-                            marker={this.state.activeMarker}
-                            visible={this.state.showingInfoWindow}
-                            onClose={this.onClose}
-                        >
-                            <div>
-                                <h4>{this.state.selectedPlace.name}</h4>
-                            </div>
-                        </InfoWindow>
-                    </Map>
                 </div>
+                <div className="map-wrapper">
+                    <div className="map-canvas" style={{position: 'relative', overflow: 'hidden'}}>
+                        <Map
+                            google={this.props.google}
+                            zoom={14}
+                            style={{width: '50%', height: '100%'}}
+                            initialCenter={{
+                                lat: this.state.data.locations[0].latitude,
+                                lng: this.state.data.locations[0].longitude
+                            }}
+                        >
+                            <Marker
+                                onClick={this.onMarkerClick}
+                                name={this.state.data.name}
+                            />
+                            <InfoWindow
+                                marker={this.state.activeMarker}
+                                visible={this.state.showingInfoWindow}
+                                onClose={this.onClose}
+                            >
+                                <div>
+                                    <h4>{this.state.selectedPlace.name}</h4>
+                                </div>
+                            </InfoWindow>
+                        </Map>
+                    </div>
+
+                    Hello
                 </div>
             </div>
         )
