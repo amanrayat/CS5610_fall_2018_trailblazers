@@ -1,0 +1,22 @@
+.heading{
+    display: -webkit-box;  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+    display: -ms-flexbox;  /* TWEENER - IE 10 */
+    display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.beer-heading-one {
+    text-align: center;
+    background-size: cover;
+    padding: 20px 10px;
+    background: url("https://www.brewerydb.com/img/backgrounds/heading-back.jpg") fixed center center;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+    background-size: 100%;
+}
+
+.beer-heading-one .beer-heading-one-inner {
+    padding: 40px 90px;
+}

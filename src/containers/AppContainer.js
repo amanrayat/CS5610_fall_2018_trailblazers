@@ -9,6 +9,7 @@ import AppliedRoute from "../components/AppliedRoute";
 import AuthenticatedRoute from "../components/AuthenticatedRoute";
 import UnauthenticatedRoute from "../components/UnauthenticatedRoute";
 import Admin from "../components/Admin/Admin";
+import BreweryDetail from "../components/BreweryDetail/BreweryDetail";
 
 export default ({ childProps }) =>
     <Switch>
@@ -18,6 +19,7 @@ export default ({ childProps }) =>
         <AuthenticatedRoute path="/profile" exact component={Profile} props={childProps} />
         <UnauthenticatedRoute path="/profile/:profileId" exact component={Profile} props={childProps} />
         <AppliedRoute path = "/admin" exact component = {Admin} props = {childProps}/>
+        <AppliedRoute path = "/breweryDetail" exact component = {BreweryDetail} props = {childProps}/>
         {/*<AuthenticatedRoute path="/course/:courseId/edit" exact component={CourseEditor} props={childProps} />*/}
         { /* Finally, catch all unmatched routes */ }
         <Route component={NotFound} />
