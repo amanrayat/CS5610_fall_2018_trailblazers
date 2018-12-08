@@ -13,5 +13,8 @@ body {
 }
 
 .left-panel{
-    background: #D3D3D3;
+    /*background: #D3D3D3;*/
+}
+html{
+    height :100%
 }
