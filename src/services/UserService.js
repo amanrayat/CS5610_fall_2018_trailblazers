@@ -1,5 +1,5 @@
 import axios from "axios";
-const API_URL = "http://localhost:4000";
+const API_URL = "https://boiling-ocean-17135.herokuapp.com";
 
 export default class UserService {
 
@@ -38,4 +38,20 @@ export default class UserService {
     static deleteUserById = userId => {
         return axios.delete(API_URL + "/api/user/" + userId)
     };
+    static findFollowersById = userId => {
+        return axios.get(API_URL + "/api/user/"+userId+"/follower")
+    };
+    static findFollowingById = userId => {
+        return axios.get(API_URL + "/api/user/"+userId+"/following")
+    };
+    static findCommentsById = userId => {
+        return axios.get(API_URL + "/api/user/"+userId+"/recentcomment")
+    };
+    static findFavBeerById = userId => {
+        return axios.get(API_URL + "/api/user/"+userId+"/like")
+    };
+    static updateUserById = (userId , User) => {
+        return axios.put(API_URL + "/api/user/"+userId, User, {withCredentials: true});
+    };
+
 }
