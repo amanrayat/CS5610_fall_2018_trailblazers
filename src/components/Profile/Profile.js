@@ -114,7 +114,7 @@ export default class Profile extends React.Component{
                                     {this.state.currUser===this.state.userId ?
                                         <button
                                             onClick={this.editing}
-                                            className={'btn btn-primary'}>Edit</button>:
+                                            className={'btn btn-profile btn-primary'}>Edit</button>:
                                         <div/>
                                     }
                                 </div>
@@ -193,7 +193,7 @@ export default class Profile extends React.Component{
                                     </div>
                                     <button
                                         onClick={this.saveResult}
-                                        className={'btn btn-success'}>Save</button>
+                                        className={'btn btn-profile btn-success'}>Save</button>
                                 </div>
                             </div>
                         }
@@ -202,11 +202,11 @@ export default class Profile extends React.Component{
                 <div className={'col-9 mt-5'}>
                     <div className={'row mx-2'}>
                         <div className={'col-6'}>
-                            <h3>Profile</h3>
+                            <h3 className="h3-profile">Profile</h3>
                         </div>
                         <div className={'col-6'}>
                             {this.state.currUser!==this.state.userId?
-                                <button className={'btn btn-primary mx-4 my-4 float-right'}>Follow</button>:<div></div>
+                                <button className={'btn btn-profile btn-primary mx-4 my-4 float-right'}>Follow</button>:<div></div>
                             }
                         </div>
                     </div>
