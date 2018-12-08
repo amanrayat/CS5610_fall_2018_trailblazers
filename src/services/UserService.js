@@ -31,4 +31,11 @@ export default class UserService {
         return axios.post(API_URL + "/api/login", User, {withCredentials: true});
     };
 
+    static findUsersByAdmin = AdminId => {
+        return axios.get(API_URL + "/api/admin/" + AdminId + "/users")
+    };
+
+    static deleteUserById = userId => {
+        return axios.delete(API_URL + "/api/user/" + userId)
+    };
 }

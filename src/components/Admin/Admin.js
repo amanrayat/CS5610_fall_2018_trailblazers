@@ -2,6 +2,7 @@ import React from 'react'
 import {Redirect, Link} from 'react-router-dom'
 
 import './Admin.css'
+import UserService from "../../services/UserService";
 
 export default class Admin extends React.Component{
     constructor(props){
@@ -13,10 +14,26 @@ export default class Admin extends React.Component{
             firstName: "",
             lastName: "",
             email: "",
-            user: 1,
+            userType: 'CUSTOMER',
+            phoneNumber: "",
             password: "",
-            confirmPassword: ""
+            confirmPassword: "",
+            users: [],
+            showAlert: false,
+            showSuccess: false
         }
+    }
+
+    componentWillMount(){
+        UserService.profile().then((res) => {
+            UserService.findUsersByAdmin(res.data[0]._id).then((subRes) => {
+                this.setState({
+                    users: subRes.data,
+                    adminId: res.data[0]._id,
+                    adminName: res.data[0].firstName
+                })
+            })
+        })
     }
 
     selectManageUsers = () => {
@@ -79,15 +96,77 @@ export default class Admin extends React.Component{
         })
     };
 
+    trackNumberChanges = (e) => {
+        this.setState({
+            phoneNumber: e.target.value
+        })
+    };
+
     submit = () => {
         if(this.state.username.length &&
             this.state.firstName.length &&
             this.state.lastName.length &&
             this.state.email.length &&
             this.state.password.length &&
-            this.state.confirmPassword.length){
-            console.log(1)
+            this.state.confirmPassword.length &&
+            this.state.phoneNumber.length &&
+            this.state.password === this.state.confirmPassword
+        ){
+            let newUser = {
+                username : this.state.username,
+                password : this.state.password,
+                firstName : this.state.firstName,
+                lastName : this.state.lastName,
+                email : this.state.email,
+                phoneNo : this.state.phoneNumber,
+                type : this.state.userType,
+                admin : this.state.adminId,
+                __v : 0
+            };
+            UserService.registerUser(newUser).then((res) => {
+                console.log(res.data);
+                if(res.data){
+                    UserService.findUsersByAdmin(this.state.adminId).then((subRes) => {
+                        this.setState({
+                            users: subRes.data,
+                            username: "",
+                            firstName: "",
+                            lastName: "",
+                            email: "",
+                            userType: 'CUSTOMER',
+                            phoneNumber: "",
+                            password: "",
+                            confirmPassword: "",
+                            showSuccess: true,
+                            showAlert: false
+                        })
+                    })
+                }
+                else{
+                    this.setState({
+                        showAlert: true,
+                        showSuccess: false
+                    })
+                }
+            });
         }
+    };
+
+    deleteUser = (userId) => {
+        UserService.deleteUserById(userId).then((res) => {
+            UserService.findUsersByAdmin(this.state.adminId).then((subRes) => {
+                this.setState({
+                    users: subRes.data
+                })
+            })
+        })
+    };
+
+    logout = () => {
+        UserService.logoutUser().then((res) => {
+            this.props.userHasAuthenticated(false);
+            this.props.history.push("/");
+        })
     };
 
     render(){
@@ -98,7 +177,7 @@ export default class Admin extends React.Component{
                         <div className="list-group row">
                             <div className="list-group-item bg-dark border-0">
                                 <h4 className="text-light text-center">
-                                    Welcome Admin
+                                    Welcome {this.state.adminName}
                                 </h4>
                             </div>
                             <div
@@ -117,6 +196,14 @@ export default class Admin extends React.Component{
                                     Create User
                                 </h5>
                             </div>
+                            <div
+                                className={"list-group-item text-center text-light bg-dark"}
+                                onClick={() => this.logout()}
+                            >
+                                <h5>
+                                    Logout
+                                </h5>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -131,33 +218,66 @@ export default class Admin extends React.Component{
                                         <thead>
                                         <tr>
                                             <th scope="col">#</th>
-                                            <th scope="col">Username</th>
-                                            <th scope="col"></th>
+                                            <th scope="col">
+                                                <h4>
+                                                    Username
+                                                </h4>
+                                            </th>
+                                            <th scope="col">
+                                                <h4>
+                                                    First Name
+                                                </h4>
+                                            </th>
+                                            <th scope="col">
+                                                <h4>
+                                                    Last Name
+                                                </h4>
+                                            </th>
+                                            <th scope="col">
+                                                <h4>
+                                                    Type
+                                                </h4>
+                                            </th>
+                                            <th scope="col"/>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>
-                                                <h5 className="mb-0 mt-1">
-                                                    Mark
-                                                </h5>
-                                            </td>
-                                            <td>
-                                                <i className="fa fa-times fa-2x" aria-hidden="true"></i>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">2</th>
-                                            <td>
-                                                <h5 className="mb-0 mt-1">
-                                                    Mark
-                                                </h5>
-                                            </td>
-                                            <td>
-                                                <i className="fa fa-times fa-2x" aria-hidden="true"></i>
-                                            </td>
-                                        </tr>
+                                        {
+                                            this.state.users.map((u, index) =>
+                                                (
+                                                    <tr>
+                                                        <th scope="row">{index+1}</th>
+                                                        <td>
+                                                            <h5 className="mb-0 mt-1">
+                                                                {u.username}
+                                                            </h5>
+                                                        </td>
+                                                        <td>
+                                                            <h5 className="mb-0 mt-1">
+                                                                {u.firstName}
+                                                            </h5>
+                                                        </td>
+                                                        <td>
+                                                            <h5 className="mb-0 mt-1">
+                                                                {u.lastName}
+                                                            </h5>
+                                                        </td>
+                                                        <td>
+                                                            <h5 className="mb-0 mt-1">
+                                                                {u.type}
+                                                            </h5>
+                                                        </td>
+                                                        <td>
+                                                            <i
+                                                                className="fa fa-times fa-2x"
+                                                                aria-hidden="true"
+                                                                onClick={() => this.deleteUser(u._id)}
+                                                            />
+                                                        </td>
+                                                    </tr>
+                                                )
+                                            )
+                                        }
                                         </tbody>
                                     </table>
                                 </div>
@@ -173,6 +293,22 @@ export default class Admin extends React.Component{
                                     <h3 className="text-center">
                                         Register New User
                                     </h3>
+                                    {
+                                        this.state.showAlert &&
+                                        <div className="form-group row">
+                                            <div className="text-danger col-sm-10">
+                                                *username or email or phoneNo has already been taken
+                                            </div>
+                                        </div>
+                                    }
+                                    {
+                                        this.state.showSuccess &&
+                                        <div className="form-group row">
+                                            <div className="text-success col-sm-10">
+                                                *Successfully registered new user
+                                            </div>
+                                        </div>
+                                    }
                                     <div className="form-group row">
                                         <input
                                             type="text"
@@ -202,6 +338,17 @@ export default class Admin extends React.Component{
                                         />
                                     </div>
 
+                                    <div className="form-group row">
+                                        <select
+                                            value={this.state.userType}
+                                            className="form-control make-inline"
+                                            onChange={this.trackUserTypeChanges}
+                                        >
+                                            <option value="CUSTOMER">Customer</option>
+                                            <option value="EVENTPLANNER">Event Planner</option>
+                                            <option value="ADMIN">Admin</option>
+                                        </select>
+                                    </div>
 
                                     <div className="form-group row">
                                         <input
@@ -214,15 +361,13 @@ export default class Admin extends React.Component{
                                     </div>
 
                                     <div className="form-group row">
-                                        <select
-                                            value={this.state.user}
-                                            className="form-control make-inline"
-                                            onChange={this.trackUserTypeChanges}
-                                        >
-                                            <option value="1">User</option>
-                                            <option value="2">Event Planner</option>
-                                            <option value="3">Admin</option>
-                                        </select>
+                                        <input
+                                            type="number"
+                                            className="form-control"
+                                            id="phone"
+                                            placeholder="Enter Phone Number"
+                                            onChange={this.trackNumberChanges}
+                                        />
                                     </div>
 
                                     <div className="form-group row">

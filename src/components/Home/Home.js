@@ -44,7 +44,9 @@ export default class Home extends React.Component{
         }
         return(
             <div className="h-100">
-                <Navbar/>
+                <Navbar
+                    history = {this.props.history}
+                />
                 <div className="backdropHome">
                     <div className="h-25">
 

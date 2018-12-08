@@ -1,4 +1,6 @@
 import React from 'react'
+import {Redirect} from 'react-router-dom'
+
 import './Login.css'
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
@@ -18,7 +20,8 @@ export default class Login extends React.Component {
             isLoading: false,
             email: '',
             password: '',
-            role : ''
+            role : '',
+            routeToAdmin: false,
         }
     }
 
@@ -36,7 +39,12 @@ export default class Login extends React.Component {
             .then(res => {
                 if (res.data) {
                     this.props.userHasAuthenticated(true);
-                    this.props.history.push("/");
+                    if(res.data[0].type === 'ADMIN'){
+                        this.props.history.push("/admin");
+                    } else {
+                        this.props.history.push("/");
+                    }
+
                 } else {
                     alert("email or  not in database")
                     this.setState({isLoading: false})
@@ -53,8 +61,11 @@ export default class Login extends React.Component {
 
 
     render() {
+        // if(this.state.routeToAdmin){
+        //     console.log(1);
+        //     return <Redirect to={'/admin'} />
+        // }
         return (
-
             <div style={{'height': '100%'}}>
                 <Grid container spacing={24} style={{'height': '100%'}}>
                     <Grid item md={6} only={['md', 'xl']}>
@@ -62,7 +73,7 @@ export default class Login extends React.Component {
                     </Grid>
                     <Grid item xs={12} md={6}>
                         <div className="m-3" id={'login-form'}>
-                            <h3> Login In</h3>
+                            <h3> Sign In</h3>
                             <form noValidate autoComplete="off" onSubmit={this.submitLogin}>
                                 <TextField
                                     id="outlined-name"
@@ -94,6 +105,7 @@ export default class Login extends React.Component {
                                         onChange={this.onRoleChange}>
                                         <MenuItem value={'CUSTOMER'}>Customer</MenuItem>
                                         <MenuItem value={'EVENTPLANNER'}>Event Planner</MenuItem>
+                                        <MenuItem value={'ADMIN'}>Admin</MenuItem>
                                     </Select>
                                 </FormControl>
                                 <br/>

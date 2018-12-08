@@ -5,31 +5,17 @@ export default class Navbar extends React.Component{
 
     constructor(props){
         super(props);
-        this.state = {
-            routeToLogin: false,
-            routeToRegister: false
-        }
     }
 
-    setRouteToLogin(){
-        this.setState({
-            routeToLogin: true
-        })
+    routeToLogin(){
+        this.props.history.push("/login");
     }
 
-    setRouteToRegister(){
-        this.setState({
-            routeToRegister: true
-        })
+    routeToRegister(){
+        this.props.history.push("/register");
     }
 
     render(){
-        if(this.state.routeToLogin){
-            return <Redirect to={`/login`}/>
-        }
-        else if(this.state.routeToRegister){
-            return <Redirect to={`/register`}/>
-        }
         return (
             <nav className="navbar navbar-expand navbar-dark sticky-top bg-dark">
                 <ul className="navbar-nav w-100">
@@ -44,14 +30,14 @@ export default class Navbar extends React.Component{
                         <button
                             type="button"
                             className="btn btn-secondary mr-2"
-                            onClick={() => this.setRouteToLogin()}
+                            onClick={() => this.routeToLogin()}
                         >
                             Login
                         </button>
                         <button
                             type="button"
                             className="btn btn-secondary"
-                            onClick={() => this.setRouteToRegister()}
+                            onClick={() => this.routeToRegister()}
                         >
                             Register
                         </button>
