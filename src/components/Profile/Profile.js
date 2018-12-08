@@ -12,7 +12,8 @@ export default class Profile extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-            currentUser : '',
+            userId : '5c0b29f5718079001699dacc',
+            currUser : "5c0b29f5718079001699dacc" ,
             expanded: null,
             isEditing : false,
             username : "Aman",
@@ -21,18 +22,18 @@ export default class Profile extends React.Component{
             lastName : "Rayat",
             email : "rayat.a@husky.neu.edu",
             phoneNo : 8574246016,
-            image : 'https://s3.amazonaws.com/plagiarismteam208/pic1.jpg',
+            favBeer : [{
+                beerId: {
+                    abv: "4.5",
+                    available: [],
+                    breweries: [],
+                    createDate: "2016-02-11 18:25:25",
+                    name: "Golden Ale",
+                    nameDisplay: "Golden Ale",
+                    updateDate: "2018-11-02 02:15:14"
+                }}],
             followers : [{
-                _id : 1,
-                username : "Aman",
-                password : "Aman",
-                firstName : "Aman",
-                lastName : "Rayat",
-                email : "rayat.a@husky.neu.edu",
-                phoneNo : 8574246016,
-                image : 'https://s3.amazonaws.com/plagiarismteam208/pic1.jpg'
-            },
-                {
+                followerId : {
                     _id : 1,
                     username : "Aman",
                     password : "Aman",
@@ -41,94 +42,41 @@ export default class Profile extends React.Component{
                     email : "rayat.a@husky.neu.edu",
                     phoneNo : 8574246016,
                     image : 'https://s3.amazonaws.com/plagiarismteam208/pic1.jpg'
-                },
-                {
-                    _id : 1,
-                    username : "Aman",
-                    password : "Aman",
-                    firstName : "Aman",
-                    lastName : "Rayat",
-                    email : "rayat.a@husky.neu.edu",
-                    phoneNo : 8574246016,
-                    image : 'https://s3.amazonaws.com/plagiarismteam208/pic1.jpg'
-                },{
-                    _id : 1,
-                    username : "Aman",
-                    password : "Aman",
-                    firstName : "Aman",
-                    lastName : "Rayat",
-                    email : "rayat.a@husky.neu.edu",
-                    phoneNo : 8574246016,
-                    image : 'https://s3.amazonaws.com/plagiarismteam208/pic1.jpg'
-                },{
-                    _id : 1,
-                    username : "Aman",
-                    password : "Aman",
-                    firstName : "Aman",
-                    lastName : "Rayat",
-                    email : "rayat.a@husky.neu.edu",
-                    phoneNo : 8574246016,
-                    image : 'https://s3.amazonaws.com/plagiarismteam208/pic1.jpg'
-                },{
-                    _id : 1,
-                    username : "Aman",
-                    password : "Aman",
-                    firstName : "Aman",
-                    lastName : "Rayat",
-                    email : "rayat.a@husky.neu.edu",
-                    phoneNo : 8574246016,
-                    image : 'https://s3.amazonaws.com/plagiarismteam208/pic1.jpg'
-                }],
+                }}
+            ],
             following : [{
-                _id : 1,
-                username : "Aman",
-                password : "Aman",
-                firstName : "Aman",
-                lastName : "Rayat",
-                email : "rayat.a@husky.neu.edu",
-                phoneNo : 8574246016,
-                image : 'https://s3.amazonaws.com/plagiarismteam208/pic1.jpg'
-            },{
-                _id : 1,
-                username : "Aman",
-                password : "Aman",
-                firstName : "Aman",
-                lastName : "Rayat",
-                email : "rayat.a@husky.neu.edu",
-                phoneNo : 8574246016,
-                image : 'https://s3.amazonaws.com/plagiarismteam208/pic1.jpg'
-            },{
-                _id : 1,
-                username : "Aman",
-                password : "Aman",
-                firstName : "Aman",
-                lastName : "Rayat",
-                email : "rayat.a@husky.neu.edu",
-                phoneNo : 8574246016,
-                image : 'https://s3.amazonaws.com/plagiarismteam208/pic1.jpg'
-            },{
-                _id : 1,
-                username : "Aman",
-                password : "Aman",
-                firstName : "Aman",
-                lastName : "Rayat",
-                email : "rayat.a@husky.neu.edu",
-                phoneNo : 8574246016,
-                image : 'https://s3.amazonaws.com/plagiarismteam208/pic1.jpg'
+                userId : {
+                    _id : 1,
+                    username : "Aman",
+                    password : "Aman",
+                    firstName : "Aman",
+                    lastName : "Rayat",
+                    email : "rayat.a@husky.neu.edu",
+                    phoneNo : 8574246016,
+                    image : 'https://s3.amazonaws.com/plagiarismteam208/pic1.jpg'
+                }
+
             }]
         }
     }
 
-    componentDidMount (){
-        // UserService.profile().then(currUser=>{
-        //     if(this.props.match.params.userId) {
-        //         UserService.findUserById(this.props.match.params.userId).then(user=>{
-        //             this.setState({
-        //                 user : user,
-        //                 currentUser : currUser.data})
-        //         })
-        //     }
-        // });
+    async componentDidMount() {
+        const user = await UserService.findUserById(this.state.userId);
+        const followers = await UserService.findFollowersById(this.state.userId);
+        const following = await UserService.findFollowingById(this.state.userId);
+        const favBeer = await UserService.findFavBeerById(this.state.userId);
+        console.log("adasas" , favBeer)
+        this.setState({
+            following : followers.data,
+            followers : following.data,
+            favBeer : favBeer.data,
+            username : user.data[0].username,
+            password : user.data[0].password,
+            firstName : user.data[0].firstName,
+            lastName : user.data[0].lastName,
+            email : user.data[0].email,
+            phoneNo : user.data[0].phoneNo
+        })
     }
 
     saveResult = () =>{
@@ -145,10 +93,11 @@ export default class Profile extends React.Component{
     };
 
     render(){
-        console.log("the user id is  " , this.state)
+        var followed = null;
+        console.log("the user id is " , this.state)
         return(
             <div className={'row'}>
-                <div className={'col-3 text-center left-panel'} style={{height : "100%"}}>
+                <div className={'col-3 text-center left-panel'}>
                     <div className={'card mt-5 left-panel'}>
                         {!this.state.isEditing ?
                             <div className={'mx-2'} style={{"width": "90%"}}>
@@ -257,24 +206,44 @@ export default class Profile extends React.Component{
                 <div className={'col-9 mt-5'}>
                     <div className={'row mx-2'}>
                         <div className={'col-6'}>
-                            <h5 className={'mb-3 mx-3'}>Followers</h5>
+                            <h3>Profile</h3>
+                        </div>
+                        <div className={'col-6'}>
+                            {this.state.currUser!==this.state.userId?
+                                <button className={'btn btn-primary mx-4 my-4 float-right'}>Follow</button>:<div></div>
+                            }
+                        </div>
+                    </div>
+                    <div className={'row mx-2'}>
+                        <div className={'col-6'}>
+                            <h5 className={'mb-3 mx-3 headings'}>Followers</h5>
                             <ExpansionPanel expanded={this.state.expanded === 'panel1'} onChange={this.handleChange('panel1')}>
                                 <ExpansionPanelSummary expandIcon={">"}>
                                     {
                                         this.state.followers.slice(0, 3).map(follower=>{
-                                            return(<div className={'mx-5 pic-size'}>
-                                                <img className="rounded-circle card-img-top" src={follower.image} alt="Card image cap"/>
-                                                <p className={'text-center'}>{follower.firstName}</p>
-                                            </div>)
+                                            return(
+                                                <div className={'mx-5 pic-size'}>
+                                                    <Avatar className={"rounded-circle card-img-top"}>
+                                                        {follower.followerId.firstName.split("")[0]}
+                                                        {follower.followerId.lastName.split("")[0]}
+                                                    </Avatar>
+                                                    <p className={'text-center'}>{follower.followerId.firstName}</p>
+                                                </div>)
                                         })
                                     }
                                 </ExpansionPanelSummary>
                                 <ExpansionPanelDetails>
                                     {
                                         this.state.followers.slice(3, this.state.followers.length).map(follower=>{
+                                            if(follower.followerId._id===this.state.currentUser){
+                                                followed=true;
+                                            }
                                             return(<div className={'mx-5 pic-size-extended'}>
-                                                <img className="rounded-circle card-img-top" src={follower.image} alt="Card image cap"/>
-                                                <p className={'text-center'}>{follower.firstName}</p>
+                                                <Avatar className={"rounded-circle card-img-top"}>
+                                                    {follower.followerId.firstName.split("")[0]}
+                                                    {follower.followerId.lastName.split("")[0]}
+                                                </Avatar>
+                                                <p className={'text-center'}>{follower.followerId.firstName}</p>
                                             </div>)
                                         })
                                     }
@@ -282,14 +251,20 @@ export default class Profile extends React.Component{
                             </ExpansionPanel>
                         </div>
                         <div className={'col-6'}>
-                            <h5 className={'mb-3 mx-3'}>Following</h5>
+                            <h5 className={'mb-3 mx-3 headings'}>Following</h5>
                             <ExpansionPanel expanded={this.state.expanded === 'panel2'} onChange={this.handleChange('panel2')}>
                                 <ExpansionPanelSummary expandIcon={">"}>
                                     {
-                                        this.state.following.slice(0, 3).map(follower=>{
+                                        this.state.following.slice(0, 3).map(follow=>{
                                             return(<div className={'mx-5 pic-size'}>
-                                                <img className="rounded-circle card-img-top" src={follower.image} alt="Card image cap"/>
-                                                <p className={'text-center'}>{follower.firstName}</p>
+                                                <div className={'align-left'}>
+                                                    <Avatar className={"rounded-circle card-img-top"}>
+                                                        {follow.userId.firstName.split("")[0]}
+                                                        {follow.userId.lastName.split("")[0]}
+                                                    </Avatar>
+                                                    <p className={'text-center'}>{follow.userId.firstName}</p>
+                                                </div>
+
                                             </div>)
                                         })
                                     }
@@ -298,8 +273,11 @@ export default class Profile extends React.Component{
                                     {
                                         this.state.following.slice(3, this.state.followers.length).map(follower=>{
                                             return(<div className={'mx-5 pic-size-extended'}>
-                                                <img className="rounded-circle card-img-top" src={follower.image} alt="Card image cap"/>
-                                                <p className={'text-center'}>{follower.firstName}</p>
+                                                <Avatar className={"rounded-circle card-img-top"}>
+                                                    {follower.userId.firstName.split("")[0]}
+                                                    {follower.userId.lastName.split("")[0]}
+                                                </Avatar>
+                                                <p className={'text-center'}>{follower.userId.firstName}</p>
                                             </div>)
                                         })
                                     }
@@ -310,14 +288,19 @@ export default class Profile extends React.Component{
 
                     <div className={'row mx-2 mt-5'}>
                         <div className={'col-6'}>
-                            <h5 className={'mb-3 mx-3'}>Fav Beer</h5>
+                            <h5 className={'mb-3 mx-3 headings'}>Fav Beer</h5>
                             <ExpansionPanel expanded={this.state.expanded === 'panel3'} onChange={this.handleChange('panel3')}>
                                 <ExpansionPanelSummary expandIcon={">"}>
                                     {
-                                        this.state.followers.slice(0, 3).map(follower=>{
+                                        this.state.favBeer.slice(0, 3).map(follow=>{
                                             return(<div className={'mx-5 pic-size'}>
-                                                <img className="rounded-circle card-img-top" src={follower.image} alt="Card image cap"/>
-                                                <p className={'text-center'}>{follower.firstName}</p>
+                                                <div className={'align-left'}>
+                                                    <Avatar className={"rounded-circle card-img-top"}>
+                                                        {follow.beerId.name.split("")[0]}
+                                                    </Avatar>
+                                                    <p className={'text-center'}>{follow.beerId.name}</p>
+                                                </div>
+
                                             </div>)
                                         })
                                     }
@@ -335,29 +318,7 @@ export default class Profile extends React.Component{
                             </ExpansionPanel>
                         </div>
                         <div className={'col-6'}>
-                            <h5 className={'mb-3 mx-3'}>Fav Brewery</h5>
-                            <ExpansionPanel expanded={this.state.expanded === 'panel4'} onChange={this.handleChange('panel4')}>
-                                <ExpansionPanelSummary expandIcon={">"}>
-                                    {
-                                        this.state.following.slice(0, 3).map(follower=>{
-                                            return(<div className={'mx-5 pic-size'}>
-                                                <img className="rounded-circle card-img-top" src={follower.image} alt="Card image cap"/>
-                                                <p className={'text-center'}>{follower.firstName}</p>
-                                            </div>)
-                                        })
-                                    }
-                                </ExpansionPanelSummary>
-                                <ExpansionPanelDetails>
-                                    {
-                                        this.state.following.slice(3, this.state.followers.length).map(follower=>{
-                                            return(<div className={'mx-5 pic-size-extended'}>
-                                                <img className="rounded-circle card-img-top" src={follower.image} alt="Card image cap"/>
-                                                <p className={'text-center'}>{follower.firstName}</p>
-                                            </div>)
-                                        })
-                                    }
-                                </ExpansionPanelDetails>
-                            </ExpansionPanel>
+
                         </div>
                     </div>
 
