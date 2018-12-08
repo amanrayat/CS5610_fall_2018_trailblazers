@@ -46,6 +46,8 @@ export default class Home extends React.Component{
             <div className="h-100">
                 <Navbar
                     history = {this.props.history}
+                    isAuthenticated = {this.props.isAuthenticated}
+                    userHasAuthenticated = {this.props.userHasAuthenticated}
                 />
                 <div className="backdropHome">
                     <div className="h-25">

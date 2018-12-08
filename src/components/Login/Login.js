@@ -46,7 +46,7 @@ export default class Login extends React.Component {
                     }
 
                 } else {
-                    alert("email or  not in database")
+                    alert("email or  not in database");
                     this.setState({isLoading: false})
                 }
             }).catch(e => {
@@ -61,10 +61,6 @@ export default class Login extends React.Component {
 
 
     render() {
-        // if(this.state.routeToAdmin){
-        //     console.log(1);
-        //     return <Redirect to={'/admin'} />
-        // }
         return (
             <div style={{'height': '100%'}}>
                 <Grid container spacing={24} style={{'height': '100%'}}>
