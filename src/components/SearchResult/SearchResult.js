@@ -22,6 +22,7 @@ export default class SearchResult extends React.Component {
 
     componentDidMount(){
         BeereweryServices.search(this.state.initialSearchQuery).then((res) => {
+            console.log(res);
             this.setState({
                 data: res
             })
@@ -87,7 +88,11 @@ export default class SearchResult extends React.Component {
         }
         return(
             <div className="h-100">
-                <Navbar/>
+                <Navbar
+                    history = {this.props.history}
+                    isAuthenticated = {this.props.isAuthenticated}
+                    userHasAuthenticated = {this.props.userHasAuthenticated}
+                />
                 <div className="h-25">
                 </div>
                 <div className="row mx-0">
