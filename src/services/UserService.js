@@ -50,4 +50,8 @@ export default class UserService {
     static findFavBeerById = userId => {
         return axios.get(API_URL + "/api/user/"+userId+"/like")
     };
+    static updateUserById = (userId , User) => {
+        return axios.put(API_URL + "/api/user/"+userId, User, {withCredentials: true});
+    };
+
 }

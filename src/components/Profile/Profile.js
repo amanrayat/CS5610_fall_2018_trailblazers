@@ -16,44 +16,27 @@ export default class Profile extends React.Component{
             currUser : "5c0b29f5718079001699dacc" ,
             expanded: null,
             isEditing : false,
-            username : "Aman",
-            password : "Aman",
-            firstName : "Aman",
-            lastName : "Rayat",
-            email : "rayat.a@husky.neu.edu",
+            username : "",
+            password : "",
+            firstName : "",
+            lastName : "",
+            email : "",
             phoneNo : 8574246016,
             favBeer : [{
                 beerId: {
-                    abv: "4.5",
-                    available: [],
-                    breweries: [],
-                    createDate: "2016-02-11 18:25:25",
                     name: "Golden Ale",
-                    nameDisplay: "Golden Ale",
-                    updateDate: "2018-11-02 02:15:14"
                 }}],
-            followers : [{
+            followers :
+                [{
                 followerId : {
-                    _id : 1,
-                    username : "Aman",
-                    password : "Aman",
                     firstName : "Aman",
                     lastName : "Rayat",
-                    email : "rayat.a@husky.neu.edu",
-                    phoneNo : 8574246016,
-                    image : 'https://s3.amazonaws.com/plagiarismteam208/pic1.jpg'
                 }}
             ],
             following : [{
                 userId : {
-                    _id : 1,
-                    username : "Aman",
-                    password : "Aman",
                     firstName : "Aman",
                     lastName : "Rayat",
-                    email : "rayat.a@husky.neu.edu",
-                    phoneNo : 8574246016,
-                    image : 'https://s3.amazonaws.com/plagiarismteam208/pic1.jpg'
                 }
 
             }]
@@ -65,7 +48,6 @@ export default class Profile extends React.Component{
         const followers = await UserService.findFollowersById(this.state.userId);
         const following = await UserService.findFollowingById(this.state.userId);
         const favBeer = await UserService.findFavBeerById(this.state.userId);
-        console.log("adasas" , favBeer)
         this.setState({
             following : followers.data,
             followers : following.data,
@@ -80,8 +62,19 @@ export default class Profile extends React.Component{
     }
 
     saveResult = () =>{
-        //Save to the database
-        this.setState({isEditing : !this.state.isEditing});
+        const user = {
+            username : this.state.username,
+            password : this.state.password,
+            firstName : this.state.firstName,
+            lastName : this.state.lastName,
+            email : this.state.email,
+            phoneNo : this.state.phoneNo
+        };
+
+        UserService.updateUserById(this.state.currUser , user).then(result=>{
+            this.setState({isEditing : !this.state.isEditing});
+        })
+
     };
 
     editing = () => this.setState({isEditing : !this.state.isEditing});
@@ -118,9 +111,12 @@ export default class Profile extends React.Component{
                                     <p className="card-text">Phone Number :
                                         {this.state.phoneNo}
                                     </p>
-                                    <button
-                                        onClick={this.editing}
-                                        className={'btn btn-primary'}>Edit</button>
+                                    {this.state.currUser===this.state.userId ?
+                                        <button
+                                            onClick={this.editing}
+                                            className={'btn btn-primary'}>Edit</button>:
+                                        <div/>
+                                    }
                                 </div>
                             </div> :
                             <div className={'mx-2'} style={{"width": "90%"}}>
@@ -216,7 +212,7 @@ export default class Profile extends React.Component{
                     </div>
                     <div className={'row mx-2'}>
                         <div className={'col-6'}>
-                            <h5 className={'mb-3 mx-3 headings'}>Followers</h5>
+                            <h5 className={'mb-3 mx-3 headings'}>Following</h5>
                             <ExpansionPanel expanded={this.state.expanded === 'panel1'} onChange={this.handleChange('panel1')}>
                                 <ExpansionPanelSummary expandIcon={">"}>
                                     {
@@ -224,10 +220,10 @@ export default class Profile extends React.Component{
                                             return(
                                                 <div className={'mx-5 pic-size'}>
                                                     <Avatar className={"rounded-circle card-img-top"}>
-                                                        {follower.followerId.firstName.split("")[0]}
-                                                        {follower.followerId.lastName.split("")[0]}
+                                                        {follower.followerId ? follower.followerId.firstName.split("")[0] :''}
+                                                        {follower.followerId ? follower.followerId.lastName.split("")[0]:''}
                                                     </Avatar>
-                                                    <p className={'text-center'}>{follower.followerId.firstName}</p>
+                                                    <p className={'text-center'}>{follower.followerId ? follower.followerId.firstName:''}</p>
                                                 </div>)
                                         })
                                     }
@@ -251,7 +247,7 @@ export default class Profile extends React.Component{
                             </ExpansionPanel>
                         </div>
                         <div className={'col-6'}>
-                            <h5 className={'mb-3 mx-3 headings'}>Following</h5>
+                            <h5 className={'mb-3 mx-3 headings'}>Follower</h5>
                             <ExpansionPanel expanded={this.state.expanded === 'panel2'} onChange={this.handleChange('panel2')}>
                                 <ExpansionPanelSummary expandIcon={">"}>
                                     {
