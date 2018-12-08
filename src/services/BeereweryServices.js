@@ -15,13 +15,13 @@ let dummyBreweryFormat = "json&type=brewery&withLocations=N&withAlternateNames=N
 export default class BeereweryServices{
 
     static searchBeer(query, pageNo){
-        let url = API_endpoint + 'search?q=' + query + '&key=' + key + "&format=" + beerFormat + pageNo;
+        let url = dummApi + 'search?q=' + query + '&key=' + dummyKey + "&format=" + beerFormat + pageNo;
         console.log(url);
         return axios.get(url).then((res) => res.data)
     }
 
     static searchBrewery(query, pageNo){
-        let url = API_endpoint + 'search?q=' + query + '&key=' + key + "&format=" + breweryFormat + pageNo;
+        let url = dummApi + 'search?q=' + query + '&key=' + dummyKey + "&format=" + breweryFormat + pageNo;
         console.log(url);
         return axios.get(url).then((res) => res.data)
     }

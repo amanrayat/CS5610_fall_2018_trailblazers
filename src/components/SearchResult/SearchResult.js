@@ -84,7 +84,7 @@ export default class SearchResult extends React.Component {
 
 
     generateSearchRoute = () => {
-        let newPath = '/searchBeer-results?q=';
+        let newPath = '/search-results?q=';
         let queryStringSplit = this.state.searchQuery.split(" ");
         var i;
         for(i = 0; i < queryStringSplit.length; i++){
@@ -175,18 +175,18 @@ export default class SearchResult extends React.Component {
                                     <div className="row bg-white border-left border-right">
                                         <div className="col-12 my-4">
                                             <h4>
-                                                <strong>{this.state.data.totalResults} beer</strong> results for <strong>"{this.state.initialSearchQuery}"</strong>
+                                                <strong>{this.state.data.totalResults ? this.state.data.totalResults : 0} {this.state.beerActive ? "beer" : "brewery"}</strong> results for <strong>"{this.state.initialSearchQuery}"</strong>
                                             </h4>
                                         </div>
                                     </div>
                                     {
-                                        this.state.beerActive &&
+                                        this.state.beerActive && this.state.data.data && this.state.data.data.length &&
                                         <SearchResultBeerCards
                                             results = {this.state.data.data}
                                         />
                                     }
                                     {
-                                        this.state.breweryActive &&
+                                        this.state.breweryActive && this.state.data.data && this.state.data.data.length &&
                                             <SearchResultBreweryCard
                                                 results = {this.state.data.data}
                                             />
