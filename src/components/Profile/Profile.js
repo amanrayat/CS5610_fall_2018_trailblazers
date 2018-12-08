@@ -12,8 +12,9 @@ export default class Profile extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
+            followed : false,
             userId : '5c0b29f5718079001699dacc',
-            currUser : "5c0b29f5718079001699dacc" ,
+            currUser : "5c0b29f5718079001699dacc1" ,
             expanded: null,
             isEditing : false,
             username : "",
@@ -28,11 +29,11 @@ export default class Profile extends React.Component{
                 }}],
             followers :
                 [{
-                followerId : {
-                    firstName : "Aman",
-                    lastName : "Rayat",
-                }}
-            ],
+                    followerId : {
+                        firstName : "Aman",
+                        lastName : "Rayat",
+                    }}
+                ],
             following : [{
                 userId : {
                     firstName : "Aman",
@@ -85,8 +86,14 @@ export default class Profile extends React.Component{
         });
     };
 
+    followUser = ()=>{
+        UserService.followerUser(this.state.currUser , this.state.userId).then(result=>{
+            this.setState({followed : true})
+        })
+    };
+
     render(){
-        var followed = null;
+        let followed = this.state.followed;
         console.log("the user id is " , this.state)
         return(
             <div className={'row'}>
@@ -102,15 +109,20 @@ export default class Profile extends React.Component{
                                     <h5 className="card-title">
                                         {this.state.firstName} {this.state.lastName}
                                     </h5>
-                                    <p className="card-text">User Name :
-                                        {this.state.username}
-                                    </p>
-                                    <p className="card-text">Email Id :
-                                        {this.state.email}
-                                    </p>
-                                    <p className="card-text">Phone Number :
-                                        {this.state.phoneNo}
-                                    </p>
+                                    {this.state.currUser ?
+                                        <div>
+                                            <p className="card-text">User Name :
+                                                {this.state.username}
+                                            </p>
+                                            <p className="card-text">Email Id :
+                                                {this.state.email}
+                                            </p>
+                                            <p className="card-text">Phone Number :
+                                                {this.state.phoneNo}
+                                            </p>
+                                        </div>:<div/>
+
+                                    }
                                     {this.state.currUser===this.state.userId ?
                                         <button
                                             onClick={this.editing}
@@ -206,7 +218,10 @@ export default class Profile extends React.Component{
                         </div>
                         <div className={'col-6'}>
                             {this.state.currUser!==this.state.userId?
-                                <button className={'btn btn-primary mx-4 my-4 float-right'}>Follow</button>:<div></div>
+                                <button
+                                    onClick={this.followUser}
+                                    className={this.state.followed?'btn btn-success mx-4 my-4 float-right':
+                                        'btn btn-primary mx-4 my-4 float-right'}>Follow</button>:<div></div>
                             }
                         </div>
                     </div>
@@ -223,7 +238,7 @@ export default class Profile extends React.Component{
                                                         {follower.followerId ? follower.followerId.firstName.split("")[0] :''}
                                                         {follower.followerId ? follower.followerId.lastName.split("")[0]:''}
                                                     </Avatar>
-                                                    <p className={'text-center'}>{follower.followerId ? follower.followerId.firstName:''}</p>
+                                                    <p>{follower.followerId ? follower.followerId.firstName:''}</p>
                                                 </div>)
                                         })
                                     }
@@ -239,7 +254,7 @@ export default class Profile extends React.Component{
                                                     {follower.followerId.firstName.split("")[0]}
                                                     {follower.followerId.lastName.split("")[0]}
                                                 </Avatar>
-                                                <p className={'text-center'}>{follower.followerId.firstName}</p>
+                                                <p>{follower.followerId.firstName}</p>
                                             </div>)
                                         })
                                     }
@@ -258,7 +273,7 @@ export default class Profile extends React.Component{
                                                         {follow.userId.firstName.split("")[0]}
                                                         {follow.userId.lastName.split("")[0]}
                                                     </Avatar>
-                                                    <p className={'text-center'}>{follow.userId.firstName}</p>
+                                                    <p>{follow.userId.firstName}</p>
                                                 </div>
 
                                             </div>)
@@ -273,7 +288,7 @@ export default class Profile extends React.Component{
                                                     {follower.userId.firstName.split("")[0]}
                                                     {follower.userId.lastName.split("")[0]}
                                                 </Avatar>
-                                                <p className={'text-center'}>{follower.userId.firstName}</p>
+                                                <p >{follower.userId.firstName}</p>
                                             </div>)
                                         })
                                     }
@@ -294,7 +309,7 @@ export default class Profile extends React.Component{
                                                     <Avatar className={"rounded-circle card-img-top"}>
                                                         {follow.beerId.name.split("")[0]}
                                                     </Avatar>
-                                                    <p className={'text-center'}>{follow.beerId.name}</p>
+                                                    <p>{follow.beerId.name}</p>
                                                 </div>
 
                                             </div>)
@@ -306,7 +321,7 @@ export default class Profile extends React.Component{
                                         this.state.followers.slice(3, this.state.followers.length).map(follower=>{
                                             return(<div className={'mx-5 pic-size-extended'}>
                                                 <img className="rounded-circle card-img-top" src={follower.image} alt="Card image cap"/>
-                                                <p className={'text-center'}>{follower.firstName}</p>
+                                                <p >{follower.firstName}</p>
                                             </div>)
                                         })
                                     }
