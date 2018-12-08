@@ -1,43 +1,81 @@
 import React from 'react'
+import {Redirect} from 'react-router-dom'
+
 import './Login.css'
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import LoaderButton from '../LoaderButton/LoaderButton';
+import UserService from '../../services/UserService'
+import InputLabel from "@material-ui/core/InputLabel/InputLabel";
+import Select from "@material-ui/core/Select/Select";
+import MenuItem from "@material-ui/core/MenuItem/MenuItem";
+import FormControl from "@material-ui/core/FormControl/FormControl";
 
 
 export default class Login extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            'email' :  '',
-            'password' : '',
+            isLoading: false,
+            email: '',
+            password: '',
+            role : '',
+            routeToAdmin: false,
         }
     }
 
-    submitLogin = ()=>{
-        console.log("the email is " , this.state.email , "the password is " , this.state.password)
-    }
+    submitLogin = (event) => {
+        event.preventDefault();
 
-    onEmailChange = e=> this.setState({email : e.target.value});
-    onPasswordChange = e=> this.setState({password : e.target.value});
+        this.setState({isLoading: true});
+
+        const user = {
+            email: this.state.email,
+            password: this.state.password
+        };
+
+        UserService.login(user)
+            .then(res => {
+                if (res.data) {
+                    this.props.userHasAuthenticated(true);
+                    if(res.data[0].type === 'ADMIN'){
+                        this.props.history.push("/admin");
+                    } else {
+                        this.props.history.push("/");
+                    }
+
+                } else {
+                    alert("email or  not in database");
+                    this.setState({isLoading: false})
+                }
+            }).catch(e => {
+            alert(e.message);
+            this.setState({isLoading: false});
+        })
+    };
+
+    onEmailChange = e => this.setState({email: e.target.value});
+    onPasswordChange = e => this.setState({password: e.target.value});
+    onRoleChange = e =>this.setState({type : e.target.value});
+
 
     render() {
-        return(
-
-            <div style={{'height':'100%'}}>
-                <Grid container spacing={24} style={{'height':'100%'}}>
-                    <Grid item xs={6}>
+        return (
+            <div style={{'height': '100%'}}>
+                <Grid container spacing={24} style={{'height': '100%'}}>
+                    <Grid item md={6} only={['md', 'xl']}>
                         <div id={'background_pic'}/>
                     </Grid>
-                    <Grid item xs={6}>
-                        <div id={'login-form'}>
-                           <h3> Login In</h3>
-                            <form  noValidate autoComplete="off" onSubmit={this.submitLogin}>
+                    <Grid item xs={12} md={6}>
+                        <div className="m-3" id={'login-form'}>
+                            <h3> Sign In</h3>
+                            <form noValidate autoComplete="off" onSubmit={this.submitLogin}>
                                 <TextField
                                     id="outlined-name"
                                     label="Email Id"
                                     className={'input-field'}
-                                    fullWidth ={true}
+                                    fullWidth={true}
                                     autoFocus={true}
                                     value={this.state.email}
                                     onChange={this.onEmailChange}
@@ -48,20 +86,35 @@ export default class Login extends React.Component {
                                 <TextField
                                     id="outlined-name"
                                     label="Password"
-                                    fullWidth ={true}
-                                    type = 'password'
+                                    fullWidth={true}
+                                    type='password'
                                     value={this.state.password}
                                     onChange={this.onPasswordChange}
                                     margin="normal"
                                     variant="outlined"
                                 />
                                 <br/>
-                                <Button variant="contained"
-                                        onClick={this.submitLogin}
-                                        color="primary"
-                                        fullWidth ={true}
-                                        >Login
-                                </Button>
+                                <FormControl style={{width:'100%'}} className={'mb-4'}>
+                                    <InputLabel htmlFor="type-simple">Type</InputLabel>
+                                    <Select
+                                        value={this.state.type}
+                                        onChange={this.onRoleChange}>
+                                        <MenuItem value={'CUSTOMER'}>Customer</MenuItem>
+                                        <MenuItem value={'EVENTPLANNER'}>Event Planner</MenuItem>
+                                        <MenuItem value={'ADMIN'}>Admin</MenuItem>
+                                    </Select>
+                                </FormControl>
+                                <br/>
+                                <LoaderButton
+                                    block
+                                    bsSize="large"
+                                    className="btn-primary"
+                                    disabled={!this.submitLogin}
+                                    type="submit"
+                                    isLoading={this.state.isLoading}
+                                    text="Sign In"
+                                    loadingText="Logging in…"
+                                />
                             </form>
                         </div>
                     </Grid>
@@ -69,5 +122,5 @@ export default class Login extends React.Component {
             </div>
 
         )
-}
+    }
 }

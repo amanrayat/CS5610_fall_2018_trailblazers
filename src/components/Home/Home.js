@@ -78,58 +78,64 @@ export default class Home extends React.Component{
             return <Redirect to={this.generateSearchRoute()} />
         }
         return(
-            <div className="backdropHome">
-                <Navbar/>
-                <div className="row mx-0">
-                    <div className="col-1">
+            <div className="h-100">
+                <Navbar
+                    history = {this.props.history}
+                    isAuthenticated = {this.props.isAuthenticated}
+                    userHasAuthenticated = {this.props.userHasAuthenticated}
+                />
+                <div className="backdropHome">
+                    <div className="row mx-0">
+                        <div className="col-1">
 
-                    </div>
-                    <div className="col-6">
-                        <div className="row py-5">
-                            <div className="col-10">
-                                <input
-                                    value={this.state.searchText}
-                                    onChange={this.trackSearchTextChanges}
-                                    className="form-control"
-                                    type="text"
-                                    placeholder="Search for Beers or Breweries"
-                                    aria-label="Search"/>
-                            </div>
-                            <div className="col-2 text-right">
-                                <button
-                                    onClick={this.sendSearchRequest}
-                                    type="button"
-                                    className="btn btn-secondary">
-                                    Search
-                                </button>
+                        </div>
+                        <div className="col-6">
+                            <div className="row py-5">
+                                <div className="col-10">
+                                    <input
+                                        value={this.state.searchText}
+                                        onChange={this.trackSearchTextChanges}
+                                        className="form-control"
+                                        type="text"
+                                        placeholder="Search for Beers or Breweries"
+                                        aria-label="Search"/>
+                                </div>
+                                <div className="col-2 text-right">
+                                    <button
+                                        onClick={this.sendSearchRequest}
+                                        type="button"
+                                        className="btn btn-secondary">
+                                        Search
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div className="col-3">
-                    </div>
-                </div>
-                <div className="row mx-0">
-                    <div className="col-1">
-                    </div>
-                    <div className="col-6">
-                        <div className="row mx-0 rounded">
-                            <div
-                                className={"col-6 text-center py-2 " + (this.state.userActivity? "bg-white": "bg-light border")}
-                            >
-                                User Activity
-                            </div>
-                            <div
-                                className={"col-6 text-center py-2 " + (this.state.eventPlannerActivity? "bg-white": "bg-light border")}
-                            >
-                                EventPlanner Activity
-                            </div>
+                        <div className="col-3">
                         </div>
-                        {
-                            this.state.userActivity &&
-                            <UserFeed
-                                commentData = {this.state.commentData}
-                            />
-                        }
+                    </div>
+                    <div className="row mx-0">
+                        <div className="col-1">
+                        </div>
+                        <div className="col-6">
+                            <div className="row mx-0 rounded">
+                                <div
+                                    className={"col-6 text-center py-2 " + (this.state.userActivity? "bg-white": "bg-light border")}
+                                >
+                                    User Activity
+                                </div>
+                                <div
+                                    className={"col-6 text-center py-2 " + (this.state.eventPlannerActivity? "bg-white": "bg-light border")}
+                                >
+                                    EventPlanner Activity
+                                </div>
+                            </div>
+                            {
+                                this.state.userActivity &&
+                                <UserFeed
+                                    commentData = {this.state.commentData}
+                                />
+                            }
+                        </div>
                     </div>
                 </div>
             </div>
