@@ -26,7 +26,6 @@ export default class SearchResult extends React.Component {
 
     componentDidMount(){
         BeereweryServices.searchBeer(this.state.initialSearchQuery, 1).then((res) => {
-            console.log(res);
             this.setState({
                 data: res
             })

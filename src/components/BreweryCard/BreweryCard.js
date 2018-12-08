@@ -16,7 +16,7 @@ function BreweryCard({record}){
             </div>
             <div className="col-6 pt-1">
                 <div className="row">
-                    <Link to={`/breweryDetail/${record.id}`}>{record.name}</Link>
+                    <Link to={`/brewery/${record.id}`}>{record.name}</Link>
                 </div>
                 {
                     record.locations && record.locations.length &&

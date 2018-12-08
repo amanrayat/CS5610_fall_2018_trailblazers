@@ -11,6 +11,7 @@ import UnauthenticatedRoute from "../components/UnauthenticatedRoute";
 import Admin from "../components/Admin/Admin";
 import BreweryDetail from "../components/BreweryDetail/BreweryDetail";
 import SearchResult from "../components/SearchResult/SearchResult";
+import BeerDetail from "../components/BeerDetail/BeerDetail";
 
 export default ({ childProps }) =>
     <Switch>
@@ -21,7 +22,8 @@ export default ({ childProps }) =>
         <AuthenticatedRoute path="/profile" exact component={Profile} props={childProps} />
         <UnauthenticatedRoute path="/profile/:profileId" exact component={Profile} props={childProps} />
         <AppliedRoute path = "/admin" exact component = {Admin} props = {childProps}/>
-        <AppliedRoute path = "/breweryDetail" exact component = {BreweryDetail} props = {childProps}/>
         <AppliedRoute path='/search-results' exact component = {SearchResult} props = {childProps} />
+        <AppliedRoute path = '/beer/:beerId' exact component = {BeerDetail} props = {childProps}/>
+        <AppliedRoute path = '/brewery/:breweryId' exact component = {BreweryDetail} props = {childProps}/>
         <Route component={NotFound} />
     </Switch>;
