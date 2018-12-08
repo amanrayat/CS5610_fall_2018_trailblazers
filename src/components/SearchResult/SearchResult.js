@@ -1,11 +1,14 @@
 import React from 'react';
 import queryString from 'query-string'
 import {Redirect, Router} from 'react-router-dom'
+import Pagination from 'react-paginating';
 
 import Navbar from "../NavBar/Navbar";
 import BeereweryServices from "../../services/BeereweryServices";
 import './SearchResult.css'
-import SearchResultCards from "../SearchResultCards/SearchResultCards";
+
+import SearchResultBeerCards from "../SearchResultCards/SearchResultBeerCards";
+import SearchResultBreweryCard from "../SearchResultCards/SearchResultBreweryCards";
 
 export default class SearchResult extends React.Component {
 
@@ -16,12 +19,13 @@ export default class SearchResult extends React.Component {
             initialSearchQuery: query,
             searchQuery: query,
             beerActive: true,
-            breweryActive: false
+            breweryActive: false,
+            currentPage: 1
         };
     }
 
     componentDidMount(){
-        BeereweryServices.search(this.state.initialSearchQuery).then((res) => {
+        BeereweryServices.searchBeer(this.state.initialSearchQuery, 1).then((res) => {
             console.log(res);
             this.setState({
                 data: res
@@ -48,19 +52,25 @@ export default class SearchResult extends React.Component {
 
     toggleBeer = () => {
         if(!this.state.beerActive){
-            this.setState({
-                beerActive: true,
-                breweryActive: false,
-            })
+            BeereweryServices.searchBeer(this.state.initialSearchQuery, this.state.currentPage).then((res) => {
+                this.setState({
+                    data: res,
+                    beerActive: true,
+                    breweryActive: false,
+                });
+            });
         }
     };
 
     toggleBrewery = () => {
         if(!this.state.breweryActive){
-            this.setState({
-                beerActive: false,
-                breweryActive: true
-            })
+            BeereweryServices.searchBrewery(this.state.initialSearchQuery, this.state.currentPage).then((res) => {
+                this.setState({
+                    data: res,
+                    beerActive: false,
+                    breweryActive: true,
+                });
+            });
         }
     };
 
@@ -72,8 +82,9 @@ export default class SearchResult extends React.Component {
         }
     };
 
+
     generateSearchRoute = () => {
-        let newPath = '/search-results?q=';
+        let newPath = '/searchBeer-results?q=';
         let queryStringSplit = this.state.searchQuery.split(" ");
         var i;
         for(i = 0; i < queryStringSplit.length; i++){
@@ -81,6 +92,26 @@ export default class SearchResult extends React.Component {
         }
         return newPath.slice(0,-1);
     };
+
+    handlePageChange = page => {
+        if(this.state.beerActive){
+            BeereweryServices.searchBeer(this.state.initialSearchQuery, page).then((res) => {
+                this.setState({
+                    data: res,
+                    currentPage: page
+                });
+            });
+        }
+        else{
+            BeereweryServices.searchBrewery(this.state.initialSearchQuery, page).then((res) => {
+                this.setState({
+                    data: res,
+                    currentPage: page
+                });
+            });
+        }
+    };
+
 
     render(){
         if(this.state.moveToSearchResult){
@@ -131,7 +162,7 @@ export default class SearchResult extends React.Component {
                                 Beer
                             </div>
                             <div
-                                className={"col-6 py-2 text-center " + (this.state.breweryActive? "bg-white": "bg-light border")}
+                                className={"col-6 py-2 text-center " + (this.state.breweryActive? "bg-white border-right": "bg-light border")}
                                 onClick={this.toggleBrewery}
                             >
                                 Brewery
@@ -148,12 +179,99 @@ export default class SearchResult extends React.Component {
                                             </h4>
                                         </div>
                                     </div>
-                                    <SearchResultCards
-                                        results = {this.state.data.data}
-                                    />
+                                    {
+                                        this.state.beerActive &&
+                                        <SearchResultBeerCards
+                                            results = {this.state.data.data}
+                                        />
+                                    }
+                                    {
+                                        this.state.breweryActive &&
+                                            <SearchResultBreweryCard
+                                                results = {this.state.data.data}
+                                            />
+                                    }
                                 </div>
 
                             )
+                        }
+                        {
+                            this.state.data &&
+                                <div className="text-center my-4">
+                                    <Pagination
+                                        total={this.state.data.totalResults}
+                                        limit={50}
+                                        pageCount={this.state.data.numberOfPages}
+                                        currentPage={1}
+                                    >
+                                        {({
+                                              pages,
+                                              currentPage,
+                                              hasNextPage,
+                                              hasPreviousPage,
+                                              previousPage,
+                                              nextPage,
+                                              totalPages,
+                                              getPageItemProps
+                                          }) => (
+                                            <div>
+                                                <button className="btn btn-light btn-outline-primary mx-1 my-1"
+                                                    {...getPageItemProps({
+                                                        pageValue: 1,
+                                                        onPageChange: this.handlePageChange
+                                                    })}
+                                                >
+                                                    first
+                                                </button>
+
+                                                {hasPreviousPage && (
+                                                    <button className="btn btn-light btn-outline-primary mx-1 my-1"
+                                                        {...getPageItemProps({
+                                                            pageValue: previousPage,
+                                                            onPageChange: this.handlePageChange
+                                                        })}
+                                                    >
+                                                        {'<'}
+                                                    </button>
+                                                )}
+
+                                                {pages.map(page => {
+                                                    return (
+                                                        <button className={"btn btn-light btn-outline-primary mx-1 my-1 " + (page == this.state.currentPage? "bg-primary text-white": "bg-light")}
+                                                            key={page}
+                                                            {...getPageItemProps({
+                                                                pageValue: page,
+                                                                onPageChange: this.handlePageChange
+                                                            })}
+                                                        >
+                                                            {page}
+                                                        </button>
+                                                    );
+                                                })}
+
+                                                {hasNextPage && (
+                                                    <button className="btn btn-light btn-outline-primary mx-1 my-1"
+                                                        {...getPageItemProps({
+                                                            pageValue: nextPage,
+                                                            onPageChange: this.handlePageChange
+                                                        })}
+                                                    >
+                                                        {'>'}
+                                                    </button>
+                                                )}
+
+                                                <button className="btn btn-light btn-outline-primary mx-1 my-1"
+                                                    {...getPageItemProps({
+                                                        pageValue: totalPages,
+                                                        onPageChange: this.handlePageChange
+                                                    })}
+                                                >
+                                                    last
+                                                </button>
+                                            </div>
+                                        )}
+                                    </Pagination>
+                                </div>
                         }
                     </div>
                     <div className="col-md-3 px-0">

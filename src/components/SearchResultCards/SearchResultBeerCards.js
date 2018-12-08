@@ -1,9 +1,10 @@
 import React from 'react'
 import BeerCard from "../BeerCard/BeerCard";
 
-function SearchResultCards({results}){
+function SearchResultBeerCards({results}){
     return(
         results.map((lesson, index) => (
+
                 <BeerCard
                     record = {lesson}
                 />
@@ -12,4 +13,4 @@ function SearchResultCards({results}){
     );
 }
 
-export default SearchResultCards
+export default SearchResultBeerCards

@@ -1,12 +1,12 @@
 /*
-.search-field{
+.searchBeer-field{
     margin-top: 20%;
     margin-right: 10%;
     margin-left: 10%;
     width: 90%;
 }
 
-#search-button{
+#searchBeer-button{
     position : relative;
     left: 22px;
     top: 22px;
