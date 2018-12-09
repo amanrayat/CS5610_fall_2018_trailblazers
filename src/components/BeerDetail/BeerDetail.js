@@ -16,7 +16,9 @@ export default class BeerDetail extends React.Component {
             isLoading: true,
             beer: {},
             commentInput: "",
-            comments: []
+            comments: [],
+            likes: 0,
+            canLike: false
         }
     }
 
@@ -48,9 +50,12 @@ export default class BeerDetail extends React.Component {
             };
             BeerServices.createBeer(beerJson).then((res_1) => {
                 BeerServices.findCommentsForBeerId(beerId).then((res_2) => {
-                    this.setState({
-                        comments: res_2,
-                        beer: res.data
+                    BeerServices.findTotalLikes(beerId).then((res_3) => {
+                        this.setState({
+                            comments: res_2,
+                            beer: res.data,
+                            likes: res_3.length
+                        })
                     })
                 })
             })
@@ -80,6 +85,20 @@ export default class BeerDetail extends React.Component {
         }
     };
 
+    sendLike = () => {
+        if(this.props.isAuthenticated){
+            UserService.profile().then((res) => {
+                BeerServices.addLike(res.data[0]._id, this.state.beer.id).then(() => {
+                    BeerServices.findTotalLikes(this.state.beer.id).then((res_1) => {
+                        this.setState({
+                            likes: res_1.length
+                        })
+                    })
+                })
+            })
+        }
+    };
+
     render() {
         return (
             <div className="h-100">
@@ -94,6 +113,11 @@ export default class BeerDetail extends React.Component {
                         <div className="beer-heading-one-inner">
                             <h2 className="text-white">{this.state.beer.nameDisplay} </h2>
                             <p className="text-white">{(this.state.beer.breweries && this.state.beer.breweries.length > 0) ? this.state.beer.breweries[0].name : ''}</p>
+                            <span className="text-white mx-1">{this.state.likes}</span>
+                            <i
+                                className="fa fa-2x text-white fa-thumbs-up"
+                                onClick={() => {this.sendLike()}}
+                            />
                         </div>
                     </div>
                     <div className="container-fluid">

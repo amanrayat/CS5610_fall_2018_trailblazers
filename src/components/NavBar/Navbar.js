@@ -59,6 +59,12 @@ export default class Navbar extends React.Component{
                             <button
                                 type="button"
                                 className="btn btn-secondary mr-2"
+                            >
+                                Profile
+                            </button>
+                            <button
+                                type="button"
+                                className="btn btn-secondary mr-2"
                                 onClick={() => this.routeToLogout()}
                             >
                                 Logout
