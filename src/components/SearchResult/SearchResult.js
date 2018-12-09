@@ -126,14 +126,14 @@ export default class SearchResult extends React.Component {
                 <div className="h-25">
                 </div>
                 <div className="row mx-0">
-                    <div className="col-md-3 px-0">
+                    <div className="col-md-3 col-1 px-0">
 
                     </div>
-                    <div className="col-md-6 col-12 px-0">
+                    <div className="col-md-6 col-10 px-0">
                         <div className="row bg-light border">
                             <div className="col-12">
-                                <div className="row my-4">
-                                    <div className="col-10">
+                                <div className="row my-4 mx-0">
+                                    <div className="col-md-10 col-8">
                                         <input
                                             value={this.state.searchQuery}
                                             onChange={this.trackSearchTextChanges}
@@ -142,7 +142,7 @@ export default class SearchResult extends React.Component {
                                             placeholder="Search for Beers or Breweries"
                                             aria-label="Search"/>
                                     </div>
-                                    <div className="col-2">
+                                    <div className="col-md-2 col-1">
                                         <button
                                             onClick={this.sendSearchRequest}
                                             type="button"
@@ -273,7 +273,7 @@ export default class SearchResult extends React.Component {
                                 </div>
                         }
                     </div>
-                    <div className="col-md-3 px-0">
+                    <div className="col-md-3 d-none d-md-block px-0">
 
                     </div>
                 </div>

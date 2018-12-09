@@ -98,10 +98,10 @@ export default class Home extends React.Component{
                 />
                 <div className="backdropHome">
                     <div className="row mx-0">
-                        <div className="col-1">
+                        <div className="col-md-1 d-none d-md-block">
 
                         </div>
-                        <div className="col-6">
+                        <div className="col-md-6 col-10">
                             <div className="row py-5">
                                 <div className="col-10">
                                     <input
@@ -122,13 +122,13 @@ export default class Home extends React.Component{
                                 </div>
                             </div>
                         </div>
-                        <div className="col-3">
+                        <div className="col-md-3 d-none d-md-block">
                         </div>
                     </div>
                     <div className="row mx-0">
                         <div className="col-1">
                         </div>
-                        <div className="col-6">
+                        <div className="col-md-6 col-10">
                             <div className="row mx-0 rounded">
                                 <div
                                     className={"col-6 text-center py-2 " + (this.state.userActivity? "bg-white": "bg-light border")}

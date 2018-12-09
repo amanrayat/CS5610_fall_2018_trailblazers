@@ -6,6 +6,7 @@ import BeereweryServices from "../../services/BeereweryServices";
 import UserService from "../../services/UserService";
 import BreweryServices from "../../services/BreweryServices";
 import EventList from "../EventList/EventList";
+import Navbar from "../NavBar/Navbar";
 
 let data = {
     "id": "8s5sUs",
@@ -246,17 +247,11 @@ class BreweryDetail extends React.Component{
     render(){
         return(
             <div className="h-100">
-                <nav className="navbar navbar-expand navbar-dark sticky-top bg-dark">
-                    <ul className="navbar-nav w-100">
-                        <li className="nav-item nav-link col-md-4">
-                        </li>
-                        <li className="nav-item nav-link col-4 text-center">
-                            <a className="navbar-brand" href="#">
-                                Beerewery
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
+                <Navbar
+                    history = {this.props.history}
+                    isAuthenticated = {this.props.isAuthenticated}
+                    userHasAuthenticated = {this.props.userHasAuthenticated}
+                />
                 {
                     this.state.data &&
                         <div>
@@ -276,7 +271,7 @@ class BreweryDetail extends React.Component{
                             </div>
                             <div className="container-fluid">
                                 <div className="row">
-                                    <div className="col-2">
+                                    <div className="col-md-2 text-center col-12">
                                         {
                                             this.state.data.images && this.state.data.images.squareMedium &&
                                             <img src={this.state.data.images.squareMedium}/>
@@ -286,10 +281,10 @@ class BreweryDetail extends React.Component{
                                             <i className="fa fa-2x fa-beer pt-2" aria-hidden="true"/>
                                         }
                                     </div>
-                                    <div className="col-4 mt-3">
+                                    <div className="col-md-4 col-12 mt-3">
                                         <i>{this.state.data.description}</i>
                                     </div>
-                                    <div className="col-5">
+                                    <div className="col-md-5 col-12 mt-md-0 mt-4">
                                         <table className="table">
                                             <tbody>
                                             <tr>
@@ -324,7 +319,7 @@ class BreweryDetail extends React.Component{
                                     </div>
                                 </div>
                             </div>
-                            <div className="map-wrapper ml-4">
+                            <div className="map-wrapper ml-4 d-none d-md-block">
                                 <div className="map-canvas" style={{position: 'relative', overflow: 'hidden'}}>
                                     <Map
                                         google={this.props.google}
@@ -352,7 +347,7 @@ class BreweryDetail extends React.Component{
                                 </div>
                             </div>
                             <div className="row ml-2 mr-0">
-                                <div className="col-6">
+                                <div className="col-md-6 col-11">
                                     {
                                         this.state.userProfile !== "" && this.state.userProfile.type === 'EVENTPLANNER' &&
                                         <div className="my-2">

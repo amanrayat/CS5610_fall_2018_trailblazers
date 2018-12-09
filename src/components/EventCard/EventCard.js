@@ -26,7 +26,7 @@ function EventCard({event}) {
                 </div>
                 <div className="card-body">
                     <div className="row">
-                        <div className="col-2 text-primary text-center mx-0">
+                        <div className="col-md-2 col-4 text-primary text-center mx-0">
                             Planner:
                         </div>
                         <div className="col-5 mx-0">
@@ -34,7 +34,7 @@ function EventCard({event}) {
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-2 text-primary text-center mx-0">
+                        <div className="col-md-2 col-4 text-primary text-center mx-0">
                             Date:
                         </div>
                         <div className="col-5 mx-0">
@@ -42,7 +42,7 @@ function EventCard({event}) {
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-2 text-primary text-center mx-0">
+                        <div className="col-md-2 col-4 text-primary text-center mx-0">
                             Time:
                         </div>
                         <div className="col-5 mx-0">

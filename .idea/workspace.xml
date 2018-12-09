@@ -2,9 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7f2c88a7-53d0-43d2-85be-19526faebc22" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Admin/Admin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Admin/Admin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/BeerCard/BeerCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/BeerCard/BeerCard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/BeerDetail/BeerDetail.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/BeerDetail/BeerDetail.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/BreweryCard/BreweryCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/BreweryCard/BreweryCard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/BreweryDetail/BreweryDetail.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/BreweryDetail/BreweryDetail.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/EventCard/EventCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/EventCard/EventCard.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Home/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Home/Home.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/UserFeed/UserFeed.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UserFeed/UserFeed.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/BeerServices.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/BeerServices.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SearchResult/SearchResult.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SearchResult/SearchResult.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -17,124 +23,107 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.2697126">
-      <split-first>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="Home.js" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/components/Home/Home.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="244">
-                  <caret line="43" column="54" lean-forward="true" selection-start-line="43" selection-start-column="54" selection-end-line="43" selection-end-column="54" />
-                  <folding>
-                    <element signature="e#0#25#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="UserFeed.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/components/UserFeed/UserFeed.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="210">
-                  <caret line="14" column="5" lean-forward="true" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="EventCard.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/components/EventCard/EventCard.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="342">
-                  <caret line="33" column="30" lean-forward="true" selection-start-line="33" selection-start-column="30" selection-end-line="33" selection-end-column="30" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="BeerDetail.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/components/BeerDetail/BeerDetail.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="690">
-                  <caret line="53" column="24" selection-start-line="53" selection-start-column="24" selection-end-line="53" selection-end-column="24" />
-                  <folding>
-                    <element signature="e#0#26#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="UserService.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/services/UserService.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="155">
-                  <caret line="29" column="14" selection-start-line="29" selection-start-column="14" selection-end-line="29" selection-end-column="14" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="SearchResultBeerCards.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/components/SearchResultCards/SearchResultBeerCards.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="60">
-                  <caret line="5" column="8" lean-forward="true" selection-start-line="5" selection-start-column="8" selection-end-line="11" selection-end-column="9" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="BeerServices.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/services/BeerServices.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="495">
-                  <caret line="33" column="1" lean-forward="true" selection-start-line="33" selection-start-column="1" selection-end-line="33" selection-end-column="1" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="breweryDetail.css" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/components/BreweryDetail/breweryDetail.css">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="615">
-                  <caret line="41" lean-forward="true" selection-start-line="41" selection-end-line="41" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="Login.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/components/Login/Login.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="225">
-                  <caret line="15" column="33" lean-forward="true" selection-start-line="15" selection-start-column="33" selection-end-line="15" selection-end-column="33" />
-                  <folding>
-                    <element signature="e#0#25#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="Admin.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/components/Admin/Admin.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="5205">
-                  <caret line="351" lean-forward="true" selection-start-line="351" selection-end-line="351" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf>
-          <file leaf-file-name="BeerServices.js" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/services/BeerServices.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="150">
-                  <caret line="10" column="20" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="20" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="Home.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/Home/Home.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="335">
+              <caret line="133" column="57" selection-start-line="133" selection-start-column="57" selection-end-line="133" selection-end-column="57" />
+              <folding>
+                <element signature="e#0#25#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BreweryDetail.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/components/BreweryDetail/BreweryDetail.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-211">
+              <caret line="347" column="34" lean-forward="true" selection-start-line="347" selection-start-column="34" selection-end-line="347" selection-end-column="34" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EventCard.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/EventCard/EventCard.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="425">
+              <caret line="40" column="43" selection-start-line="40" selection-start-column="43" selection-end-line="40" selection-end-column="43" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SearchResult.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/SearchResult/SearchResult.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="273">
+              <caret line="182" column="57" selection-start-line="182" selection-start-column="57" selection-end-line="182" selection-end-column="57" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BeerDetail.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/BeerDetail/BeerDetail.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="494">
+              <caret line="253" column="81" lean-forward="true" selection-start-line="253" selection-start-column="81" selection-end-line="253" selection-end-column="81" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SearchResultBeerCards.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/SearchResultCards/SearchResultBeerCards.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="10" column="13" lean-forward="true" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BeerCard.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/BeerCard/BeerCard.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="515">
+              <caret line="38" column="54" selection-start-line="38" selection-start-column="54" selection-end-line="38" selection-end-column="54" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BreweryCard.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/BreweryCard/BreweryCard.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="435">
+              <caret line="30" column="30" lean-forward="true" selection-start-line="30" selection-start-column="30" selection-end-line="30" selection-end-column="30" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BeerServices.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/services/BeerServices.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="495">
+              <caret line="33" column="1" lean-forward="true" selection-start-line="33" selection-start-column="1" selection-end-line="33" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Admin.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/Admin/Admin.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="383">
+              <caret line="140" column="16" selection-start-line="140" selection-start-column="16" selection-end-line="140" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -151,7 +140,6 @@
       <find>onChan</find>
       <find>btn</find>
       <find>histpru</find>
-      <find>search</find>
       <find>console</find>
       <find>input</find>
       <find>isaut</find>
@@ -161,6 +149,7 @@
       <find>routeToAdmin</find>
       <find>user</find>
       <find>userProfile._id</find>
+      <find>search</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -186,23 +175,23 @@
         <option value="$PROJECT_DIR$/src/components/SearchResultCards/SearchResultCards.js" />
         <option value="$PROJECT_DIR$/src/components/SearchResultCards/SearchResultBeerCards.js" />
         <option value="$PROJECT_DIR$/src/components/SearchResultCards/SearchResultBreweryCards.js" />
-        <option value="$PROJECT_DIR$/src/components/SearchResult/SearchResult.js" />
-        <option value="$PROJECT_DIR$/src/components/BeerCard/BeerCard.js" />
         <option value="$PROJECT_DIR$/src/containers/AppContainer.js" />
-        <option value="$PROJECT_DIR$/src/components/BreweryCard/BreweryCard.js" />
         <option value="$PROJECT_DIR$/src/services/BeereweryServices.js" />
         <option value="$PROJECT_DIR$/src/components/NavBar/Navbar.js" />
-        <option value="$PROJECT_DIR$/src/components/BeerDetail/BeerDetail.js" />
         <option value="$PROJECT_DIR$/src/components/Login/Login.js" />
-        <option value="$PROJECT_DIR$/src/components/Admin/Admin.js" />
         <option value="$PROJECT_DIR$/src/services/BreweryServices.js" />
         <option value="$PROJECT_DIR$/src/components/EventList/EventList.js" />
-        <option value="$PROJECT_DIR$/src/components/EventCard/EventCard.js" />
         <option value="$PROJECT_DIR$/src/components/BreweryDetail/breweryDetail.css" />
-        <option value="$PROJECT_DIR$/src/components/BreweryDetail/BreweryDetail.js" />
         <option value="$PROJECT_DIR$/src/components/UserFeed/UserFeed.js" />
         <option value="$PROJECT_DIR$/src/services/BeerServices.js" />
+        <option value="$PROJECT_DIR$/src/components/Admin/Admin.js" />
         <option value="$PROJECT_DIR$/src/components/Home/Home.js" />
+        <option value="$PROJECT_DIR$/src/components/SearchResult/SearchResult.js" />
+        <option value="$PROJECT_DIR$/src/components/BeerCard/BeerCard.js" />
+        <option value="$PROJECT_DIR$/src/components/BreweryCard/BreweryCard.js" />
+        <option value="$PROJECT_DIR$/src/components/BeerDetail/BeerDetail.js" />
+        <option value="$PROJECT_DIR$/src/components/BreweryDetail/BreweryDetail.js" />
+        <option value="$PROJECT_DIR$/src/components/EventCard/EventCard.js" />
       </list>
     </option>
   </component>
@@ -270,6 +259,13 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
               <item name="BeerDetail" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CS5610_fall_2018_trailblazers" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CS5610_fall_2018_trailblazers" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="BreweryCard" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="CS5610_fall_2018_trailblazers" type="b2602c69:ProjectViewProjectNode" />
@@ -403,13 +399,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="59827000" />
+    <option name="totallyTimeSpent" value="62235000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18203737" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18203737" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
@@ -418,7 +414,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32923076" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.1774359" />
+      <window_info anchor="bottom" id="Terminal" order="7" visible="true" weight="0.1774359" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -602,24 +598,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/BreweryCard/BreweryCard.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="39" selection-start-line="18" selection-start-column="39" selection-end-line="18" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Register/Register.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1641">
           <caret line="48" column="16" lean-forward="true" selection-start-line="48" selection-start-column="16" selection-end-line="48" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/BeerCard/BeerCard.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="10" column="7" selection-start-line="10" selection-start-column="7" selection-end-line="10" selection-end-column="7" />
         </state>
       </provider>
     </entry>
@@ -651,16 +633,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/SearchResult/SearchResult.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1710">
-          <caret line="124" column="18" selection-start-line="124" selection-start-column="18" selection-end-line="124" selection-end-column="18" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/NavBar/Navbar.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="735">
@@ -678,13 +650,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/BreweryDetail/BreweryDetail.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5070">
-          <caret line="345" column="41" lean-forward="true" selection-start-line="345" selection-start-column="41" selection-end-line="345" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/EventList/EventList.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
@@ -692,23 +657,6 @@
           <folding>
             <element signature="e#0#25#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/BeerDetail/BeerDetail.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="690">
-          <caret line="53" column="24" selection-start-line="53" selection-start-column="24" selection-end-line="53" selection-end-column="24" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/SearchResultCards/SearchResultBeerCards.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="5" column="8" lean-forward="true" selection-start-line="5" selection-start-column="8" selection-end-line="11" selection-end-column="9" />
         </state>
       </provider>
     </entry>
@@ -726,20 +674,6 @@
           <folding>
             <element signature="e#0#25#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Admin/Admin.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5205">
-          <caret line="351" lean-forward="true" selection-start-line="351" selection-end-line="351" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/EventCard/EventCard.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="33" column="30" lean-forward="true" selection-start-line="33" selection-start-column="30" selection-end-line="33" selection-end-column="30" />
         </state>
       </provider>
     </entry>
@@ -764,13 +698,75 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/Admin/Admin.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="383">
+          <caret line="140" column="16" selection-start-line="140" selection-start-column="16" selection-end-line="140" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Home/Home.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="244">
-          <caret line="43" column="54" lean-forward="true" selection-start-line="43" selection-start-column="54" selection-end-line="43" selection-end-column="54" />
+        <state relative-caret-position="335">
+          <caret line="133" column="57" selection-start-line="133" selection-start-column="57" selection-end-line="133" selection-end-column="57" />
           <folding>
             <element signature="e#0#25#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/SearchResult/SearchResult.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="182" column="57" selection-start-line="182" selection-start-column="57" selection-end-line="182" selection-end-column="57" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/SearchResultCards/SearchResultBeerCards.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="10" column="13" lean-forward="true" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/BeerCard/BeerCard.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="515">
+          <caret line="38" column="54" selection-start-line="38" selection-start-column="54" selection-end-line="38" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/BreweryCard/BreweryCard.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="30" column="30" lean-forward="true" selection-start-line="30" selection-start-column="30" selection-end-line="30" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/BeerDetail/BeerDetail.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="494">
+          <caret line="253" column="81" lean-forward="true" selection-start-line="253" selection-start-column="81" selection-end-line="253" selection-end-column="81" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/EventCard/EventCard.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="40" column="43" selection-start-line="40" selection-start-column="43" selection-end-line="40" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/BreweryDetail/BreweryDetail.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-211">
+          <caret line="347" column="34" lean-forward="true" selection-start-line="347" selection-start-column="34" selection-end-line="347" selection-end-column="34" />
         </state>
       </provider>
     </entry>

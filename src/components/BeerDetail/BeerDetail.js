@@ -243,17 +243,17 @@ export default class BeerDetail extends React.Component {
                                         </div>
                                     </div>
                                 }
-                                <div className="row pl-lg-3">
-                                    <div className="col-8 list-group mt-4">
+                                <div className="row pl-lg-3 ml-1">
+                                    <div className="col-md-8 col-12 list-group mt-4">
                                         <span className="mb-1">User comments</span>
                                         {
                                             this.state.comments.map((comment, index) => (
                                                 <div className="list-group-item">
-                                                    <div className="row">
-                                                        <div className="col-1 text-primary">
+                                                    <div className="row mx-0">
+                                                        <div className="col-md-2 col-3 text-primary">
                                                             {comment.userId.username}:
                                                         </div>
-                                                        <div className="ml-1 col-10">
+                                                        <div className="ml-0 ml-md-1 col-9">
                                                             {comment.comment}
                                                         </div>
                                                     </div>
