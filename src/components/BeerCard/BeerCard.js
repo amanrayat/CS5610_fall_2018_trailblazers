@@ -11,7 +11,7 @@ function BeerCard({record}){
                 }
                 {
                     !record.labels &&
-                    <i className="fa fa-2x fa-beer pt-2" aria-hidden="true"></i>
+                    <i className="fa fa-2x fa-beer pt-2" aria-hidden="true"/>
                 }
             </div>
             {

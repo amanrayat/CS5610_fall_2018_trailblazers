@@ -15,7 +15,7 @@ export default class BeerDetail extends React.Component {
         }
     }
 
-    componentWillMount = () => {
+    componentWillMount(){
 
         // if (!this.props.isAuthenticated) {
         //     return;

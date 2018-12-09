@@ -56,27 +56,19 @@ export default class Home extends React.Component{
 
     sendSearchRequest = () => {
         if(this.state.searchText.length !== 0){
-            this.setState({
-                moveToSearchResult: true,
-            });
+            let newPath = '/search-results?q=';
+            let queryStringSplit = this.state.searchText.split(" ");
+            var i;
+            for(i = 0; i < queryStringSplit.length; i++){
+                newPath += queryStringSplit[i] + '+'
+            }
+            newPath.slice(0,-1);
+            this.props.history.push(newPath.slice(0,-1))
         }
-    };
-
-    generateSearchRoute = () => {
-        let newPath = '/search-results?q=';
-        let queryStringSplit = this.state.searchText.split(" ");
-        var i;
-        for(i = 0; i < queryStringSplit.length; i++){
-            newPath += queryStringSplit[i] + '+'
-        }
-        return newPath.slice(0,-1);
     };
 
 
     render(){
-        if(this.state.moveToSearchResult){
-            return <Redirect to={this.generateSearchRoute()} />
-        }
         return(
             <div className="h-100">
                 <Navbar
