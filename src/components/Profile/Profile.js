@@ -13,8 +13,8 @@ export default class Profile extends React.Component{
         super(props);
         this.state = {
             followed : false,
-            userId : '5c0b29f5718079001699dacc',
-            currUser : "5c0b29f5718079001699dacc1" ,
+            userId : '5c0b28929e1b91d6e52c4dc1',
+            currUser : "5c0b28929e1b91d6e52c4dc1" ,
             expanded: null,
             isEditing : false,
             username : "",
@@ -49,7 +49,13 @@ export default class Profile extends React.Component{
         const followers = await UserService.findFollowersById(this.state.userId);
         const following = await UserService.findFollowingById(this.state.userId);
         const favBeer = await UserService.findFavBeerById(this.state.userId);
+        let follow ;
+
+        follow = followers.data.map((follow) =>{
+            return follow.userId._id ===this.state.currUser
+        });
         this.setState({
+            followed : follow[0],
             following : followers.data,
             followers : following.data,
             favBeer : favBeer.data,
@@ -87,9 +93,27 @@ export default class Profile extends React.Component{
     };
 
     followUser = ()=>{
-        UserService.followerUser(this.state.currUser , this.state.userId).then(result=>{
-            this.setState({followed : true})
-        })
+        if(this.state.followed){
+            UserService.unFollowerUser(this.state.currUser , this.state.userId).then(result=>{
+                UserService.findFollowersById(this.state.userId).then(followers=>{
+                    this.setState({
+                        following : followers.data ,
+                        followed : false})
+
+                })
+            })
+        }
+        else{
+            UserService.followerUser(this.state.currUser , this.state.userId).then(result=>{
+                UserService.findFollowersById(this.state.userId).then(followers=>{
+                    this.setState({
+                        following : followers.data ,
+                        followed : true})
+
+                })
+            })
+        }
+
     };
 
     render(){
@@ -109,7 +133,7 @@ export default class Profile extends React.Component{
                                     <h5 className="card-title">
                                         {this.state.firstName} {this.state.lastName}
                                     </h5>
-                                    {this.state.currUser ?
+                                    {this.state.currUser ===this.state.userId?
                                         <div>
                                             <p className="card-text">User Name :
                                                 {this.state.username}
@@ -126,7 +150,7 @@ export default class Profile extends React.Component{
                                     {this.state.currUser===this.state.userId ?
                                         <button
                                             onClick={this.editing}
-                                            className={'btn btn-primary'}>Edit</button>:
+                                            className={'btn btn-primary mt-4'}>Edit</button>:
                                         <div/>
                                     }
                                 </div>
@@ -218,10 +242,15 @@ export default class Profile extends React.Component{
                         </div>
                         <div className={'col-6'}>
                             {this.state.currUser!==this.state.userId?
+
                                 <button
                                     onClick={this.followUser}
-                                    className={this.state.followed?'btn btn-success mx-4 my-4 float-right':
-                                        'btn btn-primary mx-4 my-4 float-right'}>Follow</button>:<div></div>
+                                    className={this.state.followed?'btn btn-danger mx-4 my-4 float-right':
+                                        'follow-btn btn btn-primary mx-4 my-4 float-right'}>
+                                    {this.state.followed ? <div>Un Follow</div> : <div>Follow</div>}
+                                </button>
+
+                                :<div></div>
                             }
                         </div>
                     </div>
