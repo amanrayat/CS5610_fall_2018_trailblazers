@@ -12,7 +12,8 @@ let dummyBeerFormat = "json&type=beer&withLocations=N&withAlternateNames=N&withI
 let breweryFormat = "json&type=brewery&withSocialAccounts=N&withLocations=Y&withIngredients=N&p=";
 let dummyBreweryFormat = "json&type=brewery&withLocations=N&withAlternateNames=N&withIngredients=N&p=";
 
-let beerDetailFormat = '&withLocations=Y&withSocialAccounts=Y';
+let breweryDetailFormat = '&withLocations=Y&withSocialAccounts=Y';
+let beerDetailFormat = '&withIngredients=Y';
 
 export default class BeereweryServices{
 
@@ -31,13 +32,13 @@ export default class BeereweryServices{
 
     static getBeer(beerId){
 
-        let url = API_endpoint + 'beer/' + beerId +'?key=' + dummyKey + beerDetailFormat;
+        let url = dummApi + 'beer/' + beerId +'?key=' + dummyKey + beerDetailFormat;
         console.log(url);
         return axios.get(url).then((res) => res.data)
     }
 
     static getBrewery(breweryId){
-        let url = API_endpoint + 'brewery/' + breweryId +'?key=' + key + beerDetailFormat;
+        let url = API_endpoint + 'brewery/' + breweryId +'?key=' + key + breweryDetailFormat;
         console.log(url);
         return axios.get(url).then((res) => res.data)
     }

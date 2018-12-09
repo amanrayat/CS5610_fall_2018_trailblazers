@@ -3,6 +3,9 @@ import axios from 'axios';
 import './BeerDetail.css'
 import {Link} from 'react-router-dom'
 import BeereweryServices from "../../services/BeereweryServices";
+import BeerServices from "../../services/BeerServices";
+import UserService from "../../services/UserService";
+import Navbar from "../NavBar/Navbar";
 
 
 export default class BeerDetail extends React.Component {
@@ -11,7 +14,9 @@ export default class BeerDetail extends React.Component {
         super(props);
         this.state = {
             isLoading: true,
-            beer: {}
+            beer: {},
+            commentInput: "",
+            comments: []
         }
     }
 
@@ -28,27 +33,61 @@ export default class BeerDetail extends React.Component {
         const beerId = this.props.match.params.beerId;
 
         BeereweryServices.getBeer(beerId).then((res) => {
-            this.setState({
-                beer: res.data
+            let beerJson = {
+                _id : res.data.id,
+                name : res.data.name,
+                nameDisplay : res.data.nameDisplay,
+                description : res.data.description,
+                createDate : res.data.createDate,
+                updateDate : res.data.updateDate,
+                servingTemperatureDisplay : res.data.servingTemperatureDisplay,
+                isOrganic : res.data.isOrganic === 'Y',
+                abv: res.data.abv,
+                ibu : res.data.ibu,
+                og : res.data.og,
+            };
+            BeerServices.createBeer(beerJson).then((res_1) => {
+                BeerServices.findCommentsForBeerId(beerId).then((res_2) => {
+                    this.setState({
+                        comments: res_2,
+                        beer: res.data
+                    })
+                })
             })
+
         });
 
+    };
+
+    trackCommentInput = (e) => {
+        this.setState({
+            commentInput: e.target.value
+        })
+    };
+
+    addComment = () => {
+        if(this.state.commentInput.length){
+            UserService.profile().then((res) => {
+                BeerServices.addCommentForBeerId(this.state.commentInput, res.data[0]._id, this.state.beer.id).then((res_1) =>{
+                    BeerServices.findCommentsForBeerId(this.state.beer.id).then((res_2) => {
+                        this.setState({
+                            comments: res_2,
+                            commentInput: ""
+                        })
+                    })
+                })
+            });
+        }
     };
 
     render() {
         return (
             <div className="h-100">
-                <nav className="navbar navbar-expand navbar-dark sticky-top bg-dark">
-                    <ul className="navbar-nav w-100">
-                        <li className="nav-item nav-link col-md-4">
-                        </li>
-                        <li className="nav-item nav-link col-4 text-center">
-                            <a className="navbar-brand" href="#">
-                                Beerewery
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
+                <Navbar
+                    history = {this.props.history}
+                    isAuthenticated = {this.props.isAuthenticated}
+                    userHasAuthenticated = {this.props.userHasAuthenticated}
+                />
                 <div className="main-block">
 
                     <div className="beer-heading-one">
@@ -158,8 +197,47 @@ export default class BeerDetail extends React.Component {
 
                                     </div>
                                 </div>
-
-
+                                {
+                                    this.props.isAuthenticated &&
+                                    <div className="row pl-lg-3">
+                                        <div className="col-8 list-group">
+                                        <textarea
+                                            value={this.state.commentInput}
+                                            id="multiliner"
+                                            name="multiliner"
+                                            placeholder="Write a comment..."
+                                            onChange={this.trackCommentInput}
+                                        />
+                                        </div>
+                                        <div className="col-4">
+                                            <button
+                                                className="btn btn-primary"
+                                                onClick={() => this.addComment()}
+                                            >
+                                                Comment
+                                            </button>
+                                        </div>
+                                    </div>
+                                }
+                                <div className="row pl-lg-3">
+                                    <div className="col-8 list-group mt-4">
+                                        <span className="mb-1">User comments</span>
+                                        {
+                                            this.state.comments.map((comment, index) => (
+                                                <div className="list-group-item">
+                                                    <div className="row">
+                                                        <div className="col-1 text-primary">
+                                                            {comment.userId.username}:
+                                                        </div>
+                                                        <div className="ml-1 col-10">
+                                                            {comment.comment}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            ))
+                                        }
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
