@@ -3,7 +3,139 @@ import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
 
 import './breweryDetail.css'
 import BeereweryServices from "../../services/BeereweryServices";
+import UserService from "../../services/UserService";
+import BreweryServices from "../../services/BreweryServices";
 
+let data = {
+    "id": "8s5sUs",
+        "name": "A1A Ale Works",
+        "nameShortDisplay": "A1A Ale Works",
+        "description": "Handcrafted and brewed to excellence, A1A Ale Works goes to great lengths to serve each guest the freshest beer possible. This commitment to serving nothing but the finest and freshest beer has led to numerous awards.",
+        "website": "http://www.a1aaleworks.com/",
+        "isOrganic": "N",
+        "images": {
+        "icon": "https://brewerydb-images.s3.amazonaws.com/brewery/8s5sUs/upload_3TtipL-icon.png",
+            "medium": "https://brewerydb-images.s3.amazonaws.com/brewery/8s5sUs/upload_3TtipL-medium.png",
+            "large": "https://brewerydb-images.s3.amazonaws.com/brewery/8s5sUs/upload_3TtipL-large.png",
+            "squareMedium": "https://brewerydb-images.s3.amazonaws.com/brewery/8s5sUs/upload_3TtipL-squareMedium.png",
+            "squareLarge": "https://brewerydb-images.s3.amazonaws.com/brewery/8s5sUs/upload_3TtipL-squareLarge.png"
+    },
+    "status": "verified",
+        "statusDisplay": "Verified",
+        "createDate": "2012-01-03 02:41:43",
+        "updateDate": "2018-11-08 18:59:55",
+        "isMassOwned": "N",
+        "isInBusiness": "Y",
+        "isVerified": "N",
+        "locations": [
+        {
+            "id": "Rx4Dnt",
+            "name": "Main Brewery",
+            "streetAddress": "2001 Riverside Drive",
+            "extendedAddress": "Suite 3100",
+            "locality": "Chattanooga",
+            "region": "Tennessee",
+            "postalCode": "37406",
+            "phone": "423-424-2000",
+            "website": "http://www.a1aaleworks.com/",
+            "latitude": 35.05828,
+            "longitude": -85.277231,
+            "isPrimary": "N",
+            "inPlanning": "N",
+            "isClosed": "N",
+            "openToPublic": "Y",
+            "locationType": "micro",
+            "locationTypeDisplay": "Micro Brewery",
+            "countryIsoCode": "US",
+            "status": "deleted",
+            "statusDisplay": "Deleted",
+            "createDate": "2012-01-03 02:41:43",
+            "updateDate": "2014-07-23 19:11:34",
+            "country": {
+                "isoCode": "US",
+                "name": "UNITED STATES",
+                "displayName": "United States",
+                "isoThree": "USA",
+                "numberCode": 840,
+                "createDate": "2012-01-03 02:41:33"
+            }
+        },
+        {
+            "id": "IDlepc",
+            "name": "St. Augustine Florida",
+            "streetAddress": "1 King Street",
+            "locality": "St. Augustine",
+            "region": "Florida",
+            "postalCode": "32084",
+            "phone": "904-829-2977",
+            "website": "http://www.a1aaleworks.com",
+            "latitude": 29.8919786,
+            "longitude": -81.3111442,
+            "isPrimary": "Y",
+            "inPlanning": "N",
+            "isClosed": "N",
+            "openToPublic": "Y",
+            "locationType": "brewpub",
+            "locationTypeDisplay": "Brewpub",
+            "countryIsoCode": "US",
+            "status": "verified",
+            "statusDisplay": "Verified",
+            "createDate": "2012-10-21 16:47:08",
+            "updateDate": "2016-09-20 15:44:50",
+            "timezoneId": "America/New_York",
+            "country": {
+                "isoCode": "US",
+                "name": "UNITED STATES",
+                "displayName": "United States",
+                "isoThree": "USA",
+                "numberCode": 840,
+                "createDate": "2012-01-03 02:41:33"
+            }
+        }
+    ],
+        "socialAccounts": [
+        {
+            "id": 1942,
+            "socialMediaId": 4,
+            "socialMedia": {
+                "id": 4,
+                "name": "Untappd",
+                "website": "http://www.untappd.com",
+                "createDate": "2012-01-03 02:41:41"
+            },
+            "handle": "9570",
+            "createDate": "2012-10-21 16:37:09",
+            "link": "http://untappd.com/brewery/9570"
+        },
+        {
+            "id": 1983,
+            "socialMediaId": 1,
+            "socialMedia": {
+                "id": 1,
+                "name": "Facebook Fan Page",
+                "website": "http://www.facebook.com",
+                "createDate": "2012-01-03 02:41:41",
+                "updateDate": "2012-01-05 18:36:11"
+            },
+            "handle": "A1AAleWorks",
+            "createDate": "2012-10-21 21:28:33",
+            "link": "http://facebook.com/A1AAleWorks"
+        },
+        {
+            "id": 1984,
+            "socialMediaId": 2,
+            "socialMedia": {
+                "id": 2,
+                "name": "Twitter",
+                "website": "http://www.twitter.com",
+                "createDate": "2012-01-03 02:41:41"
+            },
+            "handle": "A1AAleWorks",
+            "createDate": "2012-10-21 21:28:33",
+            "link": "http://twitter.com/A1AAleWorks"
+        }
+    ]
+};
 
 class BreweryDetail extends React.Component{
     constructor(props){
@@ -11,17 +143,46 @@ class BreweryDetail extends React.Component{
         this.state = {
             showingInfoWindow: false,  //Hides or the shows the infoWindow
             activeMarker: {},          //Shows the active marker upon click
-            selectedPlace: {}
+            selectedPlace: {},
+            data: data,
+            userProfile: "",
+            eventName: "",
+            eventDate: "",
+            eventTime: "",
+            events: []
         }
     }
 
     componentWillMount(){
         const breweryId = this.props.match.params.breweryId;
-        BeereweryServices.getBrewery(breweryId).then((res) => {
+        UserService.profile().then((res) => {
+            if(res.data !== ""){
+                let brewery = {
+                    _id: data.id,
+                    name: data.name
+                };
+                BreweryServices.createBrewery(brewery).then((res_1) => {
+                    BreweryServices.getEventsByBrewery(data.id).then((res_2) => {
+                        this.setState({
+                            userProfile: res.data[0],
+                            events: res_2
+                        })
+                    })
+                })
+            }
+            else{
+                BreweryServices.getEventsByBrewery(data.id).then((res_2) => {
+                    this.setState({
+                        events: res_2
+                    })
+                })
+            }
+        })
+        /*BeereweryServices.getBrewery(breweryId).then((res) => {
             this.setState({
                 data: res.data
             })
-        })
+        })*/
     }
 
 
@@ -40,6 +201,45 @@ class BreweryDetail extends React.Component{
             });
         }
     };
+
+    trackEventName = (e) => {
+        this.setState({
+            eventName: e.target.value
+        })
+    };
+
+    trackEventDate = (e) => {
+        this.setState({
+            eventDate: e.target.value
+        })
+    };
+
+    trackEventTime = (e) => {
+        this.setState({
+            eventTime: e.target.value
+        })
+    };
+
+    submit = () => {
+        if(this.state.eventName.length > 0 && this.state.eventDate.length > 0 && this.state.eventTime.length > 0){
+            let newEvent = {
+                name: this.state.eventName,
+                breweryId: data.id,
+                dateOfEvent: this.state.eventDate,
+                timeOfEvent: this.state.eventTime
+            };
+            BreweryServices.createEvent(this.state.userProfile._id, newEvent).then((res) => {
+                BreweryServices.getEventsByBrewery(data.id).then((res_1) =>{
+                    console.log(res_1)
+                    this.setState({
+                        events: res_1
+                    })
+                })
+
+            })
+        }
+    }
+    ;
 
     render(){
         return(
@@ -148,8 +348,55 @@ class BreweryDetail extends React.Component{
                                         </InfoWindow>
                                     </Map>
                                 </div>
+                            </div>
+                            <div className="row ml-2 mr-0">
+                                <div className="col-6">
+                                    {
+                                        this.state.userProfile !== "" && this.state.userProfile.type === 'EVENTPLANNER' &&
+                                        <div className="my-2">
+                                            <h3>
+                                                Create New Event
+                                            </h3>
+                                            <div className="form-group row">
+                                                <input
+                                                    type="text"
+                                                    className="form-control"
+                                                    id="eventName"
+                                                    placeholder="Enter Event Name"
+                                                    onChange={this.trackEventName}
+                                                />
+                                            </div>
+                                            <div className="form-group row">
+                                                <input
+                                                    type="date"
+                                                    className="form-control"
+                                                    id="date"
+                                                    placeholder="Enter Date"
+                                                    onChange={this.trackEventDate}
+                                                />
+                                            </div>
+                                            <div className="form-group row">
+                                                <input
+                                                    type="time"
+                                                    className="form-control"
+                                                    id="time"
+                                                    placeholder="Enter Time"
+                                                    onChange={this.trackEventTime}
+                                                />
+                                            </div>
+                                            <div className="form-group text-center">
+                                                <button
+                                                    type="button"
+                                                    className="btn btn-primary"
+                                                    onClick={this.submit}
+                                                >
+                                                    Add New Event
+                                                </button>
+                                            </div>
+                                        </div>
+                                    }
 
-                                Hello
+                                </div>
                             </div>
                         </div>
                 }

@@ -20,7 +20,7 @@ export default class BeerServices{
 
     static addLike = (userId, beerId) => {
         return axios.post(API_URL + "/api/user/" + userId + "/beer/" + beerId + "/like", {}, {withCredentials: true}).then((res) => res.data)
-    }
+    };
 
     static findTotalLikes = (beerId) => {
         return axios.get(API_URL + "/api/beer/"+beerId + "/like", {withCredentials: true}).then((res) => res.data);

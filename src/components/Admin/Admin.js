@@ -80,7 +80,7 @@ export default class Admin extends React.Component{
 
     trackUserTypeChanges = (e) => {
         this.setState({
-            user: e.target.value
+            userType: e.target.value
         })
     };
 
