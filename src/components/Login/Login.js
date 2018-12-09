@@ -21,7 +21,6 @@ export default class Login extends React.Component {
             email: '',
             password: '',
             role : '',
-            routeToAdmin: false,
         }
     }
 
@@ -32,7 +31,8 @@ export default class Login extends React.Component {
 
         const user = {
             email: this.state.email,
-            password: this.state.password
+            password: this.state.password,
+            role: this.state.role
         };
 
         UserService.login(user)
@@ -57,7 +57,7 @@ export default class Login extends React.Component {
 
     onEmailChange = e => this.setState({email: e.target.value});
     onPasswordChange = e => this.setState({password: e.target.value});
-    onRoleChange = e =>this.setState({type : e.target.value});
+    onRoleChange = e =>this.setState({role : e.target.value});
 
 
     render() {
@@ -97,7 +97,7 @@ export default class Login extends React.Component {
                                 <FormControl style={{width:'100%'}} className={'mb-4'}>
                                     <InputLabel htmlFor="type-simple">Type</InputLabel>
                                     <Select
-                                        value={this.state.type}
+                                        value={this.state.role}
                                         onChange={this.onRoleChange}>
                                         <MenuItem value={'CUSTOMER'}>Customer</MenuItem>
                                         <MenuItem value={'EVENTPLANNER'}>Event Planner</MenuItem>
