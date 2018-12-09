@@ -5,6 +5,7 @@ import './breweryDetail.css'
 import BeereweryServices from "../../services/BeereweryServices";
 import UserService from "../../services/UserService";
 import BreweryServices from "../../services/BreweryServices";
+import EventList from "../EventList/EventList";
 
 let data = {
     "id": "8s5sUs",
@@ -172,6 +173,7 @@ class BreweryDetail extends React.Component{
             }
             else{
                 BreweryServices.getEventsByBrewery(data.id).then((res_2) => {
+                    console.log(res_2)
                     this.setState({
                         events: res_2
                     })
@@ -322,7 +324,7 @@ class BreweryDetail extends React.Component{
                                     </div>
                                 </div>
                             </div>
-                            <div className="map-wrapper">
+                            <div className="map-wrapper ml-4">
                                 <div className="map-canvas" style={{position: 'relative', overflow: 'hidden'}}>
                                     <Map
                                         google={this.props.google}
@@ -395,7 +397,10 @@ class BreweryDetail extends React.Component{
                                             </div>
                                         </div>
                                     }
-
+                                    <h4 className="my-2">
+                                        All Events Here
+                                    </h4>
+                                    <EventList events={this.state.events}/>
                                 </div>
                             </div>
                         </div>
