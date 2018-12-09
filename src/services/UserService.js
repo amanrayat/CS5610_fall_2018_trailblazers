@@ -54,4 +54,11 @@ export default class UserService {
         return axios.put(API_URL + "/api/user/"+userId, User, {withCredentials: true});
     };
 
+    static followerUser = (userId , followId) => {
+        return axios.post(API_URL + "/api/user/"+userId+"/follow/"+followId,  {withCredentials: true});
+    };
+    static unFollowerUser = (userId , followId) => {
+        return axios.delete(API_URL + "/api/user/"+userId+"/unfollow/"+followId,  {withCredentials: true});
+    };
+
 }
