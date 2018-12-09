@@ -4,6 +4,8 @@ import Navbar from '../NavBar/Navbar'
 import UserFeed from '../UserFeed/UserFeed'
 
 import './Home.css'
+import BeerServices from "../../services/BeerServices";
+import UserService from "../../services/UserService";
 
 let commentData1 = [
     {userId: 'user1', comment: "fuckall beerfuckall beerfuckall beerfuckall beerfuckall beerfuckall beerfuckall beerfuckall beerfuckall beerfuckall beer"},
@@ -25,26 +27,44 @@ let commentData2 = [
 export default class Home extends React.Component{
     constructor(props){
         super(props);
-        setInterval(this.reloadComments, 5000);
         this.state = {
             searchText: "",
             moveToSearchResult: false,
             userActivity: true,
             eventPlannerActivity: false,
-            commentData: commentData1
+            commentData: [],
+            loggedInUserID: undefined,
+            commentsToShow: [],
+            offset: 0
         }
     }
 
-    reloadComments = () => {
-        if(this.state.commentData === commentData1){
-            this.setState({
-                commentData: commentData2
+    componentWillMount(){
+        UserService.profile().then((res) => {
+            BeerServices.findComments(res.data.userId).then((res_1) => {
+                setInterval(this.reloadComments, 15000);
+                this.setState({
+                    commentData: res_1,
+                    loggedInUserID: res.data.userId,
+                    commentsToShow: res_1.slice(this.state.offset, this.state.offset + 5)
+                });
             });
+        });
+    }
+
+    reloadComments = () => {
+        let newOffset = this.state.offset + 5;
+        if(newOffset >= this.state.commentData.length){
+            this.setState({
+                offset: 0,
+                commentsToShow: this.state.commentData.slice(0, 5)
+            })
         }
         else{
             this.setState({
-                commentData: commentData1
-            });
+                offset: newOffset,
+                commentsToShow: this.state.commentData.slice(newOffset, newOffset + 5)
+            })
         }
     };
 
@@ -124,7 +144,7 @@ export default class Home extends React.Component{
                             {
                                 this.state.userActivity &&
                                 <UserFeed
-                                    commentData = {this.state.commentData}
+                                    commentData = {this.state.commentsToShow}
                                 />
                             }
                         </div>

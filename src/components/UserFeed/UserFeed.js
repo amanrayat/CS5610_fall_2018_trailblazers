@@ -7,7 +7,7 @@ function UserFeed({commentData}){
             {
                 commentData.map((comment, index) =>
                     (
-                        <a href="#" className="list-group-item text-truncate"><strong>{comment.userId}</strong> commented about blabla: "{comment.comment}"</a>
+                        <a href="#" className="list-group-item text-truncate"><strong>{comment.userId.username}</strong> commented about blabla: "{comment.comment}"</a>
                     )
                 )
             }

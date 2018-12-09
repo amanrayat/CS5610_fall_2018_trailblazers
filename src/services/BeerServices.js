@@ -7,6 +7,12 @@ export default class BeerServices{
         return axios.post(API_URL + "/api/beer", Beer, {withCredentials: true}).then((res) => res.data)
     };
 
+    static findComments = (userId) => {
+        if(!userId){
+            return axios.get(API_URL + "/api/allComments", {withCredentials: true}).then((res) => res.data);
+        }
+    };
+
     static findCommentsForBeerId = beerId => {
         return axios.get(API_URL + "/api/beer/" + beerId + "/comment", {withCredentials: true}).then((res) => res.data)
     };
