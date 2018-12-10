@@ -39,6 +39,8 @@ export default class Profile extends React.Component{
                         UserService.findFollowersById(res.data[0]._id).then((res_1) => {
                             UserService.findFollowingById(res.data[0]._id).then((res_2) => {
                                 UserService.findFavBeerById(res.data[0]._id).then((res_3) => {
+                                    console.log(res_1)
+                                    console.log(res_2)
                                     this.setState({
                                         user: res.data[0],
                                         currUser: res_4.data[0],
@@ -65,6 +67,8 @@ export default class Profile extends React.Component{
                 UserService.findFollowersById(res.data[0]._id).then((res_1) => {
                     UserService.findFollowingById(res.data[0]._id).then((res_2) => {
                         UserService.findFavBeerById(res.data[0]._id).then((res_3) => {
+                            console.log(res_1)
+                            console.log(res_2)
                             this.setState({
                                 user: res.data[0],
                                 inputFirstName: res.data[0].firstName,
@@ -302,10 +306,10 @@ export default class Profile extends React.Component{
                                                     return(
                                                         <div className={'mx-5 pic-size'}>
                                                             <Avatar className={"rounded-circle card-img-top"}>
-                                                                {follower.followerId ? follower.userId.firstName.split("")[0] :''}
-                                                                {follower.followerId ? follower.userId.lastName.split("")[0]:''}
+                                                                {follower.userId.firstName.split("")[0]}
+                                                                {follower.userId.lastName.split("")[0]}
                                                             </Avatar>
-                                                            <p>{follower.followerId ? follower.userId.firstName:''}</p>
+                                                            <p>{follower.userId.firstName}</p>
                                                         </div>)
                                                 })
                                             }
@@ -334,10 +338,10 @@ export default class Profile extends React.Component{
                                                     return(<div className={'mx-5 pic-size'}>
                                                         <div className={'align-left'}>
                                                             <Avatar className={"rounded-circle card-img-top"}>
-                                                                {follow.userId.firstName.split("")[0]}
-                                                                {follow.userId.lastName.split("")[0]}
+                                                                {follow.followerId.firstName.split("")[0]}
+                                                                {follow.followerId.lastName.split("")[0]}
                                                             </Avatar>
-                                                            <p>{follow.userId.firstName}</p>
+                                                            <p>{follow.followerId.firstName}</p>
                                                         </div>
 
                                                     </div>)
@@ -349,10 +353,10 @@ export default class Profile extends React.Component{
                                                 this.state.following.slice(3, this.state.followers.length).map(follower=>{
                                                     return(<div className={'mx-5 pic-size-extended'}>
                                                         <Avatar className={"rounded-circle card-img-top"}>
-                                                            {follower.userId.firstName.split("")[0]}
-                                                            {follower.userId.lastName.split("")[0]}
+                                                            {follower.followerId.firstName.split("")[0]}
+                                                            {follower.followerId.lastName.split("")[0]}
                                                         </Avatar>
-                                                        <p >{follower.userId.firstName}</p>
+                                                        <p >{follower.followerId.firstName}</p>
                                                     </div>)
                                                 })
                                             }

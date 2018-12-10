@@ -3,6 +3,7 @@ const API_URL = "http://localhost:4000";
 
 export default class BreweryServices{
     static createBrewery = Brewery => {
+        console.log(Brewery);
         return axios.post(API_URL + "/api/brewery", Brewery, {withCredentials: true}).then((res) => res.data)
     };
 
