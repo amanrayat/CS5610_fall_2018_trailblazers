@@ -7,22 +7,6 @@ import './Home.css'
 import BeerServices from "../../services/BeerServices";
 import UserService from "../../services/UserService";
 
-let commentData1 = [
-    {userId: 'user1', comment: "fuckall beerfuckall beerfuckall beerfuckall beerfuckall beerfuckall beerfuckall beerfuckall beerfuckall beerfuckall beer"},
-    {userId: 'user2', comment: "fuckall beer"},
-    {userId: 'user3', comment: "fuckall beer"},
-    {userId: 'user4', comment: "fuckall beer"},
-    {userId: 'user5', comment: "fuckall beer"},
-];
-
-let commentData2 = [
-    {userId: 'user1', comment: "fuckall beerfuckall beerfuckall beerfuckall beerfuckall beerfuckall beerfuckall beerfuckall beerfuckall beerfuckall beer"},
-    {userId: 'user2', comment: "balle beer"},
-    {userId: 'user3', comment: "balle beer"},
-    {userId: 'user4', comment: "balle beer"},
-    {userId: 'user5', comment: "balle beer"},
-];
-
 
 export default class Home extends React.Component{
     constructor(props){
