@@ -23,7 +23,7 @@ export default class Profile extends React.Component{
         console.log(followers);
         for (var i = 0; i < followers.length; i++) {
             console.log(followers[i]._id + ", " + loggedInId);
-            if(followers[i]._id === loggedInId) return true;
+            if(followers[i].userId._id === loggedInId) return true;
         }
         return false;
     };
@@ -294,7 +294,7 @@ export default class Profile extends React.Component{
                             </div>
                             <div className={'row mx-2'}>
                                 <div className={'col-6'}>
-                                    <h5 className={'mb-3 mx-3 headings'}>Following</h5>
+                                    <h5 className={'mb-3 mx-3 headings'}>Followers</h5>
                                     <ExpansionPanel expanded={this.state.expanded === 'panel1'} onChange={this.handleChange('panel1')}>
                                         <ExpansionPanelSummary expandIcon={">"}>
                                             {
@@ -302,10 +302,10 @@ export default class Profile extends React.Component{
                                                     return(
                                                         <div className={'mx-5 pic-size'}>
                                                             <Avatar className={"rounded-circle card-img-top"}>
-                                                                {follower.followerId ? follower.followerId.firstName.split("")[0] :''}
-                                                                {follower.followerId ? follower.followerId.lastName.split("")[0]:''}
+                                                                {follower.followerId ? follower.userId.firstName.split("")[0] :''}
+                                                                {follower.followerId ? follower.userId.lastName.split("")[0]:''}
                                                             </Avatar>
-                                                            <p>{follower.followerId ? follower.followerId.firstName:''}</p>
+                                                            <p>{follower.followerId ? follower.userId.firstName:''}</p>
                                                         </div>)
                                                 })
                                             }
@@ -315,10 +315,10 @@ export default class Profile extends React.Component{
                                                 this.state.followers.slice(3, this.state.followers.length).map(follower=>{
                                                     return(<div className={'mx-5 pic-size-extended'}>
                                                         <Avatar className={"rounded-circle card-img-top"}>
-                                                            {follower.followerId.firstName.split("")[0]}
-                                                            {follower.followerId.lastName.split("")[0]}
+                                                            {follower.userId.firstName.split("")[0]}
+                                                            {follower.userId.lastName.split("")[0]}
                                                         </Avatar>
-                                                        <p>{follower.followerId.firstName}</p>
+                                                        <p>{follower.userId.firstName}</p>
                                                     </div>)
                                                 })
                                             }
@@ -326,7 +326,7 @@ export default class Profile extends React.Component{
                                     </ExpansionPanel>
                                 </div>
                                 <div className={'col-6'}>
-                                    <h5 className={'mb-3 mx-3 headings'}>Follower</h5>
+                                    <h5 className={'mb-3 mx-3 headings'}>Following</h5>
                                     <ExpansionPanel expanded={this.state.expanded === 'panel2'} onChange={this.handleChange('panel2')}>
                                         <ExpansionPanelSummary expandIcon={">"}>
                                             {
