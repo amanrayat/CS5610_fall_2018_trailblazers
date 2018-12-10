@@ -18,7 +18,7 @@ let beerDetailFormat = '&withIngredients=Y';
 export default class BeereweryServices{
 
     static searchBeer(query, pageNo){
-        let url = dummApi + 'search?q=' + query + '&key=' + dummyKey + "&format=" + beerFormat + pageNo;
+        let url = API_endpoint + 'search?q=' + query + '&key=' + key + "&format=" + beerFormat + pageNo;
         console.log(url);
         return axios.get(url).then((res) => res.data)
     }
@@ -32,7 +32,7 @@ export default class BeereweryServices{
 
     static getBeer(beerId){
 
-        let url = dummApi + 'beer/' + beerId +'?key=' + dummyKey + beerDetailFormat;
+        let url = API_endpoint + 'beer/' + beerId +'?key=' + key + beerDetailFormat;
         console.log(url);
         return axios.get(url).then((res) => res.data)
     }

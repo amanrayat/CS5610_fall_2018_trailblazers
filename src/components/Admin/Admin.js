@@ -262,7 +262,9 @@ export default class Admin extends React.Component{
                                                         <th scope="row">{index+1}</th>
                                                         <td>
                                                             <h5 className="mb-0 mt-1">
-                                                                {u.username}
+                                                                <Link to={`/profile/${u._id}`}>
+                                                                    {u.username}
+                                                                </Link>
                                                             </h5>
                                                         </td>
                                                         <td>

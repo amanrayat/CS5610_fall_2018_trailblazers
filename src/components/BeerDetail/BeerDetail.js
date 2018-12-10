@@ -243,7 +243,7 @@ export default class BeerDetail extends React.Component {
                                                 <div className="list-group-item">
                                                     <div className="row mx-0">
                                                         <div className="col-md-2 col-3 text-primary">
-                                                            <Link to={`/beer/${comment.userId._id}`}>
+                                                            <Link to={`/profile/${comment.userId._id}`}>
                                                                 {comment.userId.username}:
                                                             </Link>
                                                         </div>
