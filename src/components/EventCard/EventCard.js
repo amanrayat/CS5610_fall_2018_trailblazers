@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link} from 'react-router-dom'
 
 function formatTime(time) {
     let splitTime = time.split(":");
@@ -30,7 +31,9 @@ function EventCard({event}) {
                             Planner:
                         </div>
                         <div className="col-5 mx-0">
-                            {event.eventPlannerId.username}
+                            <Link to={`/profile/${event.eventPlannerId._id}`}>
+                                {event.eventPlannerId.username}
+                            </Link>
                         </div>
                     </div>
                     <div className="row">

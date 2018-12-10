@@ -24,14 +24,6 @@ export default class BeerDetail extends React.Component {
 
     componentWillMount(){
 
-        // if (!this.props.isAuthenticated) {
-        //     return;
-        // }
-
-        // retrieve beerId from the URL path parameter 'beerId'
-        // the props.match.params is part of the Route library which
-        // parses the URL path and names the parameters and creates
-        // the params map
         const beerId = this.props.match.params.beerId;
 
         BeereweryServices.getBeer(beerId).then((res) => {
@@ -251,7 +243,9 @@ export default class BeerDetail extends React.Component {
                                                 <div className="list-group-item">
                                                     <div className="row mx-0">
                                                         <div className="col-md-2 col-3 text-primary">
-                                                            {comment.userId.username}:
+                                                            <Link to={`/beer/${comment.userId._id}`}>
+                                                                {comment.userId.username}:
+                                                            </Link>
                                                         </div>
                                                         <div className="ml-0 ml-md-1 col-9">
                                                             {comment.comment}

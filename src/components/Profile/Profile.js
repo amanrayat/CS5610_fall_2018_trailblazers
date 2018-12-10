@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link} from 'react-router-dom'
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
@@ -39,8 +40,6 @@ export default class Profile extends React.Component{
                         UserService.findFollowersById(res.data[0]._id).then((res_1) => {
                             UserService.findFollowingById(res.data[0]._id).then((res_2) => {
                                 UserService.findFavBeerById(res.data[0]._id).then((res_3) => {
-                                    console.log(res_1)
-                                    console.log(res_2)
                                     this.setState({
                                         user: res.data[0],
                                         currUser: res_4.data[0],
@@ -67,8 +66,62 @@ export default class Profile extends React.Component{
                 UserService.findFollowersById(res.data[0]._id).then((res_1) => {
                     UserService.findFollowingById(res.data[0]._id).then((res_2) => {
                         UserService.findFavBeerById(res.data[0]._id).then((res_3) => {
-                            console.log(res_1)
-                            console.log(res_2)
+                            this.setState({
+                                user: res.data[0],
+                                inputFirstName: res.data[0].firstName,
+                                inputLastName: res.data[0].lastName,
+                                inputEmail: res.data[0].email,
+                                inputPhoneNo: res.data[0].phoneNo,
+                                inputPassword: res.data[0].password,
+                                inputUsername: res.data[0].username,
+                                followers: res_1.data,
+                                following: res_2.data,
+                                favBeer: res_3.data,
+                            })
+                        })
+                    })
+                })
+            })
+        }
+    }
+
+    componentWillReceiveProps(){
+        if(this.props.match.params.profileId){
+            UserService.findUserById(this.props.match.params.profileId).then((res) => {
+                UserService.profile().then((res_4) => {
+                    if(res.data[0]._id === res_4.data[0]._id){
+                        this.props.history.push('/profile')
+                    }
+                    else{
+                        UserService.findFollowersById(res.data[0]._id).then((res_1) => {
+                            UserService.findFollowingById(res.data[0]._id).then((res_2) => {
+                                UserService.findFavBeerById(res.data[0]._id).then((res_3) => {
+                                    this.setState({
+                                        user: res.data[0],
+                                        currUser: res_4.data[0],
+                                        inputFirstName: res.data[0].firstName,
+                                        inputLastName: res.data[0].lastName,
+                                        inputEmail: res.data[0].email,
+                                        inputPhone: res.data[0].phoneNo,
+                                        inputPassword: res.data[0].password,
+                                        inputUsername: res.data[0].username,
+                                        followers: res_1.data,
+                                        following: res_2.data,
+                                        favBeer: res_3.data,
+                                        followed: this.checkIfFollowing(res_1.data, res_4.data[0]._id)
+                                    })
+                                })
+                            })
+                        })
+                    }
+                });
+            })
+        }
+        else{
+            UserService.profile().then((res) => {
+                UserService.findFollowersById(res.data[0]._id).then((res_1) => {
+                    UserService.findFollowingById(res.data[0]._id).then((res_2) => {
+                        UserService.findFavBeerById(res.data[0]._id).then((res_3) => {
                             this.setState({
                                 user: res.data[0],
                                 inputFirstName: res.data[0].firstName,
@@ -309,7 +362,9 @@ export default class Profile extends React.Component{
                                                                 {follower.userId.firstName.split("")[0]}
                                                                 {follower.userId.lastName.split("")[0]}
                                                             </Avatar>
-                                                            <p>{follower.userId.firstName}</p>
+                                                            <Link to={`/profile/${follower.userId._id}`}>
+                                                                {follower.userId.firstName}
+                                                            </Link>
                                                         </div>)
                                                 })
                                             }
@@ -322,7 +377,9 @@ export default class Profile extends React.Component{
                                                             {follower.userId.firstName.split("")[0]}
                                                             {follower.userId.lastName.split("")[0]}
                                                         </Avatar>
-                                                        <p>{follower.userId.firstName}</p>
+                                                        <Link to={`/profile/${follower.userId._id}`}>
+                                                            {follower.userId.firstName}
+                                                        </Link>
                                                     </div>)
                                                 })
                                             }
@@ -341,7 +398,9 @@ export default class Profile extends React.Component{
                                                                 {follow.followerId.firstName.split("")[0]}
                                                                 {follow.followerId.lastName.split("")[0]}
                                                             </Avatar>
-                                                            <p>{follow.followerId.firstName}</p>
+                                                            <Link to={`/profile/${follow.followerId._id}`}>
+                                                                {follow.followerId.firstName}
+                                                            </Link>
                                                         </div>
 
                                                     </div>)
@@ -356,7 +415,9 @@ export default class Profile extends React.Component{
                                                             {follower.followerId.firstName.split("")[0]}
                                                             {follower.followerId.lastName.split("")[0]}
                                                         </Avatar>
-                                                        <p >{follower.followerId.firstName}</p>
+                                                        <Link to={`/profile/${follower.followerId._id}`}>
+                                                            {follower.followerId.firstName}
+                                                        </Link>
                                                     </div>)
                                                 })
                                             }

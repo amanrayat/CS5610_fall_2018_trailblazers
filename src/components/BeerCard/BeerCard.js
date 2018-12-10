@@ -18,7 +18,7 @@ function BeerCard({record}){
                 record.labels &&
                 <div className="col-md-6 col-4 pt-1">
                     <div className="row">
-                        <Link to={`/beer/${record.id}`}>{record.name}</Link>
+                        <Link to={`/profile/${record.id}`}>{record.name}</Link>
                     </div>
                     <div className="row">
                         {record.style.name}
@@ -29,7 +29,7 @@ function BeerCard({record}){
                 !record.labels &&
                 <div className="col-md-6 col-4">
                     <div className="row">
-                        <Link to={`/beer/${record.id}`}>{record.name}</Link>
+                        <Link to={`/profile/${record.id}`}>{record.name}</Link>
                     </div>
                     <div className="row">
                         {record.style.name}
