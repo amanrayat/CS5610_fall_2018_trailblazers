@@ -12,7 +12,7 @@ import Admin from "../components/Admin/Admin";
 import BreweryDetail from "../components/BreweryDetail/BreweryDetail";
 import SearchResult from "../components/SearchResult/SearchResult";
 import BeerDetail from "../components/BeerDetail/BeerDetail";
-
+import UserDetail from "../components/UserDetails/UserDetails";
 export default ({ childProps }) =>
     <Switch>
         <AppliedRoute path="/" exact component={Home} props={childProps} />
@@ -21,6 +21,7 @@ export default ({ childProps }) =>
         <AppliedRoute path="/home" exact component = {Home} props={childProps}/>
         <AuthenticatedRoute path="/profile" exact component={Profile} props={childProps} />
         <AppliedRoute path="/profile/:profileId" exact component={Profile} props={childProps} />
+        <AppliedRoute path="/user-detail/:userId" exact component={UserDetail} props={childProps} />
         <AppliedRoute path = "/admin" exact component = {Admin} props = {childProps}/>
         <AppliedRoute path='/search-results' exact component = {SearchResult} props = {childProps} />
         <AppliedRoute path = '/beer/:beerId' exact component = {BeerDetail} props = {childProps}/>
