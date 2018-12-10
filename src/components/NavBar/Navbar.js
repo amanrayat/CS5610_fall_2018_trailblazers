@@ -1,11 +1,13 @@
 import React from 'react'
-import { Link, Redirect} from 'react-router-dom'
 import UserService from "../../services/UserService";
 
 export default class Navbar extends React.Component{
 
     constructor(props){
         super(props);
+        this.state = {
+            userSearch : ''
+        }
     }
 
     routeToLogin(){
@@ -31,11 +33,18 @@ export default class Navbar extends React.Component{
         this.props.history.push("/");
     }
 
+    onSearchChange = (e)=> {
+        this.setState({userSearch : e.target.value})
+    };
+
+    searchUser = ()=>{
+        this.props.history.push("/user-detail/" + this.state.userSearch)
+    };
     render(){
         return (
             <nav className="navbar navbar-expand navbar-dark sticky-top bg-dark">
                 <ul className="navbar-nav w-100">
-                    <li className="nav-item nav-link col-md-4">
+                    <li className="nav-item nav-link col-md-3">
                         <button
                             type="button"
                             className="btn btn-secondary mr-2"
@@ -44,14 +53,39 @@ export default class Navbar extends React.Component{
                             Home
                         </button>
                     </li>
-                    <li className="nav-item nav-link col-4 text-center">
-                        <a className="navbar-brand" href="#">
+                    <li className="nav-item nav-link col-3 text-center">
+                        <li className="navbar-brand">
                             Beerewery
-                        </a>
+                        </li>
+                    </li>
+                    <li>
+                        <ul className={'navbar-nav'}>
+                            <li className={'nav-item nav-link'}>
+                                <div className="col-8">
+                                    <input
+                                        value={this.state.userSearch}
+                                        onChange={this.onSearchChange}
+                                        type="text"
+                                        placeholder="Search Users"
+                                        aria-label="Search"/>
+                                </div>
+                            </li>
+                            <li>
+                                <div className="col-2 input-group-btn">
+                                    <button
+                                        onClick={this.searchUser}
+                                        type="button"
+                                        className="btn btn-secondary">
+                                        <i className="fa fa-search"/>
+                                    </button>
+                                </div>
+                            </li>
+
+                        </ul>
                     </li>
                     {
                         !this.props.isAuthenticated &&
-                        <li className="nav-item nav-link col-md-4 col-8 text-right">
+                        <li className="nav-item nav-link col-md-3 col-8 text-right">
                             <button
                                 type="button"
                                 className="btn btn-secondary mr-2"
@@ -70,7 +104,7 @@ export default class Navbar extends React.Component{
                     }
                     {
                         this.props.isAuthenticated &&
-                        <li className="nav-item nav-link col-md-4 col-8 text-right">
+                        <li className="nav-item nav-link col-md-3 col-8 text-right">
                             <button
                                 type="button"
                                 className="btn btn-secondary mr-2"
