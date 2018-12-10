@@ -32,23 +32,23 @@ export default class UserService {
     };
 
     static findUsersByAdmin = AdminId => {
-        return axios.get(API_URL + "/api/admin/" + AdminId + "/users")
+        return axios.get(API_URL + "/api/admin/" + AdminId + "/users",{withCredentials: true})
     };
 
     static deleteUserById = userId => {
-        return axios.delete(API_URL + "/api/user/" + userId)
+        return axios.delete(API_URL + "/api/user/" + userId,{withCredentials: true})
     };
     static findFollowersById = userId => {
-        return axios.get(API_URL + "/api/user/"+userId+"/follower")
+        return axios.get(API_URL + "/api/user/"+userId+"/follower",{withCredentials: true})
     };
     static findFollowingById = userId => {
-        return axios.get(API_URL + "/api/user/"+userId+"/following")
+        return axios.get(API_URL + "/api/user/"+userId+"/following",{withCredentials: true})
     };
     static findCommentsById = userId => {
-        return axios.get(API_URL + "/api/user/"+userId+"/recentcomment")
+        return axios.get(API_URL + "/api/user/"+userId+"/recentcomment",{withCredentials: true})
     };
     static findFavBeerById = userId => {
-        return axios.get(API_URL + "/api/user/"+userId+"/like")
+        return axios.get(API_URL + "/api/user/"+userId+"/like",{withCredentials: true})
     };
     static updateUserById = (userId , User) => {
         return axios.put(API_URL + "/api/user/"+userId, User, {withCredentials: true});
