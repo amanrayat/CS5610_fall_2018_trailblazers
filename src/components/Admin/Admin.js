@@ -123,20 +123,6 @@ export default class Admin extends React.Component{
                 admin : this.state.adminId,
                 __v : 0
             };
-
-            if(this.state.userType === 'ADMIN')
-            {
-                newUser = {
-                    username : this.state.username,
-                    password : this.state.password,
-                    firstName : this.state.firstName,
-                    lastName : this.state.lastName,
-                    email : this.state.email,
-                    phoneNo : this.state.phoneNumber,
-                    type : this.state.userType,
-                    __v : 0
-                }
-            }
             UserService.registerUser(newUser).then((res) => {
                 if(res.data){
                     UserService.findUsersByAdmin(this.state.adminId).then((subRes) => {
