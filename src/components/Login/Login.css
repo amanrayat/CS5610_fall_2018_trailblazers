@@ -1,6 +1,6 @@
 #background_pic {
     height: 120%;
-    background: url("../../pics/beer.jpg") no-repeat;
+    background: url("http://localhost:3000/images/beer.jpg") no-repeat;
     background-size: 70em;
 }
 
