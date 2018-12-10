@@ -23,11 +23,26 @@ export default class Navbar extends React.Component{
         });
     }
 
+    routeToProfile(){
+        this.props.history.push("/profile");
+    }
+
+    routeToHome(){
+        this.props.history.push("/");
+    }
+
     render(){
         return (
             <nav className="navbar navbar-expand navbar-dark sticky-top bg-dark">
                 <ul className="navbar-nav w-100">
                     <li className="nav-item nav-link col-md-4">
+                        <button
+                            type="button"
+                            className="btn btn-secondary mr-2"
+                            onClick={() => this.routeToHome()}
+                        >
+                            Home
+                        </button>
                     </li>
                     <li className="nav-item nav-link col-4 text-center">
                         <a className="navbar-brand" href="#">
@@ -59,6 +74,7 @@ export default class Navbar extends React.Component{
                             <button
                                 type="button"
                                 className="btn btn-secondary mr-2"
+                                onClick={() => this.routeToProfile()}
                             >
                                 Profile
                             </button>

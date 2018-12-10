@@ -144,6 +144,7 @@ export default class Home extends React.Component{
                             {
                                 this.state.userActivity &&
                                 <UserFeed
+                                    isAuthenticated = {this.props.isAuthenticated}
                                     commentData = {this.state.commentsToShow}
                                 />
                             }

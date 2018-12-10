@@ -20,7 +20,7 @@ export default ({ childProps }) =>
         <UnauthenticatedRoute path="/register" exact component={Register} props={childProps} />
         <AppliedRoute path="/home" exact component = {Home} props={childProps}/>
         <AuthenticatedRoute path="/profile" exact component={Profile} props={childProps} />
-        <UnauthenticatedRoute path="/profile/:profileId" exact component={Profile} props={childProps} />
+        <AppliedRoute path="/profile/:profileId" exact component={Profile} props={childProps} />
         <AppliedRoute path = "/admin" exact component = {Admin} props = {childProps}/>
         <AppliedRoute path='/search-results' exact component = {SearchResult} props = {childProps} />
         <AppliedRoute path = '/beer/:beerId' exact component = {BeerDetail} props = {childProps}/>
