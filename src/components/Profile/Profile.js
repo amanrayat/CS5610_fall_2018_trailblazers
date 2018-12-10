@@ -15,39 +15,18 @@ export default class Profile extends React.Component{
         this.state = {
             isEditing: false,
             expanded: null,
+            followed: false
         }
-        /*this.state = {
-            followed : false,
-            userId : '5c0b28929e1b91d6e52c4dc1',
-            currUser : "5c0b28929e1b91d6e52c4dc1" ,
-            expanded: null,
-            isEditing : false,
-            username : "",
-            password : "",
-            firstName : "",
-            lastName : "",
-            email : "",
-            phoneNo : 8574246016,
-            favBeer : [{
-                beerId: {
-                    name: "Golden Ale",
-                }}],
-            followers :
-                [{
-                    followerId : {
-                        firstName : "Aman",
-                        lastName : "Rayat",
-                    }}
-                ],
-            following : [{
-                userId : {
-                    firstName : "Aman",
-                    lastName : "Rayat",
-                }
-
-            }]
-        }*/
     }
+
+    checkIfFollowing = (followers, loggedInId) => {
+        console.log(followers);
+        for (var i = 0; i < followers.length; i++) {
+            console.log(followers[i]._id + ", " + loggedInId);
+            if(followers[i]._id === loggedInId) return true;
+        }
+        return false;
+    };
 
     componentDidMount() {
         if(this.props.match.params.profileId){
@@ -62,6 +41,7 @@ export default class Profile extends React.Component{
                                 UserService.findFavBeerById(res.data[0]._id).then((res_3) => {
                                     this.setState({
                                         user: res.data[0],
+                                        currUser: res_4.data[0],
                                         inputFirstName: res.data[0].firstName,
                                         inputLastName: res.data[0].lastName,
                                         inputEmail: res.data[0].email,
@@ -70,7 +50,8 @@ export default class Profile extends React.Component{
                                         inputUsername: res.data[0].username,
                                         followers: res_1.data,
                                         following: res_2.data,
-                                        favBeer: res_3.data
+                                        favBeer: res_3.data,
+                                        followed: this.checkIfFollowing(res_1.data, res_4.data[0]._id)
                                     })
                                 })
                             })
@@ -81,7 +62,6 @@ export default class Profile extends React.Component{
         }
         else{
             UserService.profile().then((res) => {
-                console.log(res.data[0]);
                 UserService.findFollowersById(res.data[0]._id).then((res_1) => {
                     UserService.findFollowingById(res.data[0]._id).then((res_2) => {
                         UserService.findFavBeerById(res.data[0]._id).then((res_3) => {
@@ -102,27 +82,6 @@ export default class Profile extends React.Component{
                 })
             })
         }
-        /*const user = await UserService.findUserById(this.state.userId);
-        const followers = await UserService.findFollowersById(this.state.userId);
-        const following = await UserService.findFollowingById(this.state.userId);
-        const favBeer = await UserService.findFavBeerById(this.state.userId);
-        let follow ;
-
-        follow = followers.data.map((follow) =>{
-            return follow.userId._id ===this.state.currUser
-        });
-        this.setState({
-            followed : follow[0],
-            following : followers.data,
-            followers : following.data,
-            favBeer : favBeer.data,
-            username : user.data[0].username,
-            password : user.data[0].password,
-            firstName : user.data[0].firstName,
-            lastName : user.data[0].lastName,
-            email : user.data[0].email,
-            phoneNo : user.data[0].phoneNo
-        })*/
     }
 
     saveResult = () =>{
@@ -137,7 +96,6 @@ export default class Profile extends React.Component{
 
         UserService.updateUserById(this.state.user._id, user).then(result=>{
             UserService.profile().then((res) => {
-                console.log(res)
                 this.setState({
                     user: res.data[0],
                     inputFirstName: res.data[0].firstName,
@@ -163,20 +121,22 @@ export default class Profile extends React.Component{
 
     followUser = ()=>{
         if(this.state.followed){
-            UserService.unFollowerUser(this.state.currUser , this.state.userId).then(result=>{
-                UserService.findFollowersById(this.state.userId).then(followers=>{
+            UserService.unFollowerUser(this.state.currUser._id , this.state.user._id).then(result=>{
+                UserService.findFollowersById(this.state.user._id).then(followers=>{
+                    console.log(followers)
                     this.setState({
-                        following : followers.data ,
+                        followers : followers.data ,
                         followed : false})
 
                 })
             })
         }
         else{
-            UserService.followerUser(this.state.currUser , this.state.userId).then(result=>{
-                UserService.findFollowersById(this.state.userId).then(followers=>{
+            UserService.followerUser(this.state.currUser._id , this.state.user._id).then(result=>{
+                UserService.findFollowersById(this.state.user._id).then(followers=>{
+                    console.log(followers)
                     this.setState({
-                        following : followers.data ,
+                        followers : followers.data ,
                         followed : true})
 
                 })
