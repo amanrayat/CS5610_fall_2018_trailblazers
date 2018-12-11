@@ -54,7 +54,7 @@ export default class UserDetails extends Component{
                                                     <small>See Profile</small>
                                                 </Link>:
                                                 <Link to={`/login`}>
-                                                    <small>See Profile</small>
+                                                    <small>Login to See Profile</small>
                                                 </Link>}
                                         </div>
                                         <p className="mb-1">Username : <i>{user.username}</i></p>
