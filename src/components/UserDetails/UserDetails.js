@@ -9,13 +9,20 @@ export default class UserDetails extends Component{
     constructor(props) {
         super(props);
         this.state = {
-            users :[]
+            users :[],
+            loggedIn : false
         }
 
     }
     componentDidMount (){
         UserService.findUserByUsername(this.props.match.params.userId).then(result=>{
-            this.setState({users : result.data})
+            UserService.profile().then(result2=>{
+                this.setState({
+                    users : result.data,
+                    loggedIn : result2.length
+                })
+
+            })
         })
     }
     componentWillReceiveProps(newProps){
@@ -43,7 +50,7 @@ export default class UserDetails extends Component{
                                         <div className="d-flex w-100 justify-content-between">
                                             <h5 className="mb-1">{user.firstName} {user.lastName}</h5>
                                             <Link to={`/profile/${user._id}`}>
-                                                <small>See Profile</small>
+                                                {this.state.loggedIn ? <small>See Profile</small>:<small>Log in to view profile</small>}
                                             </Link>
                                         </div>
                                         <p className="mb-1">Username : <i>{user.username}</i></p>
