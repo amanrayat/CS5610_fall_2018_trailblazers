@@ -1,11 +1,16 @@
 import React from "react";
-import axios from 'axios';
 import './BeerDetail.css'
 import {Link} from 'react-router-dom'
 import BeereweryServices from "../../services/BeereweryServices";
 import BeerServices from "../../services/BeerServices";
 import UserService from "../../services/UserService";
 import Navbar from "../NavBar/Navbar";
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 
 export default class BeerDetail extends React.Component {
@@ -13,6 +18,7 @@ export default class BeerDetail extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            open : false,
             isLoading: true,
             beer: {},
             commentInput: "",
@@ -46,14 +52,14 @@ export default class BeerDetail extends React.Component {
                         this.setState({
                             comments: res_2,
                             beer: res.data,
-                            likes: res_3.length
+                            likes: res_3.length,
+                            open:!this.props.isAuthenticated
                         })
                     })
                 })
             })
 
         });
-
     };
 
     trackCommentInput = (e) => {
@@ -91,9 +97,49 @@ export default class BeerDetail extends React.Component {
         }
     };
 
+    handleClose =() =>{
+        this.setState({open : false})
+    };
+
+    handleLogin =()=>{
+        this.props.history.push('/login')
+    };
+    handleRegister =()=>{
+        this.props.history.push('/register')
+    };
+
     render() {
         return (
             <div className="h-100">
+                <div>
+                    {/*<Button onClick={this.handleClickOpen}>Open responsive dialog</Button>*/}
+                    <Dialog
+                        // fullScreen={fullScreen}
+                        open={this.state.open}
+                        onClose={this.handleClose}
+                        aria-labelledby="responsive-dialog-title"
+                    >
+                        <DialogTitle id="responsive-dialog-title">{"You are not logged in"}</DialogTitle>
+                        <DialogContent>
+                            <DialogContentText>
+                                We see you have not logged in.
+                                In order to be able to comment or like the beer, You need tp login first.
+                                Do you want to login or register?
+                            </DialogContentText>
+                        </DialogContent>
+                        <DialogActions>
+                            <Button onClick={this.handleClose} color="primary">
+                                Continue without login
+                            </Button>
+                            <Button onClick={this.handleLogin} color="primary" autoFocus>
+                                Login
+                            </Button>
+                            <Button onClick={this.handleRegister} color="primary" autoFocus>
+                                Register
+                            </Button>
+                        </DialogActions>
+                    </Dialog>
+                </div>
                 <Navbar
                     history = {this.props.history}
                     isAuthenticated = {this.props.isAuthenticated}

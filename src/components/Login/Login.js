@@ -72,7 +72,7 @@ export default class Login extends React.Component {
                             <h3> Sign In</h3>
                             <form noValidate autoComplete="off" onSubmit={this.submitLogin}>
                                 <TextField
-                                    id="outlined-name"
+                                    id="outlined-email"
                                     label="Email Id"
                                     className={'input-field'}
                                     fullWidth={true}
@@ -84,7 +84,7 @@ export default class Login extends React.Component {
                                 />
                                 <br/>
                                 <TextField
-                                    id="outlined-name"
+                                    id="outlined-password"
                                     label="Password"
                                     fullWidth={true}
                                     type='password'
