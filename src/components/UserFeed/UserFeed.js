@@ -16,7 +16,7 @@ function UserFeed({isAuthenticated, commentData}){
                                             <strong>{comment.userId.username}: </strong>
                                         </Link>
                                         <Link to={`/beer/${comment.beerId}`}>
-                                            commented about blabla: "{comment.comment}"
+                                            commented: "{comment.comment}"
                                         </Link>
                                     </div>
 
@@ -24,7 +24,7 @@ function UserFeed({isAuthenticated, commentData}){
                             {
                                 !isAuthenticated &&
                                 <div className="text-primary">
-                                    <strong>{comment.userId.username}: </strong> commented about blabla: "{comment.comment}"
+                                    <strong>{comment.userId.username}: </strong> commented : "{comment.comment}"
                                 </div>
                             }
                         </div>
