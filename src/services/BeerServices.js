@@ -29,7 +29,12 @@ export default class BeerServices{
 
         return axios.delete(API_URL + "/api/beer/" + beerId + "/comment/" + commentId ,  {withCredentials: true}).then((res) => res.data)
     };
+    static updateCommentForBeerId = ( beerId, commentId , comment ) => {
+        console.log("the beer is " , beerId , commentId , comment)
+        return axios.put(API_URL + "/api/beer/" + beerId + "/comment/" + commentId , comment ,  {withCredentials: true}).then((res) => res.data)
+    };
 
+// /api/beer/:beerId/comment
     static addLike = (userId, beerId) => {
         return axios.post(API_URL + "/api/user/" + userId + "/beer/" + beerId + "/like", {}, {withCredentials: true}).then((res) => res.data)
     };

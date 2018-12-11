@@ -11,6 +11,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import {FormControl} from "react-bootstrap";
 
 
 export default class BeerDetail extends React.Component {
@@ -20,8 +21,11 @@ export default class BeerDetail extends React.Component {
         this.state = {
             open : false,
             isLoading: true,
+            currUser:'',
+            editing : false,
             beer: {},
             commentInput: "",
+            updateComment : '',
             comments: [],
             likes: 0,
             canLike: false
@@ -49,12 +53,16 @@ export default class BeerDetail extends React.Component {
             BeerServices.createBeer(beerJson).then((res_1) => {
                 BeerServices.findCommentsForBeerId(beerId).then((res_2) => {
                     BeerServices.findTotalLikes(beerId).then((res_3) => {
-                        this.setState({
-                            comments: res_2,
-                            beer: res.data,
-                            likes: res_3.length,
-                            open:!this.props.isAuthenticated
+                        UserService.profile().then(res_4=>{
+                            this.setState({
+                                currUser : res_4.data[0],
+                                comments: res_2,
+                                beer: res.data,
+                                likes: res_3.length,
+                                open:!this.props.isAuthenticated
+                            })
                         })
+
                     })
                 })
             })
@@ -83,6 +91,17 @@ export default class BeerDetail extends React.Component {
         }
     };
 
+    onUpdateComment = (cId)=>{
+            BeerServices.updateCommentForBeerId(this.state.beer.id , cId , {comment : this.state.updateComment}).then(res=>{
+                BeerServices.findCommentsForBeerId(this.state.beer.id).then((res_2) => {
+                    this.setState({
+                        comments: res_2,
+                        commentInput: "",
+                        editing : false,
+                    })
+                })
+            })
+    };
     deleteComment = (cId)=>{
         BeerServices.deleteCommentForBeerId(this.state.beer.id, cId).then(res=>{
             BeerServices.findCommentsForBeerId(this.state.beer.id).then((res_2) => {
@@ -120,6 +139,7 @@ export default class BeerDetail extends React.Component {
     };
 
     render() {
+        console.log("the current user is " , this.state)
         return (
             <div className="h-100">
                 <div>
@@ -304,14 +324,40 @@ export default class BeerDetail extends React.Component {
                                                                 {comment.userId.username}:
                                                             </Link>
                                                         </div>
-                                                        <div className="ml-0 ml-md-1 col-8">
+                                                        { this.state.editing!==comment._id && <div className="ml-0 ml-md-1 col-7">
                                                             {comment.comment}
                                                         </div>
-                                                        <div className="ml-0 ml-md-1 col-1">
-                                                            <div onClick={()=>this.deleteComment(comment._id)}>
-                                                                <i className="fa fa-times"/>
-                                                            </div>
+                                                        }
+                                                        { this.state.editing===comment._id && <div className="ml-0 ml-md-1 col-8">
+                                                            <FormControl
+                                                                type="text"
+                                                                value={this.state.inputFirstName}
+                                                                placeholder="First Name"
+                                                                onChange={(e)=>this.setState({updateComment : e.target.value})}
+                                                            />
                                                         </div>
+                                                        }
+                                                        {
+                                                            this.state.editing===comment._id  && <div className="ml-0 ml-md-1 col-1">
+                                                                <div onClick={() => this.onUpdateComment(comment._id)}>
+                                                                    <i className="fa fa-save"/>
+                                                                </div>
+                                                            </div>
+                                                        }
+
+                                                        { this.state.editing!==comment._id && this.state.currUser && comment.userId._id===this.state.currUser._id &&
+                                                        <div className="ml-0 ml-md-1 col-2">
+                                                            <div className={'row'}>
+                                                                <div onClick={() => this.setState({editing : comment._id})} className={'col-6'}>
+                                                                    <i className="fa fa-pencil"/>
+                                                                </div>
+                                                                <div onClick={() => this.deleteComment(comment._id)} className={'col-6'}>
+                                                                    <i className="fa fa-times"/>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                        }
                                                     </div>
                                                 </div>
                                             ))
