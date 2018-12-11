@@ -49,9 +49,13 @@ export default class UserDetails extends Component{
                                     <li className="list-group-item list-group-item-action flex-column align-items-start">
                                         <div className="d-flex w-100 justify-content-between">
                                             <h5 className="mb-1">{user.firstName} {user.lastName}</h5>
-                                            <Link to={`/profile/${user._id}`}>
-                                                {this.state.loggedIn ? <small>See Profile</small>:<small>Log in to view profile</small>}
-                                            </Link>
+                                            {this.state.loggedIn ?
+                                                <Link to={`/profile/${user._id}`}>
+                                                    <small>See Profile</small>
+                                                </Link>:
+                                                <Link to={`/login`}>
+                                                    <small>See Profile</small>
+                                                </Link>}
                                         </div>
                                         <p className="mb-1">Username : <i>{user.username}</i></p>
                                     </li>
