@@ -63,4 +63,8 @@ export default class UserService {
         return axios.delete(API_URL + "/api/user/"+userId+"/unfollow/"+followId,  {withCredentials: true});
     };
 
+    static findUserByUsername = (username) => {
+        return axios.get(API_URL + "/api/user?name="+username,  {withCredentials: true});
+    };
+
 }
