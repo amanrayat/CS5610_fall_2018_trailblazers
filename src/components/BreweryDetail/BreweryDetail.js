@@ -34,8 +34,7 @@ class BreweryDetail extends React.Component{
                         name: res_3.data.name
                     };
                     BreweryServices.createBrewery(brewery).then((res_1) => {
-                        console.log(res.data)
-                        BreweryServices.getEventsByBrewery(res_3.id).then((res_2) => {
+                        BreweryServices.getEventsByBrewery(res_3.data.id).then((res_2) => {
                             this.setState({
                                 userProfile: res.data[0],
                                 events: res_2,

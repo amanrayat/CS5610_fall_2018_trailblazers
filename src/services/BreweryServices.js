@@ -15,4 +15,8 @@ export default class BreweryServices{
     static createEvent = (epId, event) => {
         return axios.post(API_URL + "/api/eventplanner/" + epId + "/event", event, {withCredentials: true}).then((res) => res.data)
     }
+
+    static deleteEvent = (epId) => {
+        return axios.delete(API_URL + "/api/event/" + epId , {withCredentials: true}).then((res) => res.data)
+    }
 }

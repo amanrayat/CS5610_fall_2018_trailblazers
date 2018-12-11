@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link} from 'react-router-dom'
+import BreweryService from '../../services/BreweryServices'
 
 function formatTime(time) {
     let splitTime = time.split(":");
@@ -23,6 +24,10 @@ function EventCard({event}) {
                 <div className="card-header text-primary text-center">
                     <h4>
                         {event.name}
+                        <div onClick={()=>BreweryService.deleteEvent(event._id)}>
+                            <i className="fa fa-times float-right"/>
+                        </div>
+
                     </h4>
                 </div>
                 <div className="card-body">
