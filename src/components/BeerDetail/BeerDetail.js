@@ -143,9 +143,7 @@ export default class BeerDetail extends React.Component {
         return (
             <div className="h-100">
                 <div>
-                    {/*<Button onClick={this.handleClickOpen}>Open responsive dialog</Button>*/}
                     <Dialog
-                        // fullScreen={fullScreen}
                         open={this.state.open}
                         onClose={this.handleClose}
                         aria-labelledby="responsive-dialog-title"
@@ -154,7 +152,7 @@ export default class BeerDetail extends React.Component {
                         <DialogContent>
                             <DialogContentText>
                                 We see you have not logged in.
-                                In order to be able to comment or like the beer, You need tp login first.
+                                In order to be able to comment or like the beer, You need to login first.
                                 Do you want to login or register?
                             </DialogContentText>
                         </DialogContent>

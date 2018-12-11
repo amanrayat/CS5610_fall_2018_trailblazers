@@ -215,11 +215,11 @@ class BreweryDetail extends React.Component{
                                 </div>
                             </div>
                             <div className="row ml-2 mr-0">
-                                <div className="col-md-6 col-11">
+                                <div className="col-md-6 col-11 mb-5">
                                     {
                                         this.state.userProfile !== "" && this.state.userProfile.type === 'EVENTPLANNER' &&
-                                        <div className="my-2">
-                                            <h3>
+                                        <div className="my-2 mx-3">
+                                            <h3 className={'mt-5'}>
                                                 Create New Event
                                             </h3>
                                             <div className="form-group row">

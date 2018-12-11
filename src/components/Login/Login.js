@@ -65,8 +65,8 @@ export default class Login extends React.Component {
                         <div id={'background_pic'}/>
                     </Grid>
                     <Grid item xs={12} md={6}>
-                        <div className="m-3" id={'login-form'}>
-                            <h3> Sign In</h3>
+                        <div className="m-3 mt-5" id={'login-form'}>
+                            <h3 className={'heading'}> Sign In</h3>
                             <form noValidate autoComplete="off" onSubmit={this.submitLogin}>
                                 <TextField
                                     id="outlined-email"

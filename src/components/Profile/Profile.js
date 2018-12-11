@@ -235,12 +235,13 @@ export default class Profile extends React.Component{
                                                         this.props.match.params.profileId &&
                                                         <button
                                                             onClick={this.followUser}
-                                                            className={this.state.followed?'btn btn-danger mx-4 my-4 float-right':
-                                                                'follow-btn btn btn-primary mx-4 my-4 float-right'}>
-                                                            {this.state.followed ? <div>Un Follow</div> : <div>Follow</div>}
+                                                            className={this.state.followed?'btn btn-danger my-4 float-right':
+                                                                'follow-btn btn btn-primary my-4 float-right'}>
+                                                            {this.state.followed ? <div className={'text-center'}>Un Follow</div> : <div>Follow</div>}
                                                         </button>
                                                     }
                                                 </div>
+                                                <div className={'col-4'}/>
 
                                             </div>
                                             { !this.props.match.params.profileId &&
