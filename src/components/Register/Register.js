@@ -2,11 +2,8 @@ import React from 'react'
 import './Register.css'
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
 import MenuItem from '@material-ui/core/MenuItem';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
-import FilledInput from '@material-ui/core/FilledInput';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import LoaderButton from '../LoaderButton/LoaderButton';
@@ -89,7 +86,7 @@ export default class Register extends React.Component {
                             <h3> Register</h3>
                             <form noValidate autoComplete="off" onSubmit={this.submitRegister}>
                                 <TextField
-                                    id="outlined-name"
+                                    id="outlined-username"
                                     label="Username"
                                     className={'input-field'}
                                     fullWidth={true}
@@ -102,7 +99,7 @@ export default class Register extends React.Component {
                                 <br/>
 
                                 <TextField
-                                    id="outlined-name"
+                                    id="outlined-firstName"
                                     label="First Name"
                                     className={'input-field'}
                                     fullWidth={true}
@@ -114,7 +111,7 @@ export default class Register extends React.Component {
                                 />
                                 <br/>
                                 <TextField
-                                    id="outlined-name"
+                                    id="outlined-lastName"
                                     label="Last Name"
                                     className={'input-field'}
                                     fullWidth={true}
@@ -135,7 +132,7 @@ export default class Register extends React.Component {
                                     </Select>
                                 </FormControl>
                                 <TextField
-                                    id="outlined-name"
+                                    id="outlined-email"
                                     label="Email Id"
                                     className={'input-field'}
                                     fullWidth={true}
@@ -146,7 +143,7 @@ export default class Register extends React.Component {
                                     variant="outlined"
                                 />
                                 <TextField
-                                    id="outlined-name"
+                                    id="outlined-phoneNo"
                                     label="Phone No"
                                     className={'input-field'}
                                     fullWidth={true}
@@ -167,7 +164,6 @@ export default class Register extends React.Component {
                                     margin="normal"
                                     variant="outlined"
                                 />
-                                {/*<br/>*/}
                                 <TextField
                                     id="outlined-confirm"
                                     label="Confirm Password"
