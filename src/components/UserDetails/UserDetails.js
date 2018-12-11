@@ -19,7 +19,7 @@ export default class UserDetails extends Component{
             UserService.profile().then(result2=>{
                 this.setState({
                     users : result.data,
-                    loggedIn : result2.length
+                    loggedIn : result2.data.length
                 })
 
             })
