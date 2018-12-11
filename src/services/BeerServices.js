@@ -1,6 +1,6 @@
 import axios from 'axios';
-const API_URL = "https://boiling-ocean-17135.herokuapp.com";
-// const API_URL = "http://localhost:4000";
+// const API_URL = "https://boiling-ocean-17135.herokuapp.com";
+const API_URL = "http://localhost:4000";
 
 export default class BeerServices{
 
@@ -23,6 +23,11 @@ export default class BeerServices{
             comment: comment
         };
         return axios.post(API_URL + "/api/user/" + userId + "/beer/" + beerId + "/comment", commentJson, {withCredentials: true}).then((res) => res.data)
+    };
+
+    static deleteCommentForBeerId = ( beerId, commentId) => {
+
+        return axios.delete(API_URL + "/api/beer/" + beerId + "/comment/" + commentId ,  {withCredentials: true}).then((res) => res.data)
     };
 
     static addLike = (userId, beerId) => {

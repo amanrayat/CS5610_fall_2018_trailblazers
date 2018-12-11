@@ -83,6 +83,17 @@ export default class BeerDetail extends React.Component {
         }
     };
 
+    deleteComment = (cId)=>{
+        BeerServices.deleteCommentForBeerId(this.state.beer.id, cId).then(res=>{
+            BeerServices.findCommentsForBeerId(this.state.beer.id).then((res_2) => {
+                this.setState({
+                    comments: res_2,
+                    commentInput: ""
+                })
+            })
+        })
+    };
+
     sendLike = () => {
         if(this.props.isAuthenticated){
             UserService.profile().then((res) => {
@@ -145,7 +156,7 @@ export default class BeerDetail extends React.Component {
                     isAuthenticated = {this.props.isAuthenticated}
                     userHasAuthenticated = {this.props.userHasAuthenticated}
                 />
-                <div className="main-block">
+                <div className="main-block mb-5">
 
                     <div className="beer-heading-one">
                         <div className="beer-heading-one-inner">
@@ -293,8 +304,13 @@ export default class BeerDetail extends React.Component {
                                                                 {comment.userId.username}:
                                                             </Link>
                                                         </div>
-                                                        <div className="ml-0 ml-md-1 col-9">
+                                                        <div className="ml-0 ml-md-1 col-8">
                                                             {comment.comment}
+                                                        </div>
+                                                        <div className="ml-0 ml-md-1 col-1">
+                                                            <div onClick={()=>this.deleteComment(comment._id)}>
+                                                                <i className="fa fa-times"/>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
