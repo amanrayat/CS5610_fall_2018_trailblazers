@@ -1,6 +1,6 @@
 import React from 'react';
 import queryString from 'query-string'
-import {Redirect, Router} from 'react-router-dom'
+import {Redirect} from 'react-router-dom'
 import Pagination from 'react-paginating';
 
 import Navbar from "../NavBar/Navbar";

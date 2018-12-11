@@ -7,7 +7,7 @@ function BreweryCard({record}){
             <div className="col-md-2 col-4">
                 {
                     record.images && record.images.icon &&
-                    <img src={record.images.icon}/>
+                    <img src={record.images.icon} alt={"No"}/>
                 }
                 {
                     (!record.images || !record.images.icon) &&

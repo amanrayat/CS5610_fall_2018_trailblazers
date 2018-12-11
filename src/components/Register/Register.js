@@ -38,7 +38,7 @@ export default class Register extends React.Component {
             lastName: this.state.lastName,
             email: this.state.email,
             phoneNo: this.state.phoneNo,
-            type: "CUSTOMER"
+            type: this.state.type
         };
 
         UserService.registerUser(user).then(res => {
@@ -62,7 +62,7 @@ export default class Register extends React.Component {
     onLastNameChange = e => this.setState({lastName: e.target.value});
     onPasswordConfirmChange = e => this.setState({verifyPassword: e.target.value});
     onPhoneNoChange = e => this.setState({phoneNo: e.target.value});
-    onRoleChange = e =>this.setState({type : e.target.value});
+    onRoleChange = e => this.setState({type : e.target.value});
 
     validateForm = () => {
         return (
@@ -77,6 +77,7 @@ export default class Register extends React.Component {
     };
 
     render() {
+        console.log("the role is " , this.state)
         return (
 
             <div style={{'height': '100%'}}>

@@ -7,7 +7,7 @@ function BeerCard({record}){
             <div className="col-md-2 col-4">
                 {
                     record.labels &&
-                    <img src={record.labels.icon}/>
+                    <img src={record.labels.icon} alt={'Not Found'}/>
                 }
                 {
                     !record.labels &&

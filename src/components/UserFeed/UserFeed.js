@@ -8,7 +8,7 @@ function UserFeed({isAuthenticated, commentData}){
             {
                 commentData.map((comment, index) =>
                     (
-                        <div className="list-group-item text-truncate">
+                        <div key={comment._id} className="list-group-item text-truncate">
                             {
                                 isAuthenticated &&
                                     <div>

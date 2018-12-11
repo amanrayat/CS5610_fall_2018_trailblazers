@@ -1,8 +1,6 @@
 import React from 'react'
-import {Redirect} from 'react-router-dom'
 import Navbar from '../NavBar/Navbar'
 import UserFeed from '../UserFeed/UserFeed'
-
 import './Home.css'
 import BeerServices from "../../services/BeerServices";
 import UserService from "../../services/UserService";

@@ -447,10 +447,16 @@ export default class Profile extends React.Component{
                                         </ExpansionPanelSummary>
                                         <ExpansionPanelDetails>
                                             {
-                                                this.state.followers.slice(3, this.state.followers.length).map(follower=>{
-                                                    return(<div className={'mx-5 pic-size-extended'}>
-                                                        <img className="rounded-circle card-img-top" src={follower.image} alt="Card image cap"/>
-                                                        <span>{follower.firstName}</span>
+                                                // this.state.followers.slice(3, this.state.followers.length).map(follower=>{
+                                                this.state.favBeer.slice(3, this.state.favBeer.length).map(follow=>{
+                                                    return(<div className={'mx-5 pic-size'}>
+                                                        <div className={'align-left'}>
+                                                            <Avatar className={"rounded-circle card-img-top"}>
+                                                                {follow.beerId.name.split("")[0]}
+                                                            </Avatar>
+                                                            <p>{follow.beerId.name}</p>
+                                                        </div>
+
                                                     </div>)
                                                 })
                                             }

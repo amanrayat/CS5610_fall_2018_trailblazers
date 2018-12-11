@@ -142,7 +142,7 @@ class BreweryDetail extends React.Component{
                                     <div className="col-md-2 text-center col-12">
                                         {
                                             this.state.data.images && this.state.data.images.squareMedium &&
-                                            <img src={this.state.data.images.squareMedium}/>
+                                            <img src={this.state.data.images.squareMedium} alt={""}/>
                                         }
                                         {
                                             !(this.state.data.images && this.state.data.images.squareMedium) &&
